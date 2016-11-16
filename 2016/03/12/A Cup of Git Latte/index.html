@@ -1,0 +1,805 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="I code therefore I am." />
+
+
+
+  <meta name="keywords" content="Git," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hackjutsu Dojo" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Quick reference for some frequently used Git commands.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Cup of Git Latte">
+<meta property="og:url" content="http://hackjutsu.com/2016/03/12/A Cup of Git Latte/index.html">
+<meta property="og:site_name" content="Hackjutsu Dojo">
+<meta property="og:description" content="Quick reference for some frequently used Git commands.">
+<meta property="og:image" content="https://git-scm.com/book/en/v2/book/01-introduction/images/areas.png">
+<meta property="og:updated_time" content="2016-09-26T17:56:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A Cup of Git Latte">
+<meta name="twitter:description" content="Quick reference for some frequently used Git commands.">
+<meta name="twitter:image" content="https://git-scm.com/book/en/v2/book/01-introduction/images/areas.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> A Cup of Git Latte | Hackjutsu Dojo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72207664-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hackjutsu Dojo</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'L5TH3kKzWS14GbMzpixP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              A Cup of Git Latte
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2016-03-12T18:00:01-08:00" content="2016-03-12">
+            2016-03-12
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2016/03/12/A Cup of Git Latte/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/12/A Cup of Git Latte/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="https://git-scm.com/book/en/v2/book/01-introduction/images/areas.png" style="max-height: 350px;"></p>
+<p>Quick reference for some frequently used Git commands.<br><a id="more"></a></p>
+<blockquote>
+<p><strong>Terminology convention:</strong> working tree –&gt; stage –&gt; local repo –&gt; remote repo</p>
+</blockquote>
+<h2 id="Set-up-a-new-repository"><a href="#Set-up-a-new-repository" class="headerlink" title="Set up a new repository"></a>Set up a new repository</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git pull https://github.com/registercosmo/Cheatsheet.git</div><div class="line">git remote add origin https://github.com/registercosmo/Cheatsheet.git</div><div class="line">git add .</div><div class="line">git status</div><div class="line">git commit</div><div class="line">git commit -m <span class="string">"comments"</span></div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Working-with-remote-repositories"><a href="#Working-with-remote-repositories" class="headerlink" title="Working with remote repositories"></a>Working with remote repositories</h2><h3 id="Set-up-remote-repository"><a href="#Set-up-remote-repository" class="headerlink" title="Set up remote repository"></a>Set up remote repository</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># set up a new remote repo (origin)</span></div><div class="line">git remote add origin &lt;new_remote_repo&gt;</div><div class="line"></div><div class="line"><span class="comment"># change URL for a remote repo (origin)</span></div><div class="line">git remote <span class="built_in">set</span>-url origin &lt;new_remote_repo&gt;</div><div class="line"></div><div class="line"><span class="comment"># list all the remote repo URLs</span></div><div class="line">git remote -v</div><div class="line"></div><div class="line"><span class="comment"># rename a remote repo (e.g. origin -&gt; my_source)</span></div><div class="line">git remote rename origin my_source</div></pre></td></tr></table></figure>
+<h3 id="Sync-with-the-remote-repository"><a href="#Sync-with-the-remote-repository" class="headerlink" title="Sync with the remote repository"></a>Sync with the remote repository</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># To pull changes to working tree (= fetch + merge)</span></div><div class="line">git pull &lt;remote_repo&gt; master</div><div class="line"></div><div class="line"><span class="comment"># Download lastest changes(objects and refs) from remote repo</span></div><div class="line">git fetch &lt;remote_repo&gt;</div><div class="line"></div><div class="line"><span class="comment"># To merge the local repo and fetched changes</span></div><div class="line">git merge FETCH_HEAD</div><div class="line"></div><div class="line"><span class="comment"># To merge the origin/feature branch to the current branch</span></div><div class="line">git merge origin/feature</div></pre></td></tr></table></figure>
+<h2 id="More-about-fetch-merge-pull"><a href="#More-about-fetch-merge-pull" class="headerlink" title="More about fetch, merge, pull"></a>More about fetch, merge, pull</h2><h3 id="More-about-fetch"><a href="#More-about-fetch" class="headerlink" title="More about fetch"></a>More about fetch</h3><blockquote>
+<p><strong>git fetch</strong> —— Download objects and refs from another repository</p>
+</blockquote>
+<p><code>git fetch</code> fetches <em>branches</em> and/or <em>tags</em> (collectively, <em>refs</em>) from one or more other repositories, along with the objects necessary to complete their histories. Remote-tracking branches are updated.</p>
+<p>When no remote is specified, by default the <code>origin</code> remote will be used, unless there’s an upstream branch configured for the current branch.</p>
+<p>The names of refs that are fetched, together with the object names they point at, are written to <code>.git/FETCH_HEAD</code>.This information may be used by scripts or other git commands, such as <code>git-pull</code>.  The <code>FETCH_HEAD</code> is just a reference to the tip of the last fetch, whether that fetch was initiated directly using the fetch command or as part of a pull.</p>
+<h4 id="branch-lt-name-gt-fetch"><a href="#branch-lt-name-gt-fetch" class="headerlink" title="branch.&lt; name &gt;.fetch"></a>branch.&lt; name &gt;.fetch</h4><p>When we have the <code>branch.&lt;name&gt;.fetch</code> set as:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[remote &quot;origin&quot;] fetch = +refs/heads/*:refs/remotes/origin/*</div></pre></td></tr></table></figure></p>
+<p>This configuration is used in two ways:</p>
+<h5 id="Without-specifying-branches"><a href="#Without-specifying-branches" class="headerlink" title="Without specifying branches"></a>Without specifying branches</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch origin</div></pre></td></tr></table></figure>
+<p>The above command copies all branches from the remote <code>refs/heads/</code> namespace and stores them to the local <code>refs/remotes/origin/</code> namespace, unless the <code>branch.&lt;name&gt;.fetch</code> option is used to specify a non-default refspec.</p>
+<h5 id="Specifying-branches"><a href="#Specifying-branches" class="headerlink" title="Specifying branches"></a>Specifying branches</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch origin master</div></pre></td></tr></table></figure>
+<p>This command will fetch only the master branch. The <code>remote.&lt;repository&gt;.fetch</code> values determine which remote-tracking branch, if any, is updated.</p>
+<h3 id="More-about-merge"><a href="#More-about-merge" class="headerlink" title="More about merge"></a>More about merge</h3><blockquote>
+<p><strong>git merge</strong> —— Join two or more development histories together</p>
+</blockquote>
+<p><code>git merge</code> incorporates changes from the named commits (since the time their histories diverged from the current branch) into the current branch.</p>
+<p>Assume the following history exists and <em>the current branch is “master”</em>:</p>
+<pre><code>  A---B---C topic
+ /
+D---E---F---G master
+</code></pre><p>Then <code>git merge topic</code> will replay the changes made on the topic branch since it diverged from master (E) until its current commit (C) on top of master, and record the result in a new commit (H) along with the names of the two parent commits and a log message from the user describing the changes.</p>
+<pre><code>  A---B---C topic
+ /         \
+D---E---F---G---H master
+</code></pre><h4 id="Pre-merge-checks"><a href="#Pre-merge-checks" class="headerlink" title="Pre-merge checks"></a>Pre-merge checks</h4><p>Before performing any merge, we should make sure our codes are in good shape and commit all local changes. <code>git pull</code> and <code>git merge</code> will stop without doing anything when local uncommitted changes overlap with files that <code>git pull</code>/<code>git merge</code> may need to update.</p>
+<p>To avoid recording unrelated changes in the merge commit, <code>git pull</code> and <code>git merge</code> will also abort if there are any changes registered in the index relative to the <code>HEAD</code> commit.  (One exception is when the changed index entries are in the state that would result from the merge already.)</p>
+<p>If all named commits are already ancestors of <code>HEAD</code>, <code>git merge</code> will exit early with the message “Already up-to-date.”</p>
+<h4 id="Fast-forward-merge"><a href="#Fast-forward-merge" class="headerlink" title="Fast-forward merge"></a>Fast-forward merge</h4><p>Often the current branch head is an ancestor of the named commit. This is the most common case especially when invoked from <code>git pull</code>: we are tracking an upstream repository, we have committed no local changes, and now we want to update to a newer upstream revision. In this case, a new commit is not needed to store the combined history; instead, the <code>HEAD</code> (along with the index) is updated to point at the named commit, without creating an extra merge commit.</p>
+<p>This behavior can be suppressed with the <code>--no-ff</code> option.</p>
+<h4 id="True-merge"><a href="#True-merge" class="headerlink" title="True merge"></a>True merge</h4><p>Except in a fast-forward merge (see above), the branches to be merged must be tied together by a merge commit that has both of them as its parents.</p>
+<p>A merged version reconciling the changes from all branches to be merged is committed, and our <code>HEAD</code>, index, and working tree are updated to it. It is possible to have modifications in the working tree as long as they do not overlap; the update will preserve them.</p>
+<p>When it is not obvious how to reconcile the changes, the following happens:</p>
+<ol>
+<li><p>The <code>HEAD</code> pointer stays the same.</p>
+</li>
+<li><p>The <code>MERGE_HEAD</code> ref is set to point to the other branch head.</p>
+</li>
+<li><p>Paths that merged cleanly are updated both in the index file and in our working tree.</p>
+</li>
+<li><p>For conflicting paths, the index file records up to three versions: stage 1 stores the version from the common ancestor, stage 2 from <code>HEAD</code>, and stage 3 from <code>MERGE_HEAD</code> (we can inspect the stages with <code>git ls-files -u</code>). The working tree files contain the result of the “merge” program; i.e. 3-way merge results with familiar conflict markers <code>&lt;&lt;&lt;</code> <code>===</code> <code>&gt;&gt;&gt;</code>.</p>
+</li>
+<li><p>No other changes are made. In particular, the local modifications we had before we started merge will stay the same and the index entries for them stay as they were, i.e. matching <code>HEAD</code>.</p>
+</li>
+</ol>
+<p>If we tried a merge which resulted in complex conflicts and want to start over, we can recover with <code>git merge --abort</code>.</p>
+<h4 id="Resolve-conflicts"><a href="#Resolve-conflicts" class="headerlink" title="Resolve conflicts"></a>Resolve conflicts</h4><p>After seeing a conflict, we can do two things:</p>
+<ul>
+<li><p><strong>Decide not to merge.</strong> The only clean-ups we need are to reset the index file to the <code>HEAD</code> commit to reverse 2. and to clean up working tree changes made by 2. and 3.; <code>git merge --abort</code> can be used for this.</p>
+</li>
+<li><p><strong>Resolve the conflicts.</strong> Git will mark the conflicts in the working tree. Edit the files into shape and git add them to the index. Use <code>git commit</code> to seal the deal.</p>
+</li>
+</ul>
+<h3 id="More-about-pull"><a href="#More-about-pull" class="headerlink" title="More about pull"></a>More about pull</h3><blockquote>
+<p><strong>git pull</strong> —— Fetch from and integrate with another repository or a local branch</p>
+</blockquote>
+<p><code>git pull</code> incorporates changes from a remote repository into the current branch. In its default mode, <code>git pull</code> is shorthand for <code>git fetch</code> followed by <code>git merge FETCH_HEAD</code>.</p>
+<p>More precisely, <code>git pull</code> runs <code>git fetch</code> with the given parameters and calls git merge to <strong>merge the retrieved branch heads into the current branch</strong>. See the <em>More about config variables</em> for more details.</p>
+<ul>
+<li><p>Update the remote-tracking branches for the repository we cloned from, then merge one of them into our current branch:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull, git pull origin</div></pre></td></tr></table></figure>
+<p>Normally the branch merged in is the <code>HEAD</code> of the remote repository, but the choice is determined by the <code>branch.&lt;name&gt;.remote</code> and <code>branch.&lt;name&gt;.merge</code> options.</p>
+</li>
+<li><p>To merge a specific remote branch <code>next</code> into our current branch, we can run:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull origin next</div></pre></td></tr></table></figure>
+<p>This leaves a copy of next temporarily in <code>FETCH_HEAD</code>, but does not update any remote-tracking branches. Using remote-tracking branches, the same can be done by invoking fetch and merge:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch origin</div><div class="line">git merge origin/next</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>If we tried a pull which resulted in complex conflicts and would want to start over, we can recover with <code>git reset</code>.</p>
+<hr>
+<h2 id="Fix-the-previous-commit"><a href="#Fix-the-previous-commit" class="headerlink" title="Fix the previous commit"></a>Fix the previous commit</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit --amend</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Undo-changes"><a href="#Undo-changes" class="headerlink" title="Undo changes"></a>Undo changes</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># unstage changes but keep the local changes in the working tree</span></div><div class="line">git reset HEAD</div><div class="line"></div><div class="line"><span class="comment"># discard all the changes in the stage and working tree</span></div><div class="line"><span class="comment"># and match the working tree the commit B</span></div><div class="line">git reset --hard B</div><div class="line"></div><div class="line"><span class="comment"># move the HEAD to commit B, no modification will be made</span></div><div class="line"><span class="comment"># to the stage and the working tree</span></div><div class="line">git reset --soft B</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Untrack-files"><a href="#Untrack-files" class="headerlink" title="Untrack files"></a>Untrack files</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rm --cached &lt;file_name&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="About-branches"><a href="#About-branches" class="headerlink" title="About branches"></a>About branches</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># fetch remote branches from Github</span></div><div class="line">git remote add origin &lt;ULR&gt; <span class="comment"># we have to set origin first</span></div><div class="line">git pull <span class="comment"># it will pull(fetch + merge) all available branches from repositories</span></div><div class="line"></div><div class="line"><span class="comment"># check info for all available branches</span></div><div class="line">git branch</div><div class="line"></div><div class="line"><span class="comment"># create a new branch</span></div><div class="line">git branch  &lt;new_branch_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># switch to a specific branch</span></div><div class="line">git checkout  &lt;new_branch_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># create and switch to a new branch</span></div><div class="line">git checkout -b &lt;new_branch_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># check the current branch</span></div><div class="line">git status</div><div class="line"></div><div class="line"><span class="comment"># rename a branch</span></div><div class="line">git branch -m &lt;old_branch_name&gt; &lt;new_branch_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># merge a specific branch to the current branch</span></div><div class="line">git merge &lt;another_branch_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># delete a branch localy</span></div><div class="line">git branch <span class="_">-d</span> &lt;branch_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># delete a branch remotely</span></div><div class="line">git push origin :&lt;branch_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># push local branch A to remote branch B</span></div><div class="line">git push origin &lt;<span class="built_in">local</span> branch&gt;:&lt;remote branch&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="About-diff"><a href="#About-diff" class="headerlink" title="About diff"></a>About diff</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># inspect all the modifications between working tree and stage</span></div><div class="line">git diff</div><div class="line"></div><div class="line"><span class="comment"># inspect all the modifications between stage and local repo</span></div><div class="line">git diff --cached</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="About-configs"><a href="#About-configs" class="headerlink" title="About configs"></a>About configs</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># configs for all repositories</span></div><div class="line">git config --global user.name <span class="comment"># check current global user.name</span></div><div class="line">git config --global user.name &lt;My username&gt; <span class="comment"># set global user.name</span></div><div class="line">git config --global user.email <span class="comment"># check current global user.email</span></div><div class="line">git config --gloabl user.email myemail@example.com <span class="comment"># set global user.name</span></div><div class="line"></div><div class="line"><span class="comment"># configs for the current local repository</span></div><div class="line">git config user.name <span class="comment"># check current local user.name</span></div><div class="line">git config user.name &lt;My username&gt; <span class="comment"># set local user.name</span></div><div class="line">git config user.email <span class="comment"># check current local user.email</span></div><div class="line">git config user.email myemail@example.com <span class="comment"># set local user.name</span></div><div class="line"></div><div class="line"><span class="comment"># list all the configs</span></div><div class="line">git config --list</div><div class="line"></div><div class="line"><span class="comment"># Remove the configs</span></div><div class="line">git config --global --unset-all user.name <span class="comment"># global</span></div><div class="line"></div><div class="line"><span class="comment"># Change the configs</span></div><div class="line">git config --global --replace-all user.name &lt;New User Name&gt; <span class="comment"># global</span></div></pre></td></tr></table></figure>
+<h3 id="More-about-config-variables"><a href="#More-about-config-variables" class="headerlink" title="More about config variables"></a>More about config variables</h3><ul>
+<li><p><strong><code>branch.&lt;name&gt;.remote</code></strong><br>When on <code>branch &lt;name&gt;</code>, it tells <em>git fetch</em> and <em>git push</em> which remote to fetch from/push to.</p>
+</li>
+<li><p><strong><code>branch.&lt;name&gt;.merge</code></strong><br>Defines, together with <code>branch.&lt;name&gt;.remote</code>, the upstream branch for the given branch. It tells <em>git fetch/git pull/git rebase</em> which branch to merge and can also affect <em>git push</em> (see push.default). When in <code>branch &lt;name&gt;</code>, it tells <em>git fetch</em> the default refspec to be marked for merging in <code>FETCH_HEAD</code>.</p>
+</li>
+<li><p><strong><code>branch.&lt;name&gt;.pushRemote</code></strong><br>When on <code>branch &lt;name&gt;</code>, it overrides <code>branch.&lt;name&gt;.remote</code> for pushing. It also overrides <code>remote.pushDefault</code> for pushing from <code>branch &lt;name&gt;</code>. When we pull from one place (e.g. our upstream) and push to another place (e.g. our own publishing repository), we would want to set <code>remote.pushDefault</code> to specify the remote to push to for all branches, and use this option to override it for a specific branch.</p>
+</li>
+<li><p><strong><code>remote.pushDefault</code></strong><br>The remote to push to by default. Overrides <code>branch.&lt;name&gt;.remote</code> for all branches, and is overridden by <code>branch.&lt;name&gt;.pushRemote</code> for specific branches.</p>
+</li>
+</ul>
+<hr>
+<h2 id="View-history-for-a-file"><a href="#View-history-for-a-file" class="headerlink" title="View history for a file"></a>View history for a file</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Show commit history of a specific file</span></div><div class="line">git <span class="built_in">log</span> --follow -p &lt;file&gt;</div><div class="line"></div><div class="line"><span class="comment"># Show details of a specific commit</span></div><div class="line">git show &lt;commit id&gt;</div><div class="line"></div><div class="line"><span class="comment"># Show what revision and author last modified each line of a file</span></div><div class="line">git blame &lt;file&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Files-info-about-index-working-tree"><a href="#Files-info-about-index-working-tree" class="headerlink" title="Files info about index/working tree"></a>Files info about index/working tree</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git ls-files</div><div class="line">    (--[cached|deleted|others|ignored|stage|unmerged|killed|modified])</div><div class="line">    (-[c|d|o|i|s|u|k|m])</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Advanced-topics"><a href="#Advanced-topics" class="headerlink" title="Advanced topics"></a>Advanced topics</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># get the SHA-1 key for a specific contents</span></div><div class="line"><span class="built_in">echo</span> <span class="string">'test content'</span> | git <span class="built_in">hash</span>-object -w --stdin</div><div class="line"></div><div class="line"><span class="comment"># get the content of a SHA-1 key</span></div><div class="line">git cat-file -p &lt;key&gt;</div><div class="line"></div><div class="line"><span class="comment"># get a object type for a SHA-1 key</span></div><div class="line">git cat-file -t &lt;key&gt;</div><div class="line"></div><div class="line"><span class="comment"># list the contents of a tree object</span></div><div class="line">git ls-tree &lt;tree_key&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><p><a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a><br><a href="http://www.open-open.com/lib/view/open1328069889514.html" target="_blank" rel="external">http://www.open-open.com/lib/view/open1328069889514.html</a></p>
+<blockquote>
+<p><strong>Disclaimer:</strong> This is my personal notes for Git reference. Some of the notes come from my daily experience and some come from other existing Git tutorials or documentations.</p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag">#Git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/22/Hacking your customer interview/" rel="prev">Hacking Your Customer Interview</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/12/Kanban敏捷开发/" rel="next">Kanban敏捷开发</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript"
+src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a07c3ac699e3ca"
+async = "async" > </script>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Cosmo" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cosmo</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">I code therefore I am.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hackjustu" target="_blank">Github</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://coolshell.cn" target="_blank">CoolShell</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://journal.stuffwithstuff.com/" target="_blank">Bob Nystrom</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-up-a-new-repository"><span class="nav-number">1.</span> <span class="nav-text">Set up a new repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Working-with-remote-repositories"><span class="nav-number">2.</span> <span class="nav-text">Working with remote repositories</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-up-remote-repository"><span class="nav-number">2.1.</span> <span class="nav-text">Set up remote repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync-with-the-remote-repository"><span class="nav-number">2.2.</span> <span class="nav-text">Sync with the remote repository</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-about-fetch-merge-pull"><span class="nav-number">3.</span> <span class="nav-text">More about fetch, merge, pull</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#More-about-fetch"><span class="nav-number">3.1.</span> <span class="nav-text">More about fetch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#branch-lt-name-gt-fetch"><span class="nav-number">3.1.1.</span> <span class="nav-text">branch.< name >.fetch</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Without-specifying-branches"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">Without specifying branches</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Specifying-branches"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">Specifying branches</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#More-about-merge"><span class="nav-number">3.2.</span> <span class="nav-text">More about merge</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pre-merge-checks"><span class="nav-number">3.2.1.</span> <span class="nav-text">Pre-merge checks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fast-forward-merge"><span class="nav-number">3.2.2.</span> <span class="nav-text">Fast-forward merge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#True-merge"><span class="nav-number">3.2.3.</span> <span class="nav-text">True merge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Resolve-conflicts"><span class="nav-number">3.2.4.</span> <span class="nav-text">Resolve conflicts</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#More-about-pull"><span class="nav-number">3.3.</span> <span class="nav-text">More about pull</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fix-the-previous-commit"><span class="nav-number">4.</span> <span class="nav-text">Fix the previous commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Undo-changes"><span class="nav-number">5.</span> <span class="nav-text">Undo changes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Untrack-files"><span class="nav-number">6.</span> <span class="nav-text">Untrack files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-branches"><span class="nav-number">7.</span> <span class="nav-text">About branches</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-diff"><span class="nav-number">8.</span> <span class="nav-text">About diff</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-configs"><span class="nav-number">9.</span> <span class="nav-text">About configs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#More-about-config-variables"><span class="nav-number">9.1.</span> <span class="nav-text">More about config variables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View-history-for-a-file"><span class="nav-number">10.</span> <span class="nav-text">View history for a file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Files-info-about-index-working-tree"><span class="nav-number">11.</span> <span class="nav-text">Files info about index/working tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advanced-topics"><span class="nav-number">12.</span> <span class="nav-text">Advanced topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Resource"><span class="nav-number">13.</span> <span class="nav-text">Resource</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'hackjustu';
+      var disqus_identifier = '2016/03/12/A Cup of Git Latte/';
+      var disqus_title = 'A Cup of Git Latte';
+      var disqus_url = 'http://hackjutsu.com/2016/03/12/A Cup of Git Latte/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+</body>
+</html>

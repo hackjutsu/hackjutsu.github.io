@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/09/24/hello-world/</loc>
+    
+    <lastmod>2016-11-16T00:14:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/10/15/Javascript%20Array%20Essentials/</loc>
+    
+    <lastmod>2016-11-15T23:39:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/10/14/Cool%20URIs%20don%E2%80%99t%20change/</loc>
+    
+    <lastmod>2016-10-14T22:46:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/01/Singleton%20Pattern/</loc>
+    
+    <lastmod>2016-10-05T07:17:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/09/29/Process%20%E4%B8%8E%20Thread/</loc>
+    
+    <lastmod>2016-09-29T22:41:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/03/12/A%20Cup%20of%20Git%20Latte/</loc>
+    
+    <lastmod>2016-09-26T17:56:19.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/08/09/Network%20Byte%20Orders/</loc>
+    
+    <lastmod>2016-08-10T06:32:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/09/25/Introduction-to-Markdown/</loc>
+    
+    <lastmod>2016-08-08T18:48:11.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/08/Facade%20Pattern/</loc>
+    
+    <lastmod>2016-08-08T18:47:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/04/Decorator%20Pattern/</loc>
+    
+    <lastmod>2016-08-08T18:47:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/13/Command%20Lines%20Miscellaneous/</loc>
+    
+    <lastmod>2016-08-05T12:58:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/01/30/%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%99%BB%E5%BD%95%E5%8E%9F%E7%90%86/</loc>
+    
+    <lastmod>2016-08-05T11:47:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/29/Maven%20in%205%20Minutes/</loc>
+    
+    <lastmod>2016-08-04T22:03:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/30/Maven%20POM%20in%20Action/</loc>
+    
+    <lastmod>2016-08-04T22:02:19.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/04/10/Kendo%20Kata/</loc>
+    
+    <lastmod>2016-08-04T22:00:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/02/12/Kanban%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/</loc>
+    
+    <lastmod>2016-08-04T22:00:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/17/Bash%20Logical%20Operators/</loc>
+    
+    <lastmod>2016-08-04T22:00:12.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/05/24/BitTiger%20Geeks%20Ranking/</loc>
+    
+    <lastmod>2016-08-04T19:34:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/08/04/Difference%20between%20set,%20export%20and%20env%20in%20bash/</loc>
+    
+    <lastmod>2016-08-04T19:29:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/01/08/Sourcing%20a%20file%20in%20Unix-Linux/</loc>
+    
+    <lastmod>2016-08-04T19:29:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/06/21/Load%20Average%20on%20Unix-like%20Systems/</loc>
+    
+    <lastmod>2016-06-22T00:34:31.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/06/20/Linux%20Virtual%20Memory%20Management/</loc>
+    
+    <lastmod>2016-06-21T21:41:41.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/04/17/Bootstrap%20Grid%20System/</loc>
+    
+    <lastmod>2016-04-18T20:14:19.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/02/Observer%20Pattern/</loc>
+    
+    <lastmod>2016-04-14T20:30:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/07/Adapter%20Pattern/</loc>
+    
+    <lastmod>2016-04-14T20:26:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/16/Bash-Redirection/</loc>
+    
+    <lastmod>2016-04-05T20:53:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/08/Eclipse-Debugging-Techniques-Tricks/</loc>
+    
+    <lastmod>2016-03-31T22:23:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/01/01/Creating%20Time%20Stamp%20in%20Java/</loc>
+    
+    <lastmod>2016-03-30T01:06:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/03/22/Hacking%20your%20customer%20interview/</loc>
+    
+    <lastmod>2016-03-22T23:25:12.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/01/01/Node.js%20-%20Inheriting%20from%20EventEmitter/</loc>
+    
+    <lastmod>2016-02-29T22:10:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/01/20/Java%20Concurrency/</loc>
+    
+    <lastmod>2016-02-10T01:48:11.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/01/25/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/</loc>
+    
+    <lastmod>2016-01-30T19:28:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/01/12/Autoboxing%20and%20Unboxing/</loc>
+    
+    <lastmod>2016-01-15T01:47:12.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/01/12/Internet%20Control%20Message%20Protocol%20(ICMP)/</loc>
+    
+    <lastmod>2016-01-14T18:41:31.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/about/index.html</loc>
+    
+    <lastmod>2016-01-09T06:40:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2016/01/05/Proper%20way%20to%20quit%20iOS%20application/</loc>
+    
+    <lastmod>2016-01-06T00:56:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/12/10/Database%20Genres/</loc>
+    
+    <lastmod>2015-12-11T07:53:38.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/12/07/Line%20Breaks%20in%20Win-OSX-Linux/</loc>
+    
+    <lastmod>2015-12-08T03:05:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/11/Small%20Tips%20on%20Sublime2/</loc>
+    
+    <lastmod>2015-12-08T02:56:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/tags/index.html</loc>
+    
+    <lastmod>2015-12-06T00:29:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/12/03/Implementing%20a%20ConcurrentHashSet/</loc>
+    
+    <lastmod>2015-12-05T23:35:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/30/Test%20Internet%20Availability%20in%20Android/</loc>
+    
+    <lastmod>2015-12-01T07:01:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/09/29/Command%20Line%20Tutorials%20%E2%80%93%20cURL/</loc>
+    
+    <lastmod>2015-11-25T23:38:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/12/Recover%20Hidden%20Password%20in%20Browser/</loc>
+    
+    <lastmod>2015-11-25T23:22:28.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/25/Diagnose%20Network%20Issues%20-%20netstat/</loc>
+    
+    <lastmod>2015-11-25T23:19:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/19/Google%20Protocol%20Buffer/</loc>
+    
+    <lastmod>2015-11-20T06:49:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/17/How%20many%20ways%20to%20read%20a%20file%20in%20Java-/</loc>
+    
+    <lastmod>2015-11-18T06:34:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/11/Diagnose-Network-Issues-traceroute-and-mtr/</loc>
+    
+    <lastmod>2015-11-12T05:42:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/10/Iterator%20Pattern/</loc>
+    
+    <lastmod>2015-11-10T21:44:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/05/Abstract%20Factory%20Pattern/</loc>
+    
+    <lastmod>2015-11-10T21:01:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/01/Strategy%20Pattern/</loc>
+    
+    <lastmod>2015-11-10T21:00:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/19/Android%20reusing%20include%20tag/</loc>
+    
+    <lastmod>2015-11-10T08:12:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/06/Retrofit%202.0%20Reference/</loc>
+    
+    <lastmod>2015-11-10T08:11:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/09/27/Javascript_Express/</loc>
+    
+    <lastmod>2015-11-10T08:06:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/09/26/Javascript-IO-Miscellaneous/</loc>
+    
+    <lastmod>2015-11-10T08:06:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/01/What%20is%20Node.js%E2%80%99%20Connect,%20Express%20and%20%E2%80%9Cmiddleware%E2%80%9D-/</loc>
+    
+    <lastmod>2015-11-10T08:05:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/09/29/HTTP-Server-in-Node.js/</loc>
+    
+    <lastmod>2015-11-10T08:05:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/31/Maven%20Build%20Lifecycle/</loc>
+    
+    <lastmod>2015-11-10T08:03:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/09/25/The-Build-Lifecycle-of-Gradle/</loc>
+    
+    <lastmod>2015-11-10T08:03:20.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/02/Simple%20Factory/</loc>
+    
+    <lastmod>2015-11-10T08:00:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/08/Proxy%20Pattern/</loc>
+    
+    <lastmod>2015-11-10T08:00:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/09/State%20Pattern/</loc>
+    
+    <lastmod>2015-11-10T07:59:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/07/Command%20Pattern/</loc>
+    
+    <lastmod>2015-11-10T07:57:41.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/07/Builder%20Pattern/</loc>
+    
+    <lastmod>2015-11-10T07:57:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/27/Gradle%20-%20Display%20project%20dependency/</loc>
+    
+    <lastmod>2015-11-10T07:57:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/09/Composite%20Pattern/</loc>
+    
+    <lastmod>2015-11-10T07:55:50.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/09/30/Streamming_from_Browser/</loc>
+    
+    <lastmod>2015-11-03T06:11:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/02/Just%20in%20Time%20(JIT)%20Compilation/</loc>
+    
+    <lastmod>2015-11-03T06:10:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/09/24/The-Road-to-Firebase/</loc>
+    
+    <lastmod>2015-11-03T06:06:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/07/Resource%20Acquisition%20Is%20Initialization%20(RAII)/</loc>
+    
+    <lastmod>2015-11-03T06:06:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/28/Fighting%20with%20Xcode/</loc>
+    
+    <lastmod>2015-11-03T06:05:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/27/Compiler%20and%20Interpreter/</loc>
+    
+    <lastmod>2015-11-03T06:05:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/24/Happens-before%20Relation/</loc>
+    
+    <lastmod>2015-11-03T06:05:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/20/TCP-IP%20Basics/</loc>
+    
+    <lastmod>2015-11-03T06:05:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/10/16/Scrum%20Basics/</loc>
+    
+    <lastmod>2015-11-03T06:05:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/2015/11/01/OO%20Basics%20and%20Principles/</loc>
+    
+    <lastmod>2015-11-03T06:03:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hackjutsu.com/categories/index.html</loc>
+    
+    <lastmod>2015-09-25T06:24:09.000Z</lastmod>
+    
+  </url>
+  
+</urlset>

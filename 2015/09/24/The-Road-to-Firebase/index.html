@@ -1,0 +1,797 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="I code therefore I am." />
+
+
+
+  <meta name="keywords" content="Javascript,Firebase," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hackjutsu Dojo" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Quick Reference
+Udemy course: Learning Firebase   Firebase Open Data Set   GeoFire: Helper library that allows you query based on geographic location.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Road to Firebase">
+<meta property="og:url" content="http://hackjutsu.com/2015/09/24/The-Road-to-Firebase/index.html">
+<meta property="og:site_name" content="Hackjutsu Dojo">
+<meta property="og:description" content="Quick Reference
+Udemy course: Learning Firebase   Firebase Open Data Set   GeoFire: Helper library that allows you query based on geographic location.">
+<meta property="og:updated_time" content="2015-11-03T06:06:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Road to Firebase">
+<meta name="twitter:description" content="Quick Reference
+Udemy course: Learning Firebase   Firebase Open Data Set   GeoFire: Helper library that allows you query based on geographic location.">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> The Road to Firebase | Hackjutsu Dojo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72207664-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hackjutsu Dojo</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'L5TH3kKzWS14GbMzpixP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              The Road to Firebase
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-09-24T22:33:13-07:00" content="2015-09-24">
+            2015-09-24
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/24/The-Road-to-Firebase/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/24/The-Road-to-Firebase/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Quick-Reference"><a href="#Quick-Reference" class="headerlink" title="Quick Reference"></a>Quick Reference</h2><blockquote>
+<p><a href="https://www.udemy.com/learning-firebase/learn/#/" target="_blank" rel="external">Udemy course: Learning Firebase</a><br>   <a href="https://www.firebase.com/docs/open-data/" target="_blank" rel="external">Firebase Open Data Set</a><br>   <a href="https://github.com/firebase/geofire-js" target="_blank" rel="external">GeoFire</a>: Helper library that allows you query based on geographic location.</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h2 id="Understanding-the-Data"><a href="#Understanding-the-Data" class="headerlink" title="Understanding the Data"></a>Understanding the Data</h2><h3 id="It’s-a-JSON-Tree"><a href="#It’s-a-JSON-Tree" class="headerlink" title="It’s a JSON Tree"></a>It’s a JSON Tree</h3><p>All Firebase data are stored as <strong>JSON objects</strong>. When we add data to the JSON tree, it becomes a key in the existing JSON structure. For example, if we add a child named <code>widgets</code> under <code>users/mchen/</code>, our data looks as follow:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"users"</span>: &#123;</div><div class="line">    <span class="string">"mchen"</span>: &#123;</div><div class="line">      <span class="string">"friends"</span>: &#123; <span class="string">"brinchen"</span>: <span class="literal">true</span> &#125;,</div><div class="line">      <span class="string">"name"</span>: <span class="string">"Mary Chen"</span>,</div><div class="line">      <span class="comment">// our child node appears in the existing JSON tree</span></div><div class="line">      <span class="string">"widgets"</span>: &#123; <span class="string">"one"</span>: <span class="literal">true</span>, <span class="string">"three"</span>: <span class="literal">true</span> &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="string">"brinchen"</span>: &#123; ... &#125;,</div><div class="line">    <span class="string">"hmadi"</span>: &#123; ... &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Creating-a-Firebase-Database-Reference"><a href="#Creating-a-Firebase-Database-Reference" class="headerlink" title="Creating a Firebase Database Reference"></a>Creating a Firebase Database Reference</h3><p>First, we need to create a database reference. The data to be loaded is specified by a URL.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Firebase(<span class="string">'https://publicdata-weather.firebaseio.com/'</span>);</div></pre></td></tr></table></figure></p>
+<p>Creating a reference <strong>does not</strong> create a connection to the server or begin downloading data. Data is not fetched until a read or write operation is invoked. Once it is retrieved, it stays cached locally until the last event listener is removed.</p>
+<p>It is possible to access the child node directly as well. (e.g. weather information in Austin)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Firebase(<span class="string">'https://publicdata-weather.firebaseio.com/austin'</span>);</div></pre></td></tr></table></figure></p>
+<p>We can achieve the same result from an existing parent reference by using the <code>child()</code> API call:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> weatherRef = <span class="keyword">new</span> Firebase(<span class="string">'https://publicdata-weather.firebaseio.com/'</span>);</div><div class="line">weatherRef.child(<span class="string">'austin'</span>);</div></pre></td></tr></table></figure></p>
+<p>In a similar fashion, it’s possible to drill down directly to the database data in the application Dashboard by simply adding the child path to the URL.</p>
+<blockquote>
+<p>There is an <a href="https://www.firebase.com/docs/web/guide/understanding-data.html#section-arrays-in-firebase" target="_blank" rel="external">array storage issue</a> in Firebase which deserves attention.</p>
+</blockquote>
+<hr>
+<h2 id="Saving-Data"><a href="#Saving-Data" class="headerlink" title="Saving Data"></a>Saving Data</h2><p>In this section, we will cover <a href="https://www.firebase.com/docs/web/guide/saving-data.html#section-ways-to-save" target="_blank" rel="external">four methods</a> for writing data to your database:<br><code>set()</code>, <code>update()</code>, <code>push()</code> and <code>transaction()</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Method</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>set()</strong></td>
+<td style="text-align:left">Write or replace data to a defined path, like <code>messages/users/&lt;username&gt;</code>.</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>update()</strong></td>
+<td style="text-align:left">Update some of the keys for a defined path without replacing all of the data.</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>push()</strong></td>
+<td style="text-align:left">Add to a list of data in the database. Every time you call <code>push()</code> your database generates a unique ID, like <code>messages/users/&lt;unique-user-id&gt;/&lt;username&gt;</code>.</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>transaction()</strong></td>
+<td style="text-align:left">Use our transactions feature when working with complex data that could be corrupted by concurrent updates</td>
+</tr>
+</tbody>
+</table>
+<h3 id="set"><a href="#set" class="headerlink" title="set( )"></a>set( )</h3><p>The basic database operation is <code>set()</code>,  which saves new data to the specified database reference, <strong>replacing</strong> any data at that path.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">usersRef.child(<span class="string">"alanisawesome"</span>).set(&#123;</div><div class="line">  <span class="attr">date_of_birth</span>: <span class="string">"June 23, 1912"</span>,</div><div class="line">  <span class="attr">full_name</span>: <span class="string">"Alan Turing"</span></div><div class="line">&#125;);</div><div class="line">usersRef.child(<span class="string">"gracehop"</span>).set(&#123;</div><div class="line">  <span class="attr">date_of_birth</span>: <span class="string">"December 9, 1906"</span>,</div><div class="line">  <span class="attr">full_name</span>: <span class="string">"Grace Hopper"</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>The above operations will result in data saved to the database. Note that using <code>set()</code> will <strong>overwirte</strong> the data at the specified location, including any child nodes.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"users"</span>: &#123;</div><div class="line">    <span class="string">"alanisawesome"</span>: &#123;</div><div class="line">      <span class="string">"date_of_birth"</span>: <span class="string">"June 23, 1912"</span>,</div><div class="line">      <span class="string">"full_name"</span>: <span class="string">"Alan Turing"</span></div><div class="line"> 	  &#125;,</div><div class="line">    <span class="string">"gracehop"</span>: &#123;</div><div class="line">      <span class="string">"date_of_birth"</span>: <span class="string">"December 9, 1906"</span>,</div><div class="line">      <span class="string">"full_name"</span>: <span class="string">"Grace Hopper"</span></div><div class="line"> 	  &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="update"><a href="#update" class="headerlink" title="update( )"></a>update( )</h3><p>If you want to write to multiple children of a database location at the same time <strong>without overwriting</strong> other child nodes, you can use the <code>update()</code> method as shown below:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> hopperRef = usersRef.child(<span class="string">"gracehop"</span>);</div><div class="line">hopperRef.update(&#123;</div><div class="line">  <span class="string">"nickname"</span>: <span class="string">"Amazing Grace"</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>This will update Grace’s data to include her nickname. If we had used <code>set()</code> here instead of <code>update()</code>, it would have deleted both full_name and date_of_birth from our hopperRef.</p>
+<blockquote>
+<p><strong>Note:</strong> <code>update()</code> only updates data at the first child level, any data passed in beyond the first child level is a treated as a <code>set()</code> operation.</p>
+</blockquote>
+<h3 id="push"><a href="#push" class="headerlink" title="push( )"></a>push( )</h3><p>Firebase JavaScript clients provide a <code>push()</code> function that generates a unique ID, or key, for each new child. By using unique child keys, several clients can add children to the same location at the same time without <a href="https://www.firebase.com/docs/web/guide/saving-data.html#section-push" target="_blank" rel="external">worrying about write conflicts</a>.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> postsRef = ref.child(<span class="string">"posts"</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> newPostRef = postsRef.push();</div><div class="line">newPostRef.set(&#123;</div><div class="line">  <span class="attr">author</span>: <span class="string">"gracehop"</span>,</div><div class="line">  <span class="attr">title</span>: <span class="string">"Announcing COBOL, a New Programming Language"</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// we can also chain the two calls together</span></div><div class="line">postsRef.push().set(&#123;</div><div class="line">  <span class="attr">author</span>: <span class="string">"alanisawesome"</span>,</div><div class="line">  <span class="attr">title</span>: <span class="string">"The Turing Machine"</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>The <a href="https://www.firebase.com/blog/2015-02-11-firebase-unique-identifiers.html" target="_blank" rel="external">unique key</a> is based on a timestamp, so list items will automatically be ordered chronologically. Because we generate a unique ID for each blog post, no write conflicts will occur if multiple users add a post at the same time. Our database data now looks like this:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"posts"</span>: &#123;</div><div class="line">    <span class="string">"-JRHTHaIs-jNPLXOQivY"</span>: &#123;</div><div class="line">      <span class="string">"author"</span>: <span class="string">"gracehop"</span>,</div><div class="line">      <span class="string">"title"</span>: <span class="string">"Announcing COBOL, a New Programming Language"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="string">"-JRHTHaKuITFIhnj02kE"</span>: &#123;</div><div class="line">      <span class="string">"author"</span>: <span class="string">"alanisawesome"</span>,</div><div class="line">      <span class="string">"title"</span>: <span class="string">"The Turing Machine"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>In JavaScript, the pattern of calling <code>push()</code> and then immediately calling <code>set()</code> is so common that we let you combine them by passing the data to be set directly to <code>push()</code> as follows:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// This is equivalent to the calls to push().set(...) above</span></div><div class="line">  postsRef.push(&#123;</div><div class="line">    <span class="attr">author</span>: <span class="string">"gracehop"</span>,</div><div class="line">    <span class="attr">title</span>: <span class="string">"Announcing COBOL, a New Programming Language"</span></div><div class="line">  &#125;);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>Note:</strong> A push ID can be generated on the client will work while offline and is optimized for performance.</p>
+</blockquote>
+<h3 id="transaction"><a href="#transaction" class="headerlink" title="transaction( )"></a>transaction( )</h3><p>When working with complex data that could be corrupted by concurrent modifications, such as incremental counters, we can use a <a href="https://www.firebase.com/docs/web/api/firebase/transaction.html" target="_blank" rel="external">transaction</a> operation. You give this operation two arguments: an update function and an optional completion callback. The update function takes <strong>the current state</strong> of the data as an argument and will return the new desired state you would like to write. For example, if we wanted to increment the number of upvotes on a specific blog post, we would write a transaction like the following:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> upvotesRef = <span class="keyword">new</span> Firebase(<span class="string">'https://docs-examples.firebaseio.com/android/saving-data/fireblog/posts/-JRHTHaIs-jNPLXOQivY/upvotes'</span>);</div><div class="line">upvotesRef.transaction(<span class="function"><span class="keyword">function</span> (<span class="params">current_value</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (current_value || <span class="number">0</span>) + <span class="number">1</span>;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>We use <code>current_value || 0</code> to see if the counter is null or hasn’t been incremented yet, since transactions can be called with null if no default value was written.</p>
+<p>If the above code had been run without a transaction function and two clients attempted to increment it simultaneously, they would both write 1 as the new value, resulting in one increment instead of two.</p>
+<blockquote>
+<p><strong>Note:</strong>  <code>transaction()</code> will be called multiple times and must be able to handle null data. Even if there is existing data in your database it may not be locally cached when the transaction function is run.</p>
+</blockquote>
+<hr>
+<h2 id="Retrieving-Data"><a href="#Retrieving-Data" class="headerlink" title="Retrieving Data"></a>Retrieving Data</h2><p>Data stored in a Firebase database is retrieved by attaching <strong>an asynchronous listener</strong> to a database reference. The listener will be triggered once for the initial state of the data and again anytime the data changes.</p>
+<h3 id="Read-Event-Types"><a href="#Read-Event-Types" class="headerlink" title="Read Event Types"></a>Read Event Types</h3><blockquote>
+<p><strong>Value</strong><br>The <code>value</code> event is used to read a static snapshot of the contents at a given database path, as they existed at the time of the read event. It is triggered once with the initial data and again every time the data changes. The event callback is passed a snapshot containing all data at that location, including child data. In our code example below, value returned all of the blog posts in our app. Everytime a new blog post is added, the callback function will return all of the posts.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Get a database reference to our posts</span></div><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://docs-examples.firebaseio.com/web/saving-data/fireblog/posts"</span>);</div><div class="line"></div><div class="line"><span class="comment">// Attach an asynchronous callback to read the data at our posts reference</span></div><div class="line">ref.on(<span class="string">"value"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(snapshot.val());</div><div class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">errorObject</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"The read failed: "</span> + errorObject.code);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p><strong>Child Added</strong><br>The <code>child_added</code> event is typically used when retrieving a list of items from the database. Unlike value which returns the entire contents of the location, <code>child_added</code> is triggered once for each existing child and then again <strong>every time a new child is added to the specified path</strong>. The event callback is passed a snapshot containing the new child’s data. For ordering purposes, it is also passed a second argument containing the key of the previous child.</p>
+</blockquote>
+<p>If we wanted to retrieve only the data on each new post added to our blogging app, we could use child_added:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Get a reference to our posts</span></div><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://docs-examples.firebaseio.com/web/saving-data/fireblog/posts"</span>);</div><div class="line"></div><div class="line"><span class="comment">// Retrieve new posts as they are added to our database</span></div><div class="line">ref.on(<span class="string">"child_added"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot, prevChildKey</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> newPost = snapshot.val();</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Author: "</span> + newPost.author);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Title: "</span> + newPost.title);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Previous Post ID: "</span> + prevChildKey);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>In this example the snapshot will contain an object with an individual blog post. Because we converted our post to an object using <code>val()</code>, we have access to the post’s author and title properties by calling author and title respectively. We also have access to the previous post ID from the second prevChildKey argument.</p>
+<blockquote>
+<p><strong>Child Changed</strong><br>The <code>child_changed</code> event is triggered any time a child node is modified. This includes any modifications to descendants of the child node. It is typically used in conjunction with <code>child_added</code> and <code>child_removed</code> to respond to changes to a list of items. The snapshot passed to the event callback contains the updated data for the child.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Get a reference to our posts</span></div><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://docs-examples.firebaseio.com/web/saving-data/fireblog/posts"</span>);</div><div class="line"></div><div class="line"><span class="comment">// Get the data on a post that has changed</span></div><div class="line">ref.on(<span class="string">"child_changed"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> changedPost = snapshot.val();</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"The updated post title is "</span> + changedPost.title);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p><strong>Child Moved</strong><br>The <code>child_moved</code> event is used when working with ordered data, which is covered below.</p>
+</blockquote>
+<h3 id="Event-Guarantees"><a href="#Event-Guarantees" class="headerlink" title="Event Guarantees"></a>Event Guarantees</h3><ul>
+<li>Events will always be triggered when local state changes.</li>
+<li>Events will always eventually reflect the correct state of the data.</li>
+<li>Writes from a single client will always be written to the server and broadcast out to other users in-order.</li>
+<li>Value events are always triggered last and are guaranteed to contain updates from any other events which occurred before that snapshot was taken.</li>
+</ul>
+<p>Since value events are always triggered last, the following example will always work:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://docs-examples.firebaseio.com/web/saving-data/fireblog/posts"</span>);</div><div class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line">ref.on(<span class="string">"child_added"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snap</span>) </span>&#123;</div><div class="line">  count++;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"added"</span>, snap.key());</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// length will always equal count, since snap.val() will include every child_added event</span></div><div class="line"><span class="comment">// triggered before this point</span></div><div class="line">ref.once(<span class="string">"value"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snap</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"initial data loaded!"</span>, <span class="built_in">Object</span>.keys(snap.val()).length === count);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="Reading-Data-Once"><a href="#Reading-Data-Once" class="headerlink" title="Reading Data Once"></a>Reading Data Once</h3><p>In some cases it may be useful for a callback to be called once and then immediately removed. There is a helper function to make this easy:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ref.once(<span class="string">"value"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">  <span class="comment">// do some stuff once</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="Detaching-Callbacks"><a href="#Detaching-Callbacks" class="headerlink" title="Detaching Callbacks"></a>Detaching Callbacks</h3><p>Callbacks are removed by specifying the event type and the callback function to be removed, like the following:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ref.off(<span class="string">"value"</span>, originalCallback);</div><div class="line"></div><div class="line"><span class="comment">//If we passed a scope context into on(), it must be passed when detaching the callback.</span></div><div class="line">ref.off(<span class="string">"value"</span>, originalCallback, <span class="keyword">this</span>);</div><div class="line"></div><div class="line"><span class="comment">// Remove all value callbacks</span></div><div class="line">ref.off(<span class="string">"value"</span>);</div><div class="line"></div><div class="line"><span class="comment">// Remove all callbacks of any type</span></div><div class="line">ref.off();</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>Note:</strong> If a callback has been added multiple times to a data location, it will be called multiple times for each event and we must detach it multiple times in order to remove it completely.</p>
+</blockquote>
+<h3 id="Quering-Data"><a href="#Quering-Data" class="headerlink" title="Quering Data"></a>Quering Data</h3><p>To construct a query in your database, you start by specifying how you want your data to be ordered using one of the ordering functions: <code>orderByChild()</code>, <code>orderByKey()</code>, <code>orderByValue()</code>, or <code>orderByPriority()</code>. You can then combine these with five other methods to conduct complex queries: <code>limitToFirst()</code>, <code>limitToLast()</code>, <code>startAt()</code>, <code>endAt()</code>, and <code>equalTo()</code>.<br>Sample data:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"lambeosaurus"</span>: &#123;</div><div class="line">    <span class="string">"height"</span> : <span class="number">2.1</span>,</div><div class="line">    <span class="string">"length"</span> : <span class="number">12.5</span>,</div><div class="line">    <span class="string">"weight"</span>: <span class="number">5000</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"stegosaurus"</span>: &#123;</div><div class="line">    <span class="string">"height"</span> : <span class="number">4</span>,</div><div class="line">    <span class="string">"length"</span> : <span class="number">9</span>,</div><div class="line">    <span class="string">"weight"</span> : <span class="number">2500</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="Ordering-by-a-specified-child-key"><a href="#Ordering-by-a-specified-child-key" class="headerlink" title="Ordering by a specified child key"></a>Ordering by a specified child key</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://dinosaur-facts.firebaseio.com/dinosaurs"</span>);</div><div class="line">ref.orderByChild(<span class="string">"height"</span>).on(<span class="string">"child_added"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(snapshot.key() + <span class="string">" was "</span> + snapshot.val().height + <span class="string">" meters tall"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="Ordering-by-key-name"><a href="#Ordering-by-key-name" class="headerlink" title="Ordering by key name"></a>Ordering by key name</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://dinosaur-facts.firebaseio.com/dinosaurs"</span>);</div><div class="line">ref.orderByKey().on(<span class="string">"child_added"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(snapshot.key());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="Ordering-by-value"><a href="#Ordering-by-value" class="headerlink" title="Ordering by value"></a>Ordering by value</h4><p>Sample data<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"scores"</span>: &#123;</div><div class="line">    <span class="string">"bruhathkayosaurus"</span> : <span class="number">55</span>,</div><div class="line">    <span class="string">"lambeosaurus"</span> : <span class="number">21</span>,</div><div class="line">    <span class="string">"linhenykus"</span> : <span class="number">80</span>,</div><div class="line">    <span class="string">"pterodactyl"</span> : <span class="number">93</span>,</div><div class="line">    <span class="string">"stegosaurus"</span> : <span class="number">5</span>,</div><div class="line">    <span class="string">"triceratops"</span> : <span class="number">22</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>To sort the dinosaurs by their score, we could construct the following query:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> scoresRef = <span class="keyword">new</span> Firebase(<span class="string">"https://dinosaur-facts.firebaseio.com/scores"</span>);</div><div class="line">  scoresRef.orderByValue().on(<span class="string">"value"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot</span>) </span>&#123;</div><div class="line">  snapshot.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"The "</span> + data.key() + <span class="string">" dinosaur's score is "</span> + data.val());</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>If you want to use <code>orderByValue()</code> in a production app, you should add <code>.value</code> to your rules at the appropriate index. <a href="https://www.firebase.com/docs/security/guide/indexing-data.html" target="_blank" rel="external">Read the documentation</a> on the <code>.indexOn</code> rule for more information.</p>
+<h4 id="Ordering-by-priority"><a href="#Ordering-by-priority" class="headerlink" title="Ordering by priority"></a>Ordering by priority</h4><p>We can explicitly order nodes by priority by calling the <code>orderByPriority()</code> method. Details on priorities can be found in <a href="https://www.firebase.com/docs/web/api/firebase/setpriority.html" target="_blank" rel="external">the API reference</a>.</p>
+<h3 id="Complex-Queries"><a href="#Complex-Queries" class="headerlink" title="Complex Queries"></a>Complex Queries</h3><h4 id="Limit-Queries"><a href="#Limit-Queries" class="headerlink" title="Limit Queries"></a>Limit Queries</h4><p>The <code>limitToFirst()</code> and <code>limitToLast()</code> queries are used to set a maximum number of children to be synced for a given callback. If we set a limit of 100, we will initially only receive up to 100 <code>child_added</code> events. If we have fewer than 100 messages stored in our database, a <code>child_added</code> event will fire for each message. However, if we have over 100 messages, we will only receive a <code>child_added</code> event for 100 of those messages. These will be the first 100 ordered messages if we are using <code>limitToFirst()</code> or the last 100 ordered messages if we are using <code>limitToLast()</code>. As items change, we will receive <code>child_added</code> events for items that enter the query and <code>child_removed</code> events for items that leave it, so that the total number stays at 100.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://dinosaur-facts.firebaseio.com/dinosaurs"</span>);</div><div class="line">ref.orderByChild(<span class="string">"weight"</span>).limitToLast(<span class="number">2</span>).on(<span class="string">"child_added"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(snapshot.key());</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://dinosaur-facts.firebaseio.com/dinosaurs"</span>);</div><div class="line">ref.orderByChild(<span class="string">"height"</span>).limitToFirst(<span class="number">2</span>).on(<span class="string">"child_added"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(snapshot.key());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="Range-Queries"><a href="#Range-Queries" class="headerlink" title="Range Queries"></a>Range Queries</h4><p>Using <code>startAt()</code>, <code>endAt()</code>, and <code>equalTo()</code> allows us to choose arbitrary starting and ending points for our queries.<br>Find all dinosaurs that are at least three meters tall, we can combine <code>orderByChild()</code> and <code>startAt()</code>:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://dinosaur-facts.firebaseio.com/dinosaurs"</span>);</div><div class="line">ref.orderByChild(<span class="string">"height"</span>).startAt(<span class="number">3</span>).on(<span class="string">"child_added"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(snapshot.key())</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>We can use <code>endAt()</code> to find all dinosaurs whose names come before Pterodactyl lexicographically:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://dinosaur-facts.firebaseio.com/dinosaurs"</span>);</div><div class="line">ref.orderByKey().endAt(<span class="string">"pterodactyl"</span>).on(<span class="string">"child_added"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(snapshot.key());</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>Use the <code>equalTo()</code> to find all dinosaurs which are 25 meters tall:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://dinosaur-facts.firebaseio.com/dinosaurs"</span>);</div><div class="line">ref.orderByChild(<span class="string">"height"</span>).equalTo(<span class="number">25</span>).on(<span class="string">"child_added"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">snapshot</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(snapshot.key());</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h4 id="Putting-All-Together"><a href="#Putting-All-Together" class="headerlink" title="Putting All Together"></a>Putting All Together</h4><p>We can combine all of these techniques to create complex queries. For example, we can find the name of the dinosaur that is just shorter than Stegosaurus:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ref = <span class="keyword">new</span> Firebase(<span class="string">"https://dinosaur-facts.firebaseio.com/dinosaurs"</span>);</div><div class="line">ref.child(<span class="string">"stegosaurus"</span>).child(<span class="string">"height"</span>).on(<span class="string">"value"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">stegosaurusHeightSnapshot</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> favoriteDinoHeight = stegosaurusHeightSnapshot.val();</div><div class="line"></div><div class="line">  <span class="keyword">var</span> queryRef = ref.orderByChild(<span class="string">"height"</span>).endAt(favoriteDinoHeight).limitToLast(<span class="number">2</span>)</div><div class="line">  queryRef.on(<span class="string">"value"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">querySnapshot</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (querySnapshot.numChildren() == <span class="number">2</span>) &#123;</div><div class="line">        <span class="comment">// Data is ordered by increasing height, so we want the first entry</span></div><div class="line">        querySnapshot.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">dinoSnapshot</span>) </span>&#123;</div><div class="line">          <span class="built_in">console</span>.log(<span class="string">"The dinosaur just shorter than the stegasaurus is "</span> + dinoSnapshot.key());</div><div class="line"></div><div class="line">          <span class="comment">// Returning true means that we will only loop through the forEach() one time</span></div><div class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;);</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"The stegosaurus is the shortest dino"</span>);</div><div class="line">      &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="How-Data-is-ordered"><a href="#How-Data-is-ordered" class="headerlink" title="How Data is ordered"></a>How Data is ordered</h3><p><a href="https://www.firebase.com/docs/web/guide/retrieving-data.html#section-ordered-data" target="_blank" rel="external">Reference link.</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag">#Javascript</a>
+          
+            <a href="/tags/Firebase/" rel="tag">#Firebase</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/25/The-Build-Lifecycle-of-Gradle/" rel="prev">The Build Lifecycle of Gradle</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/24/hello-world/" rel="next">Hello World</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript"
+src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a07c3ac699e3ca"
+async = "async" > </script>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Cosmo" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cosmo</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">I code therefore I am.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hackjustu" target="_blank">Github</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://coolshell.cn" target="_blank">CoolShell</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://journal.stuffwithstuff.com/" target="_blank">Bob Nystrom</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Reference"><span class="nav-number">1.</span> <span class="nav-text">Quick Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-the-Data"><span class="nav-number">2.</span> <span class="nav-text">Understanding the Data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#It’s-a-JSON-Tree"><span class="nav-number">2.1.</span> <span class="nav-text">It’s a JSON Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-a-Firebase-Database-Reference"><span class="nav-number">2.2.</span> <span class="nav-text">Creating a Firebase Database Reference</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Saving-Data"><span class="nav-number">3.</span> <span class="nav-text">Saving Data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">3.1.</span> <span class="nav-text">set( )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">3.2.</span> <span class="nav-text">update( )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push"><span class="nav-number">3.3.</span> <span class="nav-text">push( )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transaction"><span class="nav-number">3.4.</span> <span class="nav-text">transaction( )</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrieving-Data"><span class="nav-number">4.</span> <span class="nav-text">Retrieving Data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Event-Types"><span class="nav-number">4.1.</span> <span class="nav-text">Read Event Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Guarantees"><span class="nav-number">4.2.</span> <span class="nav-text">Event Guarantees</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-Data-Once"><span class="nav-number">4.3.</span> <span class="nav-text">Reading Data Once</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Detaching-Callbacks"><span class="nav-number">4.4.</span> <span class="nav-text">Detaching Callbacks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quering-Data"><span class="nav-number">4.5.</span> <span class="nav-text">Quering Data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ordering-by-a-specified-child-key"><span class="nav-number">4.5.1.</span> <span class="nav-text">Ordering by a specified child key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ordering-by-key-name"><span class="nav-number">4.5.2.</span> <span class="nav-text">Ordering by key name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ordering-by-value"><span class="nav-number">4.5.3.</span> <span class="nav-text">Ordering by value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ordering-by-priority"><span class="nav-number">4.5.4.</span> <span class="nav-text">Ordering by priority</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Complex-Queries"><span class="nav-number">4.6.</span> <span class="nav-text">Complex Queries</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Limit-Queries"><span class="nav-number">4.6.1.</span> <span class="nav-text">Limit Queries</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Range-Queries"><span class="nav-number">4.6.2.</span> <span class="nav-text">Range Queries</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Putting-All-Together"><span class="nav-number">4.6.3.</span> <span class="nav-text">Putting All Together</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-Data-is-ordered"><span class="nav-number">4.7.</span> <span class="nav-text">How Data is ordered</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'hackjustu';
+      var disqus_identifier = '2015/09/24/The-Road-to-Firebase/';
+      var disqus_title = 'The Road to Firebase';
+      var disqus_url = 'http://hackjutsu.com/2015/09/24/The-Road-to-Firebase/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+</body>
+</html>

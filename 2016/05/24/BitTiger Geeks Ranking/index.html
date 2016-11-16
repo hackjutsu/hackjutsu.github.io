@@ -1,0 +1,891 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="I code therefore I am." />
+
+
+
+  <meta name="keywords" content="front end,full stack," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hackjutsu Dojo" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="BitTiger Geeks Ranking (太阁极客榜) is a real-time ranking board for BitTiger’s Github members. Its results are based on members’ Github activities in the past seven days with daily updates at 06:30 PDT.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BitTiger Geeks Ranking">
+<meta property="og:url" content="http://hackjutsu.com/2016/05/24/BitTiger Geeks Ranking/index.html">
+<meta property="og:site_name" content="Hackjutsu Dojo">
+<meta property="og:description" content="BitTiger Geeks Ranking (太阁极客榜) is a real-time ranking board for BitTiger’s Github members. Its results are based on members’ Github activities in the past seven days with daily updates at 06:30 PDT.">
+<meta property="og:image" content="http://i.imgur.com/uU3V2MT.png">
+<meta property="og:updated_time" content="2016-08-04T19:34:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BitTiger Geeks Ranking">
+<meta name="twitter:description" content="BitTiger Geeks Ranking (太阁极客榜) is a real-time ranking board for BitTiger’s Github members. Its results are based on members’ Github activities in the past seven days with daily updates at 06:30 PDT.">
+<meta name="twitter:image" content="http://i.imgur.com/uU3V2MT.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> BitTiger Geeks Ranking | Hackjutsu Dojo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72207664-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hackjutsu Dojo</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'L5TH3kKzWS14GbMzpixP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              BitTiger Geeks Ranking
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2016-05-24T18:00:01-07:00" content="2016-05-24">
+            2016-05-24
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; In
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/MEAN/" itemprop="url" rel="index">
+                  <span itemprop="name">MEAN</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2016/05/24/BitTiger Geeks Ranking/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/24/BitTiger Geeks Ranking/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="http://i.imgur.com/uU3V2MT.png" style="max-height: 350px;"></p>
+<p><strong>BitTiger Geeks Ranking</strong> (太阁极客榜) is a real-time ranking board for BitTiger’s Github members. Its results are based on members’ Github activities in the past seven days with daily updates at <strong>06:30 PDT</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> This post is my summary for those front end knowledge applied in this project.</p>
+</blockquote>
+<ul>
+<li><a href="https://bittiger-ranking.firebaseapp.com/" target="_blank" rel="external">Demo Link</a></li>
+<li><a href="https://github.com/hackjustu/Github-Ranking-FrontEnd" target="_blank" rel="external">GitHub Link</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p><strong>HTML Forms</strong><br>HTML Forms are used to collect user inputs.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">... form elements ...</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<p>The <code>&lt;input&gt;</code> element is the most important form element. Form elements are different types of input elements, checkboxes, radio buttons, submit buttons, and more.</p>
+<blockquote>
+<p>Check out this link for more information about <a href="http://www.w3schools.com/html/html_forms.asp" target="_blank" rel="external">HTML Forms</a>.</p>
+</blockquote>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>CSS (Cascading Style Sheets) is a stylesheet language that describes the presentation of an HTML document.</p>
+<h3 id="Cascading-Order"><a href="#Cascading-Order" class="headerlink" title="Cascading Order"></a>Cascading Order</h3><ol>
+<li>Inline style (inside an HTML element)</li>
+<li>External and internal style sheets (in the head section)</li>
+<li>Browser default <strong>strong text</strong></li>
+</ol>
+<h3 id="Margins-and-Padding"><a href="#Margins-and-Padding" class="headerlink" title="Margins and Padding"></a>Margins and Padding</h3><p>The CSS <code>margin</code> properties are used to generate space around elements. The margin properties set the size of the white space <strong>OUTSIDE</strong> the border.</p>
+<p>The CSS <code>padding</code> properties are used to generate space around content. The padding properties set the size of the white space <strong>BETWEEN</strong> the element content and the element border.</p>
+<h3 id="Height-Width"><a href="#Height-Width" class="headerlink" title="Height/Width"></a>Height/Width</h3><p>The <code>height</code> and <code>width</code> properties do <strong>NOT</strong> include padding, borders, or margins; they set the height/width of the area inside the padding, border, and margin of the element!</p>
+<p>Besides height/width, there are also max-height/min-height/max-width/min-width.</p>
+<blockquote>
+<p>Check out this <a href="http://www.w3schools.com/css/css_dimension.asp" target="_blank" rel="external">link</a> for mare information.</p>
+</blockquote>
+<h3 id="Display"><a href="#Display" class="headerlink" title="Display"></a>Display</h3><p>The <code>display</code> property specifies if/how an element is displayed.</p>
+<p>Every HTML element has a default display value depending on what type of element it is. The default display value for most elements is block or inline.</p>
+<p>A <code>block</code> element always starts on a new line and takes up the full width available (stretches out to the left and right as far as it can).</p>
+<p>An <code>inline</code> element does not start on a new line and only takes up as much width as necessary.</p>
+<p>An <code>inline-block</code> element is a combination between <code>block</code> and <code>inline</code>.</p>
+<blockquote>
+<p>Check out this <a href="http://stackoverflow.com/questions/8969381/what-is-the-difference-between-display-inline-and-display-inline-block" target="_blank" rel="external">StackOverflow post</a> for more about their difference.</p>
+</blockquote>
+<h3 id="Position"><a href="#Position" class="headerlink" title="Position"></a>Position</h3><p>The position property specifies the type of positioning method used for an element.<br>There are four different position values:</p>
+<ul>
+<li>static</li>
+<li>relative</li>
+<li>fixed</li>
+<li>absolute</li>
+</ul>
+<blockquote>
+<p>Check out this <a href="http://www.w3schools.com/css/css_positioning.asp" target="_blank" rel="external">post</a> to see their difference.</p>
+</blockquote>
+<h3 id="Float"><a href="#Float" class="headerlink" title="Float"></a>Float</h3><p>The <code>float</code> property specifies whether or not an element should float.<br>The <code>clear</code> property is used to control the behavior of floating elements.</p>
+<blockquote>
+<p>Check out this <a href="http://www.w3schools.com/css/css_float.asp" target="_blank" rel="external">post</a> to see their difference.</p>
+</blockquote>
+<h3 id="Text"><a href="#Text" class="headerlink" title="Text"></a>Text</h3><h4 id="Text-Color"><a href="#Text-Color" class="headerlink" title="Text Color"></a>Text Color</h4><p>The <code>color</code> property is used to set the color of the text.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#p1 &#123;color: #ff0000;&#125;   /* red */</div><div class="line">#p2 &#123;color: rgb(0, 255, 0);&#125;   /* green */</div><div class="line">#p3 &#123;color: rgba(0, 0, 255, 0.3);&#125;   /* blue with opacity */</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Check out this <a href="http://www.w3schools.com/cssref/css_colors_legal.asp" target="_blank" rel="external">post</a> for more about the CSS color options.</p>
+</blockquote>
+<h4 id="Text-Alignment"><a href="#Text-Alignment" class="headerlink" title="Text Alignment"></a>Text Alignment</h4><p>The <code>text-align</code> property is used to set the horizontal alignment of a text.</p>
+<ul>
+<li>left</li>
+<li>right</li>
+<li>center</li>
+<li>justify</li>
+</ul>
+<h4 id="Text-Decoration"><a href="#Text-Decoration" class="headerlink" title="Text Decoration"></a>Text Decoration</h4><p>The <code>text-decoration</code> property is used to set or remove decorations from text. The value <code>text-decoration: none;</code> is often used to remove underlines from links.</p>
+<ul>
+<li>none</li>
+<li>overline</li>
+<li>line-through</li>
+<li>underline</li>
+</ul>
+<h4 id="Text-Transformation"><a href="#Text-Transformation" class="headerlink" title="Text Transformation"></a>Text Transformation</h4><p>The <code>text-transform</code> property is used to specify uppercase and lowercase letters in a text.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">p.uppercase &#123;</div><div class="line">    text-transform: uppercase;</div><div class="line">&#125;</div><div class="line"></div><div class="line">p.lowercase &#123;</div><div class="line">    text-transform: lowercase;</div><div class="line">&#125;</div><div class="line"></div><div class="line">p.capitalize &#123;</div><div class="line">    text-transform: capitalize;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="More"><a href="#More" class="headerlink" title="More"></a>More</h4><p><code>text-indent</code><br><code>letter-spacing</code><br><code>line-height</code><br><code>direction</code><br><code>word-spacing</code></p>
+<blockquote>
+<p>Check out this <a href="http://www.w3schools.com/css/css_text.asp" target="_blank" rel="external">post</a> for more details.</p>
+</blockquote>
+<h3 id="Combinators"><a href="#Combinators" class="headerlink" title="Combinators"></a>Combinators</h3><p>There are four different combinators in CSS3:</p>
+<ul>
+<li>descendant selector (space)</li>
+<li>child selector (&gt;)</li>
+<li>adjacent sibling selector (+)</li>
+<li>general sibling selector (~)</li>
+</ul>
+<blockquote>
+<p>Check out this <a href="http://www.w3schools.com/css/css_combinators.asp" target="_blank" rel="external">post</a> to see their difference.</p>
+</blockquote>
+<h3 id="Pseudo-class"><a href="#Pseudo-class" class="headerlink" title="Pseudo-class"></a>Pseudo-class</h3><p>A pseudo-class is used to define a special state of an element. For example, it can be used to:</p>
+<ul>
+<li>Style an element when a user mouses over it</li>
+<li>Style visited and unvisited links differently</li>
+<li>Style an element when it gets focus</li>
+</ul>
+<blockquote>
+<p>Check out this <a href="http://www.w3schools.com/css/css_pseudo_classes.asp" target="_blank" rel="external">post</a> to see their difference.</p>
+</blockquote>
+<h3 id="Pseudo-element"><a href="#Pseudo-element" class="headerlink" title="Pseudo-element"></a>Pseudo-element</h3><p>A CSS pseudo-element is used to style specified parts of an element. For example, it can be used to:</p>
+<ul>
+<li>Style the first letter, or line, of an element</li>
+<li>Insert content before, or after, the content of an element</li>
+</ul>
+<blockquote>
+<p>Check out this <a href="http://www.w3schools.com/css/css_pseudo_elements.asp" target="_blank" rel="external">post</a> to see their difference.</p>
+</blockquote>
+<h2 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h2><p>CSS3 is the latest standard for CSS. It is completely backwards-compatible with earlier versions of CSS.</p>
+<blockquote>
+<p>Check out this <a href="http://code.tutsplus.com/tutorials/10-css3-properties-you-need-to-be-familiar-with--net-16417" target="_blank" rel="external">post</a> for the some popular CSS3 properties.</p>
+</blockquote>
+<h3 id="Rounded-Corners"><a href="#Rounded-Corners" class="headerlink" title="Rounded Corners"></a>Rounded Corners</h3><p>With the CSS3 <code>border-radius</code> property, we can give any element “rounded corners”.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">border-radius: 25px;</div><div class="line">border-radius: 50%;</div></pre></td></tr></table></figure></p>
+<h3 id="Box-Sizing"><a href="#Box-Sizing" class="headerlink" title="Box Sizing"></a>Box Sizing</h3><p>The CSS3 <code>box-sizing</code> property allows us to include the padding and border in an element’s total width and height.</p>
+<p><strong>Without the CSS3 box-sizing Property</strong><br>width + padding + border = actual width of an element<br>height + padding + border = actual height of an element</p>
+<p><strong>With the CSS3 box-sizing Property</strong><br>Padding and border are included in an element’s total width and height.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.div1 &#123;</div><div class="line">    width: 300px;</div><div class="line">    height: 100px;</div><div class="line">    border: 1px solid blue;</div><div class="line">    box-sizing: border-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Since the result of using the <code>box-sizing: border-box;</code> is so much better, many developers want all elements on their pages to work this way.</p>
+<h2 id="Bootstrap"><a href="#Bootstrap" class="headerlink" title="Bootstrap"></a>Bootstrap</h2><h3 id="Grid-Basics"><a href="#Grid-Basics" class="headerlink" title="Grid Basics"></a>Grid Basics</h3><p>The Bootstrap grid system has four classes:</p>
+<ul>
+<li>xs (for phones)</li>
+<li>sm (for tablets)</li>
+<li>md (for desktops)</li>
+<li>lg (for larger desktops)</li>
+</ul>
+<p>The classes above can be combined to create more dynamic and flexible layouts.</p>
+<p>The following is a basic structure of a Bootstrap grid;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;row&quot;&gt;</div><div class="line">  &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div class=&quot;row&quot;&gt;</div><div class="line">  &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div class=&quot;row&quot;&gt;</div><div class="line">  ...</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Check out this <a href="http://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp" target="_blank" rel="external">post</a> for more information about Bootstrap grid system.</p>
+</blockquote>
+<h2 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h2><blockquote>
+<p>Check out these two Udemy courses to go over AnguarJS.</p>
+<ul>
+<li><a href="https://www.udemy.com/learn-angularjs/learn/v4/content" target="_blank" rel="external">Learn and Understand AngularJS</a></li>
+<li><a href="https://www.udemy.com/maruti-angularjs/learn/v4/content" target="_blank" rel="external">Learn AngularJS Step By Step</a></li>
+</ul>
+</blockquote>
+<p>We can get more details about AngularJS in its <a href="https://docs.angularjs.org/guide" target="_blank" rel="external">official website</a>.</p>
+<h3 id="Angular-Directives"><a href="#Angular-Directives" class="headerlink" title="Angular Directives"></a>Angular Directives</h3><p>We have used the following AnguarJS Directives in our project.</p>
+<p><code>ng-app</code><br><code>ng-controller</code></p>
+<p><code>ng-repeat</code><br><code>ng-if</code><br><code>ng-show/hide</code><br><code>ng-click</code><br><code>ng-model</code><br><code>ng-include</code><br><code>ng-class</code><br><code>ng-cloak</code><br><code>ng-src</code><br><code>ng-href</code></p>
+<h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><p>Singleton + Dependency Injection</p>
+<h4 id="AngularJS-Services"><a href="#AngularJS-Services" class="headerlink" title="AngularJS Services"></a>AngularJS Services</h4><p><code>$scope</code><br><code>$filter</code><br><code>$timeout</code></p>
+<h4 id="Customb-Services"><a href="#Customb-Services" class="headerlink" title="Customb Services"></a>Customb Services</h4><p>I haven’t tried it yet.</p>
+<h2 id="npm-and-bower"><a href="#npm-and-bower" class="headerlink" title="npm and bower"></a>npm and bower</h2><p>Dependency management tools, like maven or gradle for Java.  I personally consider it inconvenient to use two tools to manage a project. Probably npm might replace bower’s role in the front end side.</p>
+<ul>
+<li><a href="https://www.npmjs.com/" target="_blank" rel="external">npm</a></li>
+<li><a href="http://bower.io/" target="_blank" rel="external">bower</a></li>
+</ul>
+<h2 id="Grunt"><a href="#Grunt" class="headerlink" title="Grunt"></a>Grunt</h2><p><strong><a href="http://gruntjs.com/" target="_blank" rel="external">Grunt</a></strong> is a automation tasks runner tool for front end projects. It is something like <strong>Ant</strong> for Java.</p>
+<p>There are three steps to configure the <code>Gruntfile.js</code>.</p>
+<ul>
+<li>Configure the Grunt tasks</li>
+<li>Load the Grunt tasks</li>
+<li>Register the Grunt tasks</li>
+</ul>
+<p>Here is a list of Grunt tasks used in our project.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">grunt.loadNpmTasks(<span class="string">'grunt-contrib-clean'</span>);</div><div class="line">grunt.loadNpmTasks(<span class="string">'grunt-contrib-copy'</span>);</div><div class="line">grunt.loadNpmTasks(<span class="string">'grunt-contrib-concat'</span>);</div><div class="line">grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);</div><div class="line">grunt.loadNpmTasks(<span class="string">'grunt-contrib-jshint'</span>);</div><div class="line">grunt.loadNpmTasks(<span class="string">'grunt-contrib-csslint'</span>);</div><div class="line">grunt.loadNpmTasks(<span class="string">'grunt-contrib-cssmin'</span>);</div><div class="line">grunt.loadNpmTasks(<span class="string">'grunt-usemin'</span>);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>The best way to go over <strong>Grunt</strong> is to go over this <a href="https://www.udemy.com/learn-grunt-automate-your-front-end-workflow/" target="_blank" rel="external">Udemy course</a> again.</p>
+</blockquote>
+<h2 id="前端项目工程化"><a href="#前端项目工程化" class="headerlink" title="前端项目工程化"></a>前端项目工程化</h2><p><a href="https://github.com/fouber/blog/issues/10" target="_blank" rel="external">前段工程–基础篇</a></p>
+<ul>
+<li>第一阶段：库/框架选型<ul>
+<li>AngularJS、React、Bootstrap…</li>
+</ul>
+</li>
+<li>第二阶段：简单构建优化<ul>
+<li>Grunt or Gulp</li>
+</ul>
+</li>
+<li>第三阶段：JS/CSS模块化开发<ul>
+<li>分而治之</li>
+</ul>
+</li>
+<li>第四阶段：更多的工程问题<ul>
+<li>项目大体量、团队大规模、高性能</li>
+<li>组件化开发 （header footer jumbotron ranking-table）</li>
+<li>“智能”静态资源管理</li>
+</ul>
+</li>
+</ul>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="http://www.w3schools.com/" target="_blank" rel="external">w3schools</a></li>
+<li><a href="https://www.udemy.com/courses/" target="_blank" rel="external">Udemy</a></li>
+<li><a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a></li>
+<li><a href="http://gruntjs.com/" target="_blank" rel="external">Grunt</a></li>
+<li><a href="https://github.com/fouber/blog" target="_blank" rel="external">fouber’s GitHub blog</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/front-end/" rel="tag">#front end</a>
+          
+            <a href="/tags/full-stack/" rel="tag">#full stack</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/20/Linux Virtual Memory Management/" rel="prev">Linux Virtual Memory Management</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/17/Bootstrap Grid System/" rel="next">Bootstrap Grid System</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript"
+src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a07c3ac699e3ca"
+async = "async" > </script>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Cosmo" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cosmo</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">I code therefore I am.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hackjustu" target="_blank">Github</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://coolshell.cn" target="_blank">CoolShell</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://journal.stuffwithstuff.com/" target="_blank">Bob Nystrom</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cascading-Order"><span class="nav-number">2.1.</span> <span class="nav-text">Cascading Order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Margins-and-Padding"><span class="nav-number">2.2.</span> <span class="nav-text">Margins and Padding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Height-Width"><span class="nav-number">2.3.</span> <span class="nav-text">Height/Width</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Display"><span class="nav-number">2.4.</span> <span class="nav-text">Display</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position"><span class="nav-number">2.5.</span> <span class="nav-text">Position</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Float"><span class="nav-number">2.6.</span> <span class="nav-text">Float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Text"><span class="nav-number">2.7.</span> <span class="nav-text">Text</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Text-Color"><span class="nav-number">2.7.1.</span> <span class="nav-text">Text Color</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Text-Alignment"><span class="nav-number">2.7.2.</span> <span class="nav-text">Text Alignment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Text-Decoration"><span class="nav-number">2.7.3.</span> <span class="nav-text">Text Decoration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Text-Transformation"><span class="nav-number">2.7.4.</span> <span class="nav-text">Text Transformation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#More"><span class="nav-number">2.7.5.</span> <span class="nav-text">More</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Combinators"><span class="nav-number">2.8.</span> <span class="nav-text">Combinators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-class"><span class="nav-number">2.9.</span> <span class="nav-text">Pseudo-class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-element"><span class="nav-number">2.10.</span> <span class="nav-text">Pseudo-element</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3"><span class="nav-number">3.</span> <span class="nav-text">CSS3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rounded-Corners"><span class="nav-number">3.1.</span> <span class="nav-text">Rounded Corners</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Box-Sizing"><span class="nav-number">3.2.</span> <span class="nav-text">Box Sizing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bootstrap"><span class="nav-number">4.</span> <span class="nav-text">Bootstrap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Grid-Basics"><span class="nav-number">4.1.</span> <span class="nav-text">Grid Basics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AngularJS"><span class="nav-number">5.</span> <span class="nav-text">AngularJS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-Directives"><span class="nav-number">5.1.</span> <span class="nav-text">Angular Directives</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service"><span class="nav-number">5.2.</span> <span class="nav-text">Service</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AngularJS-Services"><span class="nav-number">5.2.1.</span> <span class="nav-text">AngularJS Services</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Customb-Services"><span class="nav-number">5.2.2.</span> <span class="nav-text">Customb Services</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-and-bower"><span class="nav-number">6.</span> <span class="nav-text">npm and bower</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Grunt"><span class="nav-number">7.</span> <span class="nav-text">Grunt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端项目工程化"><span class="nav-number">8.</span> <span class="nav-text">前端项目工程化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Resource"><span class="nav-number">9.</span> <span class="nav-text">Resource</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'hackjustu';
+      var disqus_identifier = '2016/05/24/BitTiger Geeks Ranking/';
+      var disqus_title = 'BitTiger Geeks Ranking';
+      var disqus_url = 'http://hackjutsu.com/2016/05/24/BitTiger Geeks Ranking/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+</body>
+</html>

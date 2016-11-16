@@ -1,0 +1,799 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="I code therefore I am." />
+
+
+
+  <meta name="keywords" content="Java,Maven," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hackjutsu Dojo" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file that contains information about the project and configuration details used by Maven to build the project. It c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven POM in Action">
+<meta property="og:url" content="http://hackjutsu.com/2015/10/30/Maven POM in Action/index.html">
+<meta property="og:site_name" content="Hackjutsu Dojo">
+<meta property="og:description" content="A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file that contains information about the project and configuration details used by Maven to build the project. It c">
+<meta property="og:updated_time" content="2016-08-04T22:02:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maven POM in Action">
+<meta name="twitter:description" content="A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file that contains information about the project and configuration details used by Maven to build the project. It c">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Maven POM in Action | Hackjutsu Dojo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72207664-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hackjutsu Dojo</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'L5TH3kKzWS14GbMzpixP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Maven POM in Action
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-10-30T18:00:00-07:00" content="2015-10-30">
+            2015-10-30
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; In
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Build-Tools/" itemprop="url" rel="index">
+                  <span itemprop="name">Build Tools</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/30/Maven POM in Action/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/30/Maven POM in Action/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>A <code>Project Object Model</code> or <code>POM</code> is the fundamental unit of work in Maven. It is an XML file that contains information about the project and configuration details used by Maven to build the project. It contains default values for most projects. For example, the source directory, which is <code>src/main/java</code>; the test source directory, which is <code>src/test/java</code>; and so on.</p>
+<p>POM also contains the goals and plugins. While executing a task or goal, Maven looks for the POM in the current directory. It reads the POM, gets the needed configuration information, then executes the goal.<br><a id="more"></a></p>
+<hr>
+<h2 id="Super-POM"><a href="#Super-POM" class="headerlink" title="Super POM"></a>Super POM</h2><p>The Super POM is Maven’s default POM. All POMs extend the Super POM unless explicitly set, meaning the configuration specified in the Super POM is inherited by the POMs we created for our projects.</p>
+<p>The Super POM define the default <code>repositories</code>, <code>pluginRepositories</code>, <code>build</code>, <code>reporting</code> and <code>profiles</code> settings.</p>
+<p><a href="http://maven.apache.org/guides/introduction/introduction-to-the-pom.html#Super_POM" target="_blank" rel="external">Check out this link for more information about super POMs</a> .</p>
+<hr>
+<h2 id="Minimal-POM"><a href="#Minimal-POM" class="headerlink" title="Minimal POM"></a>Minimal POM</h2><p>The minimum POM contains</p>
+<ul>
+<li>project root</li>
+<li>modelVersion -  should be set to 4.0.0</li>
+<li>groupId - the id of the project’s group.</li>
+<li>artifactId - the id of the artifact (project)</li>
+<li>version - the version of the artifact under the specified group<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;project&gt;</div><div class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</div><div class="line">  &lt;groupId&gt;com.mycompany.app&lt;/groupId&gt;</div><div class="line">  &lt;artifactId&gt;my-app&lt;/artifactId&gt;</div><div class="line">  &lt;version&gt;1&lt;/version&gt;</div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>A POM requires that its groupId, artifactId, and version be configured. These three values form the project’s fully qualified artifact name. This is in the form of <code>&lt;groupId&gt;:&lt;artifactId&gt;:&lt;version&gt;</code>. As for the example above, its fully qualified artifact name is <code>com.mycompany.app:my-app:1</code>.</p>
+<p>Every Maven project has a packaging type. If it is not specified in the POM, then the default value <code>jar</code> would be used.</p>
+<p>Furthermore, as we can see that in the minimal POM, the repositories were not specified. If we build our project using the minimal POM, it would <strong>inherit the repositories configuration in the Super POM</strong>. Therefore when Maven sees the dependencies in the minimal POM, it would know that these dependencies will be downloaded from <a href="http://repo.maven.apache.org/maven2" target="_blank" rel="external">http://repo.maven.apache.org/maven2</a> which was specified in the Super POM.</p>
+<hr>
+<h2 id="Full-list-of-POM-Elements"><a href="#Full-list-of-POM-Elements" class="headerlink" title="Full list of POM Elements"></a>Full list of POM Elements</h2><p>This is a listing of the elements directly under the POM’s project element.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></div><div class="line">                      http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- The Basics --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>...<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>...<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>...<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>...<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>...<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">parent</span>&gt;</span>...<span class="tag">&lt;/<span class="name">parent</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span>...<span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">modules</span>&gt;</span>...<span class="tag">&lt;/<span class="name">modules</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span>...<span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- Build Settings --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span>...<span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">reporting</span>&gt;</span>...<span class="tag">&lt;/<span class="name">reporting</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- More Project Information --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>...<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span>...<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>...<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">inceptionYear</span>&gt;</span>...<span class="tag">&lt;/<span class="name">inceptionYear</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">licenses</span>&gt;</span>...<span class="tag">&lt;/<span class="name">licenses</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">organization</span>&gt;</span>...<span class="tag">&lt;/<span class="name">organization</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">developers</span>&gt;</span>...<span class="tag">&lt;/<span class="name">developers</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">contributors</span>&gt;</span>...<span class="tag">&lt;/<span class="name">contributors</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- Environment Settings --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">issueManagement</span>&gt;</span>...<span class="tag">&lt;/<span class="name">issueManagement</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ciManagement</span>&gt;</span>...<span class="tag">&lt;/<span class="name">ciManagement</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">mailingLists</span>&gt;</span>...<span class="tag">&lt;/<span class="name">mailingLists</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">scm</span>&gt;</span>...<span class="tag">&lt;/<span class="name">scm</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">prerequisites</span>&gt;</span>...<span class="tag">&lt;/<span class="name">prerequisites</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">repositories</span>&gt;</span>...<span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span>...<span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">distributionManagement</span>&gt;</span>...<span class="tag">&lt;/<span class="name">distributionManagement</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">profiles</span>&gt;</span>...<span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span>l</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="The-Basics"><a href="#The-Basics" class="headerlink" title="The Basics"></a>The Basics</h2><h3 id="Maven-Coordinates"><a href="#Maven-Coordinates" class="headerlink" title="Maven Coordinates"></a>Maven Coordinates</h3><p> <code>groupId:artifactId:version</code> are all required fields (although, groupId and version need not be explicitly defined if they are inherited from a parent - more on inheritance later). The three fields act much like an address and timestamp in one. This marks a specific place in a repository, acting like a coordinate system for Maven projects.</p>
+<h3 id="POM-Relationships"><a href="#POM-Relationships" class="headerlink" title="POM Relationships"></a>POM Relationships</h3><h4 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a>Dependencies</h4><p>The cornerstone of the POM is its dependency list. Maven brings in the dependencies of those dependencies (transitive dependencies), allowing our list to focus solely on the dependencies our project requires.</p>
+<h5 id="Dependency-Version-Requirement-Specificatioin"><a href="#Dependency-Version-Requirement-Specificatioin" class="headerlink" title="Dependency Version Requirement Specificatioin"></a>Dependency Version Requirement Specificatioin</h5><p>Dependencies’ version element define version requirements, used to compute effective dependency version. Version requirements have the following syntax:</p>
+<ul>
+<li><code>1.0:</code> “Soft” requirement on 1.0 (just a recommendation, if it matches all other ranges for the dependency)</li>
+<li><code>[1.0]</code>: “Hard” requirement on 1.0</li>
+<li><code>(,1.0]</code>: x &lt;= 1.0</li>
+<li><code>[1.2,1.3]</code>: 1.2 &lt;= x &lt;= 1.3</li>
+<li><code>[1.0,2.0)</code>: 1.0 &lt;= x &lt; 2.0</li>
+<li><code>[1.5,)</code>: x &gt;= 1.5</li>
+<li><code>(,1.0],[1.2,)</code>: x &lt;= 1.0 or x &gt;= 1.2; multiple sets are comma-separated</li>
+<li><code>(,1.1),(1.1,)</code>: this excludes 1.1 (for example if it is known not to work in combination with this library)</li>
+</ul>
+<h5 id="More-about-Dependencies"><a href="#More-about-Dependencies" class="headerlink" title="More about Dependencies"></a>More about Dependencies</h5><p><a href="https://maven.apache.org/pom.html#Dependencies" target="_blank" rel="external">Check out this post for more about dependencies</a>.</p>
+<h4 id="Inheritance-and-Aggregations"><a href="#Inheritance-and-Aggregations" class="headerlink" title="Inheritance and Aggregations"></a>Inheritance and Aggregations</h4><p><a href="http://maven.apache.org/guides/introduction/introduction-to-the-pom.html#Project_Inheritance" target="_blank" rel="external">Project Inheritance</a><br><a href="http://maven.apache.org/guides/introduction/introduction-to-the-pom.html#Project_Aggregation" target="_blank" rel="external">Project Aggregation</a></p>
+<h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><p>Properties are the last required piece in understanding POM basics. Maven properties are value placeholder, like properties in Ant. Their values are accessible anywhere within a POM by using the notation <code>${X}</code>, where <code>X</code> is the property. They come in five different styles:</p>
+<ul>
+<li><strong>env.X</strong>: Prefixing a variable with “env.” will return the shell’s environment variable.<br>For example, <code>${env.PATH}</code> contains the PATH environment variable.</li>
+</ul>
+<ul>
+<li><strong>project.x</strong>: A dot (.) notated path in the POM will contain the corresponding element’s value.<br>For example: <code>&lt;project&gt;&lt;version&gt;1.0&lt;/version&gt;&lt;/project&gt;</code> is accessible via <code>${project.version}</code>.</li>
+</ul>
+<ul>
+<li><strong>settings.x</strong>: A dot (.) notated path in the <code>settings.xml</code> will contain the corresponding element’s value.<br>For example: <code>&lt;settings&gt;&lt;offline&gt;false&lt;/offline&gt;&lt;/settings&gt;</code> is accessible via <code>${settings.offline}</code>.</li>
+</ul>
+<ul>
+<li><strong>Java System Properties</strong>:<br>All properties accessible via <code>java.lang.System.getProperties()</code> are available as POM properties, such as <code>${java.home}</code>.</li>
+</ul>
+<ul>
+<li><strong>x</strong>: Set within a <code>&lt;properties/&gt;</code> element in the POM. The value of <code>&lt;properties&gt;&lt;someVar&gt;value&lt;/someVar&gt;&lt;/properies&gt;</code> may be used as <code>${someVar}</code>.</li>
+</ul>
+<hr>
+<h2 id="Build-Settings"><a href="#Build-Settings" class="headerlink" title="Build Settings"></a>Build Settings</h2><p>Beyond the basics of the POM given above, there are two more elements that must be understood before claiming basic competency of the POM. They are the <code>build</code> element, that handles things like declaring our project’s directory structure and managing plugins; and the <code>reporting</code> element, that largely mirrors the build element for reporting purposes.</p>
+<h3 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h3><p>The build element is conceptually divided into two parts:</p>
+<ul>
+<li><code>BaseBuild</code> type which contains the set of elements common to both build elements.</li>
+<li><code>Build</code> type, which contains the <code>BaseBuild</code> set as well as more elements for the top level definition.<blockquote>
+<p><strong>Note:</strong> These different build elements may be denoted <strong>project build</strong> and <strong>profile build</strong>.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></div><div class="line">                      http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;</div><div class="line">  ...</div><div class="line">  <span class="comment">&lt;!-- "Project Build" contains more elements than just the BaseBuild set --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span>...<span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">      <span class="comment">&lt;!-- "Profile Build" contains a subset of "Project Build"s elements --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">build</span>&gt;</span>...<span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h4 id="The-BaseBuild-Element-Set"><a href="#The-BaseBuild-Element-Set" class="headerlink" title="The BaseBuild Element Set"></a>The BaseBuild Element Set</h4><p><code>BaseBuild</code> is exactly as it sounds: the base set of elements between the two build elements in the POM.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">defaultGoal</span>&gt;</span>install<span class="tag">&lt;/<span class="name">defaultGoal</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">directory</span>&gt;</span>$&#123;basedir&#125;/target<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>$&#123;artifactId&#125;-$&#123;version&#125;<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">filters</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">filter</span>&gt;</span>filters/filter1.properties<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">filters</span>&gt;</span></div><div class="line">  ...</div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><a href="https://maven.apache.org/pom.html#The_Basics" target="_blank" rel="external">Check out this post for more details about the BaseBuild element</a>.</p>
+<h5 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h5><p>Resources are not (usually) code. They are not compiled, but are items meant to be bundled within our project or used for various other reasons.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">  ...</div><div class="line">  <span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">targetPath</span>&gt;</span>META-INF/plexus<span class="tag">&lt;/<span class="name">targetPath</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">directory</span>&gt;</span>$&#123;basedir&#125;/src/main/plexus<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">includes</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">include</span>&gt;</span>configuration.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">excludes</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">testResources</span>&gt;</span></div><div class="line">    ...</div><div class="line">  <span class="tag">&lt;/<span class="name">testResources</span>&gt;</span></div><div class="line">  ...</div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><code>testResources</code> are similar to resource elements, but are naturally used during test phases.</p>
+<h5 id="Plugins-amp-Plugin-Management"><a href="#Plugins-amp-Plugin-Management" class="headerlink" title="Plugins &amp; Plugin Management"></a>Plugins &amp; Plugin Management</h5><p><a href="https://maven.apache.org/pom.html#Plugins" target="_blank" rel="external">Check out this post for more information.</a></p>
+<h4 id="The-Build-Element-Set"><a href="#The-Build-Element-Set" class="headerlink" title="The Build Element Set"></a>The Build Element Set</h4><p>The <code>Build</code> type in the <a href="http://searchsoa.techtarget.com/definition/XSD" target="_blank" rel="external">XSD</a> denotes those elements that are available only for the “project build”. Despite the number of extra elements (six), there are really only two groups of elements that project build contains that are missing from the profile build: directories and extensions.</p>
+<h5 id="Directories"><a href="#Directories" class="headerlink" title="Directories"></a>Directories</h5><p>The set of directory elements live in the parent build element, which set various directory structures for the POM as a whole. Since they do not exist in profile builds, these cannot be altered by profiles.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">sourceDirectory</span>&gt;</span>$&#123;basedir&#125;/src/main/java<span class="tag">&lt;/<span class="name">sourceDirectory</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">scriptSourceDirectory</span>&gt;</span>$&#123;basedir&#125;/src/main/scripts<span class="tag">&lt;/<span class="name">scriptSourceDirectory</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">testSourceDirectory</span>&gt;</span>$&#123;basedir&#125;/src/test/java<span class="tag">&lt;/<span class="name">testSourceDirectory</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">outputDirectory</span>&gt;</span>$&#123;basedir&#125;/target/classes<span class="tag">&lt;/<span class="name">outputDirectory</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">testOutputDirectory</span>&gt;</span>$&#123;basedir&#125;/target/test-classes<span class="tag">&lt;/<span class="name">testOutputDirectory</span>&gt;</span></div><div class="line">  ...</div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>If the values of a <code>*Directory</code> element above is set as an absolute path (when their properties are expanded) then that directory is used. Otherwise, it is relative to the base build directory: <code>${basedir}</code>.</p>
+<h5 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h5><p><a href="https://maven.apache.org/pom.html#Extensions" target="_blank" rel="external">Check out this post for more information about Extensions</a>.</p>
+<h3 id="Report"><a href="#Report" class="headerlink" title="Report"></a>Report</h3><p>Reporting contains the elements that correspond specifically for the site generation phase.<br><a href="https://maven.apache.org/pom.html#Reporting" target="_blank" rel="external">Check out this post for more information about Report</a>.</p>
+<hr>
+<h2 id="More-Project-Information"><a href="#More-Project-Information" class="headerlink" title="More Project Information"></a>More Project Information</h2><p>Although the above information is enough to get a firm grasp on POM authoring, there are far more elements to make developer’s live easier. Many of these elements are related to site generation, but like all POM declarations, they may be used for anything, depending upon how certain plugins use it.</p>
+<h3 id="License"><a href="#License" class="headerlink" title="License"></a>License</h3><p>A project should list only licenses that may apply directly to this project, and not list licenses that apply to this project’s dependencies. Maven currently does little with these documents other than displays them on generated sites.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">licenses</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">license</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Apache License, Version 2.0<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://www.apache.org/licenses/LICENSE-2.0.txt<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">distribution</span>&gt;</span>repo<span class="tag">&lt;/<span class="name">distribution</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">comments</span>&gt;</span>A business-friendly OSS license<span class="tag">&lt;/<span class="name">comments</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">license</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">licenses</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Organizations"><a href="#Organizations" class="headerlink" title="Organizations"></a>Organizations</h3><p>Here is the most basic information about an organization.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">organization</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>Hackjutsu<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://hackjutsu.ninja<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">organization</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Developers"><a href="#Developers" class="headerlink" title="Developers"></a>Developers</h3><p>This section is self-explained.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">developers</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">developer</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>hackjustn<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Hackjutsu Ninja<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">email</span>&gt;</span>hackjustn@example.com<span class="tag">&lt;<span class="name">email</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://hackjutsu.ninja/someone<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">organization</span>&gt;</span>SomeOrganization<span class="tag">&lt;/<span class="name">organization</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">organizationUrl</span>&gt;</span>http://www.example.com<span class="tag">&lt;/<span class="name">organizationUrl</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">roles</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">role</span>&gt;</span>architect<span class="tag">&lt;/<span class="name">role</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">role</span>&gt;</span>developer<span class="tag">&lt;/<span class="name">role</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">roles</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">timezone</span>&gt;</span>America/New_York<span class="tag">&lt;/<span class="name">timezone</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">picUrl</span>&gt;</span>http://www.example.com/hackjutsu/pic<span class="tag">&lt;/<span class="name">picUrl</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">developer</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">developers</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Contributors"><a href="#Contributors" class="headerlink" title="Contributors"></a>Contributors</h3><p>This section is self-explained.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">contributors</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">contributor</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Noelle<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">email</span>&gt;</span>some.name@gmail.com<span class="tag">&lt;/<span class="name">email</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://noellemarie.com<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">organization</span>&gt;</span>Noelle Marie<span class="tag">&lt;/<span class="name">organization</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">organizationUrl</span>&gt;</span>http://noellemarie.com<span class="tag">&lt;/<span class="name">organizationUrl</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">roles</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">role</span>&gt;</span>tester<span class="tag">&lt;/<span class="name">role</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">roles</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">timezone</span>&gt;</span>America/Vancouver<span class="tag">&lt;/<span class="name">timezone</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">gtalk</span>&gt;</span>some.name@gmail.com<span class="tag">&lt;/<span class="name">gtalk</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">contributor</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">contributors</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="Environment-Settings"><a href="#Environment-Settings" class="headerlink" title="Environment Settings"></a>Environment Settings</h2><h3 id="Repositories"><a href="#Repositories" class="headerlink" title="Repositories"></a>Repositories</h3><p>Whenever a project has a dependency upon an artifact, Maven will <strong>first attempt to use a local copy of the specified artifact</strong>. If that artifact does not exist in the local repository, it will then attempt to download from a remote repository. The repository elements within a POM specify those alternate repositories to search.</p>
+<p>The default central Maven repository lives on <a href="http://repo.maven.apache.org/maven2/" target="_blank" rel="external">http://repo.maven.apache.org/maven2/</a>.</p>
+<p><a href="https://maven.apache.org/pom.html#Repositories" target="_blank" rel="external">Check out this post for more information.</a></p>
+<h3 id="Profiles"><a href="#Profiles" class="headerlink" title="Profiles"></a>Profiles</h3><p>A Build profile is a set of configuration values which can be used to set or override default values of Maven build. Using a build profile, we can customize build for different environments such as <em>Production</em> vs <em>Development</em> environments.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>production<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">activation</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>build<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>release<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></div><div class="line">    [...]</div><div class="line">  <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>development<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">activation</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>build<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>develop<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></div><div class="line">    [...]</div><div class="line">  <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>For example, we can use a property value to activate a specific build profile.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mvn -Dbuild=develop package</div><div class="line">mvn -Dbuild=develop <span class="built_in">test</span></div><div class="line"></div><div class="line">mvn -Dbuild=release release:prepare</div><div class="line">mvn -Dbuild=release release:perform</div></pre></td></tr></table></figure></p>
+<h3 id="More-about-Environment-Settings"><a href="#More-about-Environment-Settings" class="headerlink" title="More about Environment Settings"></a>More about Environment Settings</h3><p><a href="https://maven.apache.org/pom.html#Environment_Settings" target="_blank" rel="external">Check out this post for more information.</a></p>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>This post is adapted from the <a href="https://maven.apache.org/pom.html" target="_blank" rel="external">Maven official document</a> as reading notes. Please refer to the original document for the most up-to-date information.</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/Maven/" rel="tag">#Maven</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/31/Maven Build Lifecycle/" rel="prev">Maven Build Lifecycle</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/29/Maven in 5 Minutes/" rel="next">Maven in 5 Minutes</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript"
+src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a07c3ac699e3ca"
+async = "async" > </script>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Cosmo" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cosmo</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">I code therefore I am.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hackjustu" target="_blank">Github</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://coolshell.cn" target="_blank">CoolShell</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://journal.stuffwithstuff.com/" target="_blank">Bob Nystrom</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Super-POM"><span class="nav-number">1.</span> <span class="nav-text">Super POM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Minimal-POM"><span class="nav-number">2.</span> <span class="nav-text">Minimal POM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Full-list-of-POM-Elements"><span class="nav-number">3.</span> <span class="nav-text">Full list of POM Elements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Basics"><span class="nav-number">4.</span> <span class="nav-text">The Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven-Coordinates"><span class="nav-number">4.1.</span> <span class="nav-text">Maven Coordinates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POM-Relationships"><span class="nav-number">4.2.</span> <span class="nav-text">POM Relationships</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Dependencies"><span class="nav-number">4.2.1.</span> <span class="nav-text">Dependencies</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Dependency-Version-Requirement-Specificatioin"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">Dependency Version Requirement Specificatioin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#More-about-Dependencies"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">More about Dependencies</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inheritance-and-Aggregations"><span class="nav-number">4.2.2.</span> <span class="nav-text">Inheritance and Aggregations</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Properties"><span class="nav-number">4.3.</span> <span class="nav-text">Properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Build-Settings"><span class="nav-number">5.</span> <span class="nav-text">Build Settings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Build"><span class="nav-number">5.1.</span> <span class="nav-text">Build</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-BaseBuild-Element-Set"><span class="nav-number">5.1.1.</span> <span class="nav-text">The BaseBuild Element Set</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Resources"><span class="nav-number">5.1.1.1.</span> <span class="nav-text">Resources</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Plugins-amp-Plugin-Management"><span class="nav-number">5.1.1.2.</span> <span class="nav-text">Plugins & Plugin Management</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Build-Element-Set"><span class="nav-number">5.1.2.</span> <span class="nav-text">The Build Element Set</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Directories"><span class="nav-number">5.1.2.1.</span> <span class="nav-text">Directories</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Extensions"><span class="nav-number">5.1.2.2.</span> <span class="nav-text">Extensions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Report"><span class="nav-number">5.2.</span> <span class="nav-text">Report</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-Project-Information"><span class="nav-number">6.</span> <span class="nav-text">More Project Information</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#License"><span class="nav-number">6.1.</span> <span class="nav-text">License</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Organizations"><span class="nav-number">6.2.</span> <span class="nav-text">Organizations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Developers"><span class="nav-number">6.3.</span> <span class="nav-text">Developers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contributors"><span class="nav-number">6.4.</span> <span class="nav-text">Contributors</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Environment-Settings"><span class="nav-number">7.</span> <span class="nav-text">Environment Settings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Repositories"><span class="nav-number">7.1.</span> <span class="nav-text">Repositories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Profiles"><span class="nav-number">7.2.</span> <span class="nav-text">Profiles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#More-about-Environment-Settings"><span class="nav-number">7.3.</span> <span class="nav-text">More about Environment Settings</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">8.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'hackjustu';
+      var disqus_identifier = '2015/10/30/Maven POM in Action/';
+      var disqus_title = 'Maven POM in Action';
+      var disqus_url = 'http://hackjutsu.com/2015/10/30/Maven POM in Action/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+</body>
+</html>

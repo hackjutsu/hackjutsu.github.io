@@ -1,0 +1,751 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="I code therefore I am." />
+
+
+
+  <meta name="keywords" content="Java,Debug," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hackjutsu Dojo" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Resume and TerminateWhen we start debugging, Eclipse will suggest you entering the Debug Perspective. The Break Points View lies on the top-right corner of the Debug Perspective.
+If we put a break poi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eclipse Debugging Techniques & Tricks">
+<meta property="og:url" content="http://hackjutsu.com/2015/10/08/Eclipse-Debugging-Techniques-Tricks/index.html">
+<meta property="og:site_name" content="Hackjutsu Dojo">
+<meta property="og:description" content="Resume and TerminateWhen we start debugging, Eclipse will suggest you entering the Debug Perspective. The Break Points View lies on the top-right corner of the Debug Perspective.
+If we put a break poi">
+<meta property="og:image" content="http://i.imgur.com/6Qf3eHH.png">
+<meta property="og:image" content="http://i.stack.imgur.com/X84I7.png">
+<meta property="og:image" content="http://i.imgur.com/r3we6ZU.png">
+<meta property="og:image" content="http://i.imgur.com/cGPAL43.png">
+<meta property="og:image" content="http://i.imgur.com/7CV3AuJ.png">
+<meta property="og:image" content="http://i.imgur.com/Xr2TAou.png">
+<meta property="og:image" content="http://i.imgur.com/6AH49tz.png">
+<meta property="og:updated_time" content="2016-03-31T22:23:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eclipse Debugging Techniques & Tricks">
+<meta name="twitter:description" content="Resume and TerminateWhen we start debugging, Eclipse will suggest you entering the Debug Perspective. The Break Points View lies on the top-right corner of the Debug Perspective.
+If we put a break poi">
+<meta name="twitter:image" content="http://i.imgur.com/6Qf3eHH.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Eclipse Debugging Techniques & Tricks | Hackjutsu Dojo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72207664-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hackjutsu Dojo</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'L5TH3kKzWS14GbMzpixP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Eclipse Debugging Techniques & Tricks
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-10-08T18:00:00-07:00" content="2015-10-08">
+            2015-10-08
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/08/Eclipse-Debugging-Techniques-Tricks/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/08/Eclipse-Debugging-Techniques-Tricks/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="Resume-and-Terminate"><a href="#Resume-and-Terminate" class="headerlink" title="Resume and Terminate"></a><em>Resume</em> and <em>Terminate</em></h3><p>When we start debugging, <strong>Eclipse</strong> will suggest you entering the <code>Debug Perspective</code>. The <code>Break Points View</code> lies on the top-right corner of the <code>Debug Perspective</code>.</p>
+<p>If we put a break point at <em>Line 8</em>, then the process will highlight and pause at <em>Line 8</em>. Note that <em>Line 8</em> has not been executed yet at this moment.</p>
+<ul>
+<li><code>Resume (F8)</code> will resume the process until it hits the next break point.</li>
+<li><code>Terminate (Command + F2)</code> will terminate a debugging process.</li>
+</ul>
+<a id="more"></a>
+<p><img src="http://i.imgur.com/6Qf3eHH.png" alt=""></p>
+<hr>
+<h3 id="Step-Over-Step-Into-and-Step-Return"><a href="#Step-Over-Step-Into-and-Step-Return" class="headerlink" title="Step Over, Step Into and Step Return"></a><em>Step Over</em>, <em>Step Into</em> and <em>Step Return</em></h3><ul>
+<li><code>Step Over (F6)</code>: Execute current and pause at the next line.</li>
+<li><code>Step Into (F5)</code>: Go into methods.</li>
+<li><code>Step Return (F7)</code>: Return from the current method and go a level back.</li>
+</ul>
+<hr>
+<h3 id="Break-when-Exception-thrown"><a href="#Break-when-Exception-thrown" class="headerlink" title="Break when Exception thrown"></a>Break when Exception thrown</h3><p>Go to the breakpoints window, there’s a button that looks like <code>J!</code>, there we can set breakpoints for Java exceptions, either caught or uncaught. We can reference classes or use pattern matchers for exception names. (thanks to <a href="http://stackoverflow.com/questions/3066199/break-when-exception-is-thrown" target="_blank" rel="external">StackOverflow</a>)</p>
+<p><img src="http://i.stack.imgur.com/X84I7.png" alt=""></p>
+<hr>
+<h3 id="Step-into-Selection"><a href="#Step-into-Selection" class="headerlink" title="Step into Selection"></a><em>Step into Selection</em></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> firstPersonAge = DataUtil.getPersonData().get(<span class="number">0</span>).getAge();</div></pre></td></tr></table></figure>
+<p>For the chained methods above, if we want to debug the <code>getPersonData()</code>, we can use the <code>Step Into</code> method to get inside. However, if we want to debug the <code>getAge()</code>, then <code>Step Into</code> won’t help. To achieve our goal, select the method <code>getAge()</code>, right click and choose <code>Step Into Selection</code>. Note that we can also achieve this by putting a break point inside <code>getAge()</code>.</p>
+<p><img src="http://i.imgur.com/r3we6ZU.png" alt=""></p>
+<hr>
+<h3 id="Evaluating-Expression-using-Inspect-Execute-and-Watch"><a href="#Evaluating-Expression-using-Inspect-Execute-and-Watch" class="headerlink" title="Evaluating Expression using Inspect, Execute and Watch"></a>Evaluating Expression using <em>Inspect</em>, <em>Execute</em> and <em>Watch</em></h3><ul>
+<li><code>inspect</code>: right click and choose inspect, superset of <code>execute</code>. We can even inspect an expression before our debug reach that line, if all the variable it needs are already defined.</li>
+<li><code>execute</code>: right click and choose execute, will execute the selected expression.</li>
+<li><code>watch</code>: right click and choose watch, will create a customized expression in the “Expression” tab on top right corner.</li>
+</ul>
+<hr>
+<h3 id="Show-Logical-Structures"><a href="#Show-Logical-Structures" class="headerlink" title="Show Logical Structures"></a><em>Show Logical Structures</em></h3><p><code>Show logcial structures</code> is a switch on the <code>Break Points View</code>. Without this tunred on, the view will show up the internal representations of the collection objects. With it tunred on, the view will show up its children information will be far more useful.</p>
+<p><img src="http://i.imgur.com/cGPAL43.png" alt="Left: before   Right: after"></p>
+<hr>
+<h3 id="Changing-of-Variable’s-Values-during-Debugging"><a href="#Changing-of-Variable’s-Values-during-Debugging" class="headerlink" title="Changing of Variable’s Values during Debugging"></a>Changing of Variable’s Values during Debugging</h3><p>Simply double click the variables on the break point windows and input the new values we want.  Sometimes, we need to right click the variable and choose <code>Change Value...</code>.<br><img src="http://i.imgur.com/7CV3AuJ.png" alt=""></p>
+<hr>
+<h3 id="Utilize-the-Display-View"><a href="#Utilize-the-Display-View" class="headerlink" title="Utilize the Display View"></a>Utilize the <em>Display View</em></h3><p>The <code>Display View</code> displays the result of evaluating an expression in the context of the current stack frame. We can evaluate and display a selection either from the editor or directly from the <code>Display View</code>.</p>
+<blockquote>
+<p>Windows –&gt; Show View –&gt; Display</p>
+</blockquote>
+<p><img src="http://i.imgur.com/Xr2TAou.png" alt=""></p>
+<hr>
+<h3 id="Conditional-Breakpoint-and-Hit-Count"><a href="#Conditional-Breakpoint-and-Hit-Count" class="headerlink" title="Conditional Breakpoint and Hit Count"></a>Conditional Breakpoint and Hit Count</h3><p>The debug process pause at a conditional break point <em>only when it meets the break point’s condition</em>.</p>
+<blockquote>
+<p>Right click the break point –&gt; Break Point Properties… (Command + Double Click)</p>
+</blockquote>
+<p>For example, the following codes pause at the break point only when the <code>Person</code> instance’s country equals to US.</p>
+<p><img src="http://i.imgur.com/6AH49tz.png" alt=""></p>
+<p>By checking the <code>Hit count</code> box in the <code>Line Breakpoint</code> panel above, we can specify the “hit count”. For example, if we set it as 6, the process will not pause for the first 5 valid iterations.</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/Debug/" rel="tag">#Debug</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/11/Small Tips on Sublime2/" rel="prev">Small Tips on Sublime2</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/07/Resource Acquisition Is Initialization (RAII)/" rel="next">Resource Acquisition Is Initialization (RAII)</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript"
+src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a07c3ac699e3ca"
+async = "async" > </script>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Cosmo" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cosmo</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">I code therefore I am.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hackjustu" target="_blank">Github</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://coolshell.cn" target="_blank">CoolShell</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://journal.stuffwithstuff.com/" target="_blank">Bob Nystrom</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Resume-and-Terminate"><span class="nav-number">1.</span> <span class="nav-text">Resume and Terminate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-Over-Step-Into-and-Step-Return"><span class="nav-number">2.</span> <span class="nav-text">Step Over, Step Into and Step Return</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Break-when-Exception-thrown"><span class="nav-number">3.</span> <span class="nav-text">Break when Exception thrown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-into-Selection"><span class="nav-number">4.</span> <span class="nav-text">Step into Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluating-Expression-using-Inspect-Execute-and-Watch"><span class="nav-number">5.</span> <span class="nav-text">Evaluating Expression using Inspect, Execute and Watch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Show-Logical-Structures"><span class="nav-number">6.</span> <span class="nav-text">Show Logical Structures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Changing-of-Variable’s-Values-during-Debugging"><span class="nav-number">7.</span> <span class="nav-text">Changing of Variable’s Values during Debugging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Utilize-the-Display-View"><span class="nav-number">8.</span> <span class="nav-text">Utilize the Display View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditional-Breakpoint-and-Hit-Count"><span class="nav-number">9.</span> <span class="nav-text">Conditional Breakpoint and Hit Count</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'hackjustu';
+      var disqus_identifier = '2015/10/08/Eclipse-Debugging-Techniques-Tricks/';
+      var disqus_title = 'Eclipse Debugging Techniques & Tricks';
+      var disqus_url = 'http://hackjutsu.com/2015/10/08/Eclipse-Debugging-Techniques-Tricks/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+</body>
+</html>

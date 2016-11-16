@@ -1,0 +1,920 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="I code therefore I am." />
+
+
+
+  <meta name="keywords" content="Java,Concurrency," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hackjutsu Dojo" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Java is a multi threaded programming language. A multi-threaded program contains two or more parts that can run concurrently and each part can handle different task at the same time making optimal us">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Concurrency">
+<meta property="og:url" content="http://hackjutsu.com/2016/01/20/Java Concurrency/index.html">
+<meta property="og:site_name" content="Hackjutsu Dojo">
+<meta property="og:description" content="Java is a multi threaded programming language. A multi-threaded program contains two or more parts that can run concurrently and each part can handle different task at the same time making optimal us">
+<meta property="og:image" content="http://i.imgur.com/LOBPL1M.jpg">
+<meta property="og:updated_time" content="2016-02-10T01:48:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Concurrency">
+<meta name="twitter:description" content="Java is a multi threaded programming language. A multi-threaded program contains two or more parts that can run concurrently and each part can handle different task at the same time making optimal us">
+<meta name="twitter:image" content="http://i.imgur.com/LOBPL1M.jpg">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Java Concurrency | Hackjutsu Dojo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72207664-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hackjutsu Dojo</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'L5TH3kKzWS14GbMzpixP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Java Concurrency
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2016-01-20T20:15:45-08:00" content="2016-01-20">
+            2016-01-20
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2016/01/20/Java Concurrency/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/20/Java Concurrency/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="http://i.imgur.com/LOBPL1M.jpg" style="max-height: 350px;"></p>
+<p>Java is a multi threaded programming language. A multi-threaded program contains two or more parts that can run concurrently and each part can handle different task at the same time making optimal use of the available resources specially when your computer has multiple CPUs.</p>
+<p>In this post, we will discover how to write effective and efficient multi threaded program in Java.</p>
+<a id="more"></a>
+<hr>
+<h2 id="Thread-Basics"><a href="#Thread-Basics" class="headerlink" title="Thread Basics"></a>Thread Basics</h2><h3 id="Creating-and-Starting-Threads"><a href="#Creating-and-Starting-Threads" class="headerlink" title="Creating and Starting Threads"></a>Creating and Starting Threads</h3><p>Java Threads have to be instances of <code>java.lang.Thread</code> or instances of subclasses of this class. Creating and starting a thread can be simply done like this:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Thread thread = <span class="keyword">new</span> Thread();</div><div class="line">thread.start(); <span class="comment">// NOT the run() method!!</span></div></pre></td></tr></table></figure></p>
+<p>The codes above don’t have any specific codes to run. The thread stops right after it starts. To specify some logic for the new thread, we either subclass the <code>Thread</code> or pass an implementation of <code>java.lang.Runnable</code> to the <code>Thread</code>‘s constructor.</p>
+<h4 id="Subclassing-Thread"><a href="#Subclassing-Thread" class="headerlink" title="Subclassing Thread"></a>Subclassing Thread</h4><p>Subclass the <code>Thread</code> and override its <code>run()</code> method.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CuteThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"CuteThread is running~"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>To start the thread:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CuteThread cuteThread = <span class="keyword">new</span> CuteThread();</div><div class="line">cuteThread.start();</div></pre></td></tr></table></figure></p>
+<h4 id="Implementing-Runnable"><a href="#Implementing-Runnable" class="headerlink" title="Implementing Runnable"></a>Implementing Runnable</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">       System.out.println(<span class="string">"MyRunnable running"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;).start();</div></pre></td></tr></table></figure>
+<p>Implementing <code>Runnable</code> is the <a href="http://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread" target="_blank" rel="external">preferred way to run</a> specific codes on a new thread, since we are not specializing the thread’s interface.</p>
+<h4 id="Get-the-Current-Thread"><a href="#Get-the-Current-Thread" class="headerlink" title="Get the Current Thread"></a>Get the Current Thread</h4><p><code>Thread.currentThread()</code> returns a reference to the <code>Thread</code> instance executing the <code>currentThread()</code>.</p>
+<h4 id="Name-of-a-Thread"><a href="#Name-of-a-Thread" class="headerlink" title="Name of a Thread"></a>Name of a Thread</h4><p>We can assign a name to a Java Thread by passing it to the constructor. We can retrieve the name by calling <code>getName()</code>.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">MyRunnable runnable = <span class="keyword">new</span> MyRunnable();</div><div class="line">Thread thread = <span class="keyword">new</span> Thread(runnable, <span class="string">"New Thread"</span>);</div><div class="line"></div><div class="line">thread.start();</div><div class="line">System.out.println(thread.getName());</div></pre></td></tr></table></figure></p>
+<h4 id="Pausing-Execution-with-Sleep"><a href="#Pausing-Execution-with-Sleep" class="headerlink" title="Pausing Execution with Sleep"></a>Pausing Execution with Sleep</h4><p><code>Thread.sleep()</code> causes the <strong>current</strong> thread to suspend execution for a specified period.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// pause for 4 seconds</span></div><div class="line">Thread.sleep(<span class="number">4000</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="Joining-a-Thread"><a href="#Joining-a-Thread" class="headerlink" title="Joining a Thread"></a>Joining a Thread</h3><p>If <code>join()</code> is called on a <code>Thread</code> instance, the currently running thread will block until the <code>Thread</code> instance has finished executing.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// The current thread will be blocked until threadA finishes</span></div><div class="line">threadA.join();</div><div class="line"><span class="comment">// The current thread waits at most 2000ms</span></div><div class="line">threadB.join(<span class="number">2000</span>);</div><div class="line"><span class="comment">// The current thread waits at most 2000ms + 100ns</span></div><div class="line">threadC.join(<span class="number">2000</span>, <span class="number">100</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="Yielding-a-Thread"><a href="#Yielding-a-Thread" class="headerlink" title="Yielding a Thread"></a>Yielding a Thread</h3><p>According to the Java documentation, <code>yield()</code> is:</p>
+<blockquote>
+<p>a hint to the scheduler that the current thread is willing to yield its current use of a processor.</p>
+</blockquote>
+<p>Let’s use the following snippet as an example.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">        Thread myThread = <span class="keyword">new</span> Thread() &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                System.out.println(<span class="string">"Hello from new thread"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">        myThread.start();</div><div class="line">        Thread.yield();</div><div class="line">        System.out.println(<span class="string">"Hello from main thread"</span>);</div><div class="line">        myThread.join();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Without the call to <code>yield()</code>, the startup overhead of the new thread would mean that the main thread would almost certainly get to its <code>println()</code> first, although it is not guaranteed to be the case.</p>
+<h3 id="Java-Volatile-Keyword"><a href="#Java-Volatile-Keyword" class="headerlink" title="Java Volatile Keyword"></a>Java Volatile Keyword</h3><p>Let’s look at an example. In the following codes, we start <em>thread_B</em> from <em>thread_A</em>. Then we send a stop signal from <em>thread_A</em> to <em>thread_B</em> to stop the latter thread.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Processor</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> running = <span class="keyword">true</span>; <span class="comment">// Pitfall!!</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(running) &#123;</div><div class="line">            System.out.println(<span class="string">"Hello"</span>);</div><div class="line"></div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                Thread.sleep(<span class="number">100</span>);</div><div class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        running = <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicSync</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">// Start thread_B</span></div><div class="line">        Processor proc = <span class="keyword">new</span> Processor();</div><div class="line">        proc.start();</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"Please enter return key to stop..."</span>);</div><div class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">        scanner.nextLine();</div><div class="line"></div><div class="line">        <span class="comment">// Send shutdown signal from thread_A to thread_B</span></div><div class="line">        proc.shutdown();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>The program looks fine at the first glance, but actually it could fail to stop the <em>thread_B</em> depending on how the compiler optimizes the program. In some compiler, <code>while(running){...}</code> in <code>Processor</code> could be optimized as <code>while(true){...}</code>. The compiler has no idea <code>running</code> would be changed by other thread, and it optimizes <code>running</code> to <code>true</code> according to its knowledge.</p>
+<p>To avoid this, we need to declare the <code>running</code> as <code>volatile</code>, which means the <code>running</code>variable could be changed by the codes outside and the compiler should not optimize it.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> running = <span class="keyword">true</span>;</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="Thread-pools-with-the-Executor-Framework"><a href="#Thread-pools-with-the-Executor-Framework" class="headerlink" title="Thread pools with the Executor Framework"></a>Thread pools with the Executor Framework</h2><h3 id="Runnable"><a href="#Runnable" class="headerlink" title="Runnable"></a>Runnable</h3><p><strong>Executors framework</strong> is used to run the <code>Runnable</code> objects without creating new threads every time and mostly re-using the already created threads. There is a <strong>thread pool</strong> managing a pool of worker thread. Each submittd task to the thread pool will enters a queue waiting to be executed.</p>
+<blockquote>
+<p>A thread pool can be described as a collection of <em>Runnable</em> objects (work queue) and a connections of running threads. These threads are constantly running and are checking the work query for new work. If there is new work to be done they execute this Runnable. The Thread class itself provides a method, e.g. <em>execute(Runnable r)</em> to add a new <em>Runnable</em> object to the work queue. <a href="http://www.vogella.com/tutorials/JavaConcurrency/article.html#threadpools" target="_blank" rel="external">– By vogella Java Tutorial</a></p>
+</blockquote>
+<p>A thread pool is represented by an instance of the class <code>ExecutorService</code>. With the <code>ExecutorService</code> instance, we can submit tasks to be executed in the future.</p>
+<p><code>Executors</code> provide utilities and factory methods for <code>ExecutorService</code>, for example <code>Executors.newFixedThreadPool(int n)</code> will create n worker threads.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ExecutorService pool = Executors.newFixedThreadPool(<span class="number">4</span>);</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">   pool.submit(<span class="keyword">new</span> MyRunnable());</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>In the codes above 10 <code>Runnable</code>instances will be submitted to a thread pool with the size 4. We are responsible to shutdown the thread pool in order to terminate all the threads, or the JVM will risk not to shutdown.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// This will make the executor accept no new threads</span></div><div class="line"><span class="comment">// and finish all existing threads in the queue</span></div><div class="line">pool.shutdown();</div><div class="line"><span class="comment">// Wait until all threads are finish</span></div><div class="line">pool.awaitTermination();</div></pre></td></tr></table></figure></p>
+<p>We can also force the shutdown of the pool using <code>shutdownNow()</code>, with that the currently running tasks will be interrupted and the tasks not started will be returned.</p>
+<h3 id="Futures-and-Callables"><a href="#Futures-and-Callables" class="headerlink" title="Futures and Callables"></a>Futures and Callables</h3><p>The Executor framework works with a <code>Runnable</code> instance as shown above. However, <code>Runnable</code> cannot return a result to the caller. To get the computed result, Java provides the <code>Callable</code> interface.</p>
+<p>The <code>Callable</code> object uses generics to define the return value.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCallable</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++) &#123;</div><div class="line">            sum += i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sum;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>When we submit a <code>Callable</code> instance to the thread pool, we will get a <code>Future</code> object,  which exposes methods for us to monitor the progress that the task being executed.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ExecutorService executor = Executors.newFixedThreadPool(<span class="number">5</span>);</div><div class="line">Future&lt;Integer&gt; future = executor.submit(<span class="keyword">new</span> MyCallable());</div><div class="line"><span class="keyword">int</span> result = future.get();</div></pre></td></tr></table></figure></p>
+<p>The <code>Future</code>‘s <code>get()</code>will waits if necessary for the computation to complete, and then retrieves the result. Here is a list of methods provided by <code>Future</code>:</p>
+<ul>
+<li><strong><em>boolean cancel(boolean mayInterruptIfRunning)</em></strong><ul>
+<li>Attempts to cancel execution of this task.</li>
+</ul>
+</li>
+<li><strong><em>V get()</em></strong><ul>
+<li>Waits if necessary for the computation to complete, and then retrieves its result.</li>
+</ul>
+</li>
+<li><strong><em>V get(long timeout, TimeUnit unit)</em></strong><ul>
+<li>Waits if necessary for at most the given time for the computation to complete, and then retrieves its result, if available.</li>
+</ul>
+</li>
+<li><strong><em>boolean isCancelled()</em></strong><ul>
+<li>Returns true if this task was cancelled before it completed normally.</li>
+</ul>
+</li>
+<li><strong><em>boolean isDone()</em></strong><ul>
+<li>Returns true if this task completed.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> Check out the Oracle documentations for more about <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Callable.html" target="_blank" rel="external">Callable</a> and <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html" target="_blank" rel="external">Future</a>.</p>
+</blockquote>
+<h3 id="Java-8’s-CompletableFuture"><a href="#Java-8’s-CompletableFuture" class="headerlink" title="Java 8’s CompletableFuture"></a>Java 8’s CompletableFuture</h3><p><code>CompletableFuture</code> extends the functionality of the <code>Future</code> interface with the possibility to notify the caller once a task is done by utilizing function-style callbacks.</p>
+<p>Tutorials about <code>CompletableFuture</code> can be found here:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html" target="_blank" rel="external">Java Documentation</a></li>
+<li><a href="http://www.infoq.com/articles/Functional-Style-Callbacks-Using-CompletableFuture" target="_blank" rel="external">Functional-Style Callbacks Using Java 8’s CompletableFuture</a></li>
+<li><a href="http://www.javacodegeeks.com/2013/05/java-8-completablefuture-in-action.html" target="_blank" rel="external">Java 8: CompletableFuture in action</a></li>
+</ul>
+<hr>
+<h2 id="Synchornized-Keyword"><a href="#Synchornized-Keyword" class="headerlink" title="Synchornized Keyword"></a>Synchornized Keyword</h2><p>The Java <code>synchronized</code>keyword serves as Java’s intrinsic locks. It marks a Java block or method as <code>synchronized</code> to avoid race conditions. These synchronized blocks or methods only allow one thread executing their codes at one time. As <a href="http://tutorials.jenkov.com/java-concurrency/synchronized.html" target="_blank" rel="external">summarized by Jakob Jenkov</a> , the <code>synchronized</code> keyword can be used to mark four different types of blocks:</p>
+<ul>
+<li>Instance methods</li>
+<li>Static methods</li>
+<li>Code blocks inside instance methods</li>
+<li>Code blocks inside static methods</li>
+</ul>
+<h3 id="Synchronized-Instance-Methods"><a href="#Synchronized-Instance-Methods" class="headerlink" title="Synchronized Instance Methods"></a>Synchronized Instance Methods</h3><p>A synchronized instance method in Java is synchronized on the instance (object) owning the method.  Only one thread can execute the synchronized method <strong>on the same instance</strong> at one time.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> value)</span></span>&#123;</div><div class="line">    <span class="keyword">this</span>.count += value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Synchronized-Static-Methods"><a href="#Synchronized-Static-Methods" class="headerlink" title="Synchronized Static Methods"></a>Synchronized Static Methods</h3><p>Only one thread can execute inside a static synchronized method <strong>in the same class</strong>.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> value)</span></span>&#123;</div><div class="line">     count += value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Note that declaring a method as synchronized is just syntactic sugar for surround the method’s body with the following:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(<span class="keyword">this</span>) &#123;</div><div class="line">    &lt;&lt;method body&gt;&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Synchronized-Blocks-in-Instance-Methods"><a href="#Synchronized-Blocks-in-Instance-Methods" class="headerlink" title="Synchronized Blocks in Instance Methods"></a>Synchronized Blocks in Instance Methods</h3><p>Sometimes, we don’t need to synchronize the whole method, insteads, we can only synchronize a block of codes.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> value)</span></span>&#123;</div><div class="line">    <span class="comment">// Some codes before the synchronized block</span></div><div class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123;</div><div class="line">        <span class="keyword">this</span>.count += value;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// Some codes after the synchronized block</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>The object taken in the parentheses by the synchronized construct is called a monitor object. Only one thread can execute inside a Java code block synchronized on the same monitor object. In the codes below, the synchroinzed codes take <code>this</code> as the monitor object.</p>
+<h3 id="Synchronized-Blocks-in-Static-Methods"><a href="#Synchronized-Blocks-in-Static-Methods" class="headerlink" title="Synchronized Blocks in Static Methods"></a>Synchronized Blocks in Static Methods</h3><p>Only one thread can execute inside the synchronized block <strong>in the same class</strong> (<code>MyClass.class</code>in the codes below).<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String msg1, String msg2)</span></span>&#123;</div><div class="line">	    <span class="comment">// Some codes before the synchronized block</span></div><div class="line">        <span class="keyword">synchronized</span>(MyClass.class)&#123;</div><div class="line">            System.out.println(<span class="string">"Hello World!"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// Some codes after the synchronized block</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Thread-Signaling"><a href="#Thread-Signaling" class="headerlink" title="Thread Signaling"></a>Thread Signaling</h2><p>As the name suggested, thread signaling should enable threads to send signals to each other. At the same time, it should also allow threads to wait signals from other threads.</p>
+<h3 id="Busy-Waiting"><a href="#Busy-Waiting" class="headerlink" title="Busy Waiting"></a>Busy Waiting</h3><p>The most intuitive way for thread signaling is let threads send signals to and retrieve signals from a shared object.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SharedSignal</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">boolean</span> mShouldContinue = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">shouldContinue</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> mShouldContinue;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">setShouldContinue</span><span class="params">(<span class="keyword">boolean</span> <span class="keyword">continue</span>)</span></span>&#123;</div><div class="line">        mShouldContinue = <span class="keyword">continue</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Thread A could do a busy waiting for Thread B to signal the <code>SharedSignal</code> object.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">protected</span> SharedSignal signal = <span class="keyword">new</span> SharedSignal();</div><div class="line"><span class="comment">// Some codes here</span></div><div class="line"></div><div class="line"><span class="keyword">while</span>(!signal.shouldContinue()) &#123;</div><div class="line"><span class="comment">// busy waiting</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="wait-notify-and-notifyAll"><a href="#wait-notify-and-notifyAll" class="headerlink" title="wait(), notify() and notifyAll()"></a>wait(), notify() and notifyAll()</h3><p>The busy waiting consumes the CPU while waiting, which is not very efficient. Java <code>Object</code> has a built-in mechanism for a more smarter wait. The thread will sleep while waiting until some other thread sends a signal to wait it up.</p>
+<p><code>Object</code> defines three methods <code>wait()</code>, <code>notify()</code> and <code>notifyAll()</code> to facilitate this smart wait.</p>
+<p>A thread that calls <code>wait()</code> on any object becomes inactive until another thread calls <code>notify()</code> on that object. In order to call either <code>wait()</code> or notify the calling thread must first obtain the lock on that object. In other words, the calling thread must call <code>wait()</code> or <code>notify()</code> from inside a <code>synchronized</code> block.</p>
+<p>Once a thread calls <code>wait()</code> it <strong>releases</strong> the lock it holds on the monitor object. Once a thread is awakened it cannot exit the <code>wait()</code> call until the thread calling <code>notify()</code> has left its <code>synchronized</code> block.  If multiple threads are awakened using <code>notifyAll()</code> only one awakened thread at a time can exit the <code>wait()</code> method, since each thread must obtain the lock on the monitor object in turn before exiting <code>wait()</code>.</p>
+<p><a href="http://stackoverflow.com/a/2536999/3697757" target="_blank" rel="external">Here</a> is a good example illustrating this mechanism:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHouse</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> pizzaArrived = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eatPizza</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span>(<span class="keyword">this</span>) &#123;</div><div class="line">            <span class="keyword">while</span>(!pizzaArrived) &#123; <span class="comment">// Never do if(!pizzaArrived)</span></div><div class="line">                wait();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        System.out.println(<span class="string">"yumyum.."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pizzaGuy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span>(<span class="keyword">this</span>) &#123;</div><div class="line">             <span class="keyword">this</span>.pizzaArrived = <span class="keyword">true</span>;</div><div class="line">             notifyAll();</div><div class="line">             <span class="comment">// Stick with notifyAll() until you know what you are doing</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The post lists some important points:</p>
+<ul>
+<li>Always use <code>while(!pizzaArrized)</code> insteads of <code>if(!pizzaArrived)</code> to avoid the suspicious wake up.</li>
+<li>We must hold the lock (synchronized) before invoking wait/nofity. Threads also have to acquire lock before waking.</li>
+<li>Try to avoid acquiring any lock within your synchronized block and strive to not invoke alien methods (methods you don’t know for sure what they are doing). If you have to, make sure to take measures to avoid deadlocks.</li>
+<li>Be careful with notify(). Stick with <code>notifyAll()</code> until you know what you are doing.</li>
+<li>Last, but not least, read <a href="http://www.amazon.com/gp/product/0321349601?ie=UTF8&amp;tag=none0b69&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321349601" target="_blank" rel="external">Java Concurrency in Practice</a>!</li>
+</ul>
+<blockquote>
+<p> <strong>Note:</strong>  Don’t call <code>wait()</code> on constant Strings or global objects!!  The JVM/Compiler internally translates constant strings into the same object.</p>
+</blockquote>
+<hr>
+<h2 id="Re-entrant-Locks-and-Condition-Variables"><a href="#Re-entrant-Locks-and-Condition-Variables" class="headerlink" title="Re-entrant Locks and Condition Variables"></a>Re-entrant Locks and Condition Variables</h2><p>In Java 5.0, a new addition called <code>ReentrantLock</code> was made to enhance intrinsic locking capabilities. Prior to this,  <code>synchronized</code> and <code>volatile</code> were the means for achieving concurrency.</p>
+<h3 id="Re-entrant-Locks-and-synchroinzed"><a href="#Re-entrant-Locks-and-synchroinzed" class="headerlink" title="Re-entrant Locks and synchroinzed"></a>Re-entrant Locks and synchroinzed</h3><p>The <code>synchronized</code> uses intrinsic locks or monitors, <a href="https://dzone.com/articles/what-are-reentrant-locks" target="_blank" rel="external">this article</a> gives insightful comparation between the intrinsic locking mechanism and the Re-eantrant lock mechanism.  In short……</p>
+<blockquote>
+<p>The main difference between <code>synchronized</code> and <code>ReentrantLock</code> is ability to trying for lock interruptibly, and with timeout.</p>
+</blockquote>
+<p><code>ReentrantLock</code> is a concrete implementation of <code>Lock</code> interface.  It is mutual exclusive lock, similar to implicit locking provided by <code>synchronized</code> keyword in Java, with extended feature like <strong>fairness</strong>, which can be used to provide lock to longest waiting thread. Lock is acquired by <code>lock()</code> method and held by Thread until a call to <code>unlock()</code> method. <strong>Fairness</strong>  parameter is provided while creating instance of <code>ReentrantLock</code> in constructor. <code>ReentrantLock</code> provides same visibility and ordering guarantee, provided by implicitly locking, which means, <code>unlock()</code> happens before another thread get <code>lock()</code>.</p>
+<h3 id="Re-entrant-Locks-Example"><a href="#Re-entrant-Locks-Example" class="headerlink" title="Re-entrant Locks Example"></a>Re-entrant Locks Example</h3><p>Here is a example using Re-entrant lock to increment the counter.  <a href="http://javarevisited.blogspot.com/2013/03/reentrantlock-example-in-java-synchronized-difference-vs-lock.html" target="_blank" rel="external">Check out the original post here :)</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReentrantLockTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock();</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="comment">//Locking using Lock and ReentrantLock</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        lock.lock();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            System.out.println(</div><div class="line">                    Thread.currentThread().getName() + <span class="string">" gets Count: "</span> + count);</div><div class="line">            <span class="keyword">return</span> count++;</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            lock.unlock();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> ReentrantLockTest counter = <span class="keyword">new</span> ReentrantLockTest();</div><div class="line">        Thread t1 = <span class="keyword">new</span> Thread() &#123;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">while</span> (counter.getCount() &lt;= <span class="number">6</span>) &#123;</div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        Thread.sleep(<span class="number">100</span>);</div><div class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</div><div class="line">                        ex.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        Thread t2 = <span class="keyword">new</span> Thread() &#123;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">while</span> (counter.getCount() &lt;= <span class="number">6</span>) &#123;</div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        Thread.sleep(<span class="number">100</span>);</div><div class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</div><div class="line">                        ex.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        t1.start();</div><div class="line">        t2.start();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Note that since the lock is not automatically released when the method exits, you should wrap the <code>lock()</code> and the <code>unlock()</code> methods in a <code>try/finally</code> clause.</p>
+<h3 id="Conditional-Variable"><a href="#Conditional-Variable" class="headerlink" title="Conditional Variable"></a>Conditional Variable</h3><p>The <code>Condition</code> interface factors out the <code>java.lang.Object</code> monitor methods <code>wait()/notify()/notifyAll()</code> into distinct objects to give the effect of having multiple wait-sets per object, by combining them with the use of arbitrary <code>Lock</code> implementations. Where <code>Lock</code> replaces <code>synchronized</code> methods and statements, <code>Condition</code> replaces <code>Object</code> monitor methods.</p>
+<blockquote>
+<p><strong>Note:</strong> The main difference between <em>synchroinzed/wait/notify</em> and <em>Lock</em> is <em>Lock</em> API isn’t block bound and we can have many groups of <em>wait/notify</em> by using many <em>Condition</em> instances.</p>
+</blockquote>
+<p>Here is a sample given by the Java document:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BoundedBuffer</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> Lock lock = <span class="keyword">new</span> ReentrantLock();</div><div class="line">    <span class="keyword">final</span> Condition notFull = lock.newCondition();</div><div class="line">    <span class="keyword">final</span> Condition notEmpty = lock.newCondition();</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Object[] items = <span class="keyword">new</span> Object[<span class="number">100</span>];</div><div class="line">    <span class="keyword">int</span> putptr, takeptr, count;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(Object x)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">        lock.lock();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">while</span> (count == items.length)</div><div class="line">                notFull.await();</div><div class="line">            items[putptr] = x;</div><div class="line">            <span class="keyword">if</span> (++putptr == items.length)</div><div class="line">                putptr = <span class="number">0</span>;</div><div class="line">            ++count;</div><div class="line">            notEmpty.signal();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            lock.unlock();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">take</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">        lock.lock();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">while</span> (count == <span class="number">0</span>)</div><div class="line">                notEmpty.await();</div><div class="line">            Object x = items[takeptr];</div><div class="line">            <span class="keyword">if</span> (++takeptr == items.length)</div><div class="line">                takeptr = <span class="number">0</span>;</div><div class="line">            --count;</div><div class="line">            notFull.signal();</div><div class="line">            <span class="keyword">return</span> x;</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            lock.unlock();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="Semaphores"><a href="#Semaphores" class="headerlink" title="Semaphores"></a>Semaphores</h2><blockquote>
+<p><strong>Note:</strong> <a href="http://jakob.jenkov.com/" target="_blank" rel="external">Jakob Jenkov</a> gives a good <a href="http://tutorials.jenkov.com/java-util-concurrent/semaphore.html" target="_blank" rel="external">tutorial</a> on the <em>Semaphore</em>.  I would like to adapt his tutorial here. For more information, please refer to <a href="http://tutorials.jenkov.com/java-util-concurrent/semaphore.html" target="_blank" rel="external">the original post</a>.</p>
+</blockquote>
+<p>The <code>java.util.concurrent.Semaphore</code> class is a counting semaphore. That means that it has two main methods:</p>
+<ul>
+<li>acquire()</li>
+<li>release()</li>
+</ul>
+<p>The counting semaphore is initialized with a given number of “permits”. For each call to <code>acquire()</code> a permit is taken by the calling thread. For each call to <code>release()</code> a permit is returned to the semaphore. Thus, at most N threads can pass the <code>acquire()</code> method without any <code>release()</code> calls, where N is the number of permits the semaphore was initialized with. The permits are just a simple counter.</p>
+<h3 id="Semaphore-Usage"><a href="#Semaphore-Usage" class="headerlink" title="Semaphore Usage"></a>Semaphore Usage</h3><p>As semaphore typically has two uses:</p>
+<ul>
+<li>To guard a critical section against entry by more than N threads at a time.</li>
+<li>To send signals between two threads.</li>
+</ul>
+<h4 id="Guarding-Critical-Sections"><a href="#Guarding-Critical-Sections" class="headerlink" title="Guarding Critical Sections"></a>Guarding Critical Sections</h4><p>If we use a semaphore to guard a critical section, the thread trying to enter the critical section will typically first try to acquire a permit, enter the critical section, and then release the permit again after. Like this:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Semaphore semaphore = <span class="keyword">new</span> Semaphore(<span class="number">1</span>);</div><div class="line"></div><div class="line"><span class="comment">//critical section</span></div><div class="line">semaphore.acquire();</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">semaphore.release();</div></pre></td></tr></table></figure></p>
+<h4 id="Sending-Signals-Between-Threads"><a href="#Sending-Signals-Between-Threads" class="headerlink" title="Sending Signals Between Threads"></a>Sending Signals Between Threads</h4><p>If we use a semaphore to send signals between threads, then we would typically have one thread call the <code>acquire()</code> method, and the other thread to call the <code>release()</code> method.</p>
+<p>If no permits are available, the <code>acquire()</code> call will block until a permit is released by another thread. Similarly, a <code>release()</code> calls is blocked if no more permits can be released into this semaphore.</p>
+<h3 id="Fairness"><a href="#Fairness" class="headerlink" title="Fairness"></a>Fairness</h3><p>No guarantees are made about fairness of the threads acquiring permits from the Semaphore. That is, there is no guarantee that the first thread to call acquire() is also the first thread to obtain a permit.</p>
+<p>To enforce fairness, the <code>Semaphore</code> class has a constructor that takes a boolean telling if the semaphore should enforce fairness.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Semaphore semaphore = <span class="keyword">new</span> Semaphore(<span class="number">1</span>, <span class="keyword">true</span>);</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Note:</strong> Enforcing fairness comes at a performance / concurrency penalty, so don’t enable it unless you need it.</p>
+</blockquote>
+<hr>
+<h2 id="Blocking-Queue"><a href="#Blocking-Queue" class="headerlink" title="Blocking Queue"></a>Blocking Queue</h2><p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/BlockingQueue.html" target="_blank" rel="external">BlockingQueue</a> is a queue interface which is thread safe to insert or retrieve elements from it, which is a nice candidate for concurrent development. Here is an <a href="http://examples.javacodegeeks.com/core-java/util/concurrent/java-blockingqueue-example/" target="_blank" rel="external">example</a> about utilizing BlockingQueue for a Producer-Consumer pattern.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Methods</th>
+<th style="text-align:center">Throws Exception</th>
+<th style="text-align:center">Special Value</th>
+<th style="text-align:center">Blocks</th>
+<th style="text-align:center">Times Out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Insert</td>
+<td style="text-align:center">add(o)</td>
+<td style="text-align:center">offer(o)</td>
+<td style="text-align:center">put(o)</td>
+<td style="text-align:center">offer(o, timeout, timeunit)</td>
+</tr>
+<tr>
+<td style="text-align:center">Remove</td>
+<td style="text-align:center">remove(o)</td>
+<td style="text-align:center">poll(o)</td>
+<td style="text-align:center">take()</td>
+<td style="text-align:center">poll(timeout, timeunit)</td>
+</tr>
+<tr>
+<td style="text-align:center">Examine</td>
+<td style="text-align:center">element()</td>
+<td style="text-align:center">peek()</td>
+<td style="text-align:center">N/A</td>
+<td style="text-align:center">N/A</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Throws Exception</strong><br>If the attempted operation is not possible immediately, an exception is thrown.</li>
+<li><strong>Special Value</strong><br>If the attempted operation is not possible immediately, a special value is returned (often true / false).</li>
+<li><strong>Blocks</strong><br>If the attempted operation is not possible immedidately, the method call blocks until it is.</li>
+<li><strong>Times Out</strong><br>If the attempted operation is not possible immedidately, the method call blocks until it is, but waits no longer than the given timeout. Returns a special value telling whether the operation succeeded or not (typically true / false).</li>
+</ul>
+<hr>
+<h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2><p><code>ConcurrentHashMap</code> performs better than  <code>Hashtable</code> or <code>synchronized Map</code> because it only locks a <strong>portion</strong> of Map.</p>
+<p>In the book Clean Code, the author <a href="http://stackoverflow.com/questions/6692008/java-concurrenthashmap-is-better-than-hashmap-performance-wise" target="_blank" rel="external">claims the ConcurrentHashMap performs better than HashMap in nearly all situations.</a></p>
+<blockquote>
+<p>When Java was young Doug Lea wrote the seminal book <em>Concurrent Programming in Java</em>. Along with the book he developed several thread-safe collection, which later became part of the JDK in the  <em>java.util.concurrent</em> package. The collections in that package are safe for multithreaded situations and they perform well. <strong>In fact, the  ConcurrentHashMap implementation performs better than HashMap in nearly all situations.</strong> It also allows for simultaneous concurrent reads and writes, and it has methods supporting common composite operations that are otherwise not thread safe. If Java 5 is the deployment environment, start with  <em>ConcurrentHashMap</em>.</p>
+</blockquote>
+<p>Check out <a href="http://javarevisited.blogspot.com/2013/02/concurrenthashmap-in-java-example-tutorial-working.html" target="_blank" rel="external">here</a> and <a href="http://javarevisited.blogspot.com/2011/04/difference-between-concurrenthashmap.html" target="_blank" rel="external">here</a> for more information.</p>
+<hr>
+<h2 id="Atomic-Class"><a href="#Atomic-Class" class="headerlink" title="Atomic Class"></a>Atomic Class</h2><p>Here is a small toolkit of classes that support lock-free thread-safe programming on single variables. Check out this <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/package-summary.html" target="_blank" rel="external">link</a> for more atomic classes.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Class</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicBoolean.html" target="_blank" rel="external">AtomicBoolean</a></td>
+<td style="text-align:center">A boolean value that may be updated atomically.</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicInteger.html" target="_blank" rel="external">AtomicInteger</a></td>
+<td style="text-align:center">A int value that may be updated atomically.</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicIntegerArray.html" target="_blank" rel="external">AtomicIntegerArray</a></td>
+<td style="text-align:center">An int array in which elements may be updated atomically.</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicLong.html" target="_blank" rel="external">AtomicLong</a></td>
+<td style="text-align:center">A long value that may be updated atomically.</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicLongArray.html" target="_blank" rel="external">AtomicLongArray</a></td>
+<td style="text-align:center">A long array in which elements may be updated atomically.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://tutorials.jenkov.com/java-concurrency/references.html" target="_blank" rel="external">Java Concurrency References</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/Concurrency/" rel="tag">#Concurrency</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/25/秒杀系统架构分析与实战/" rel="prev">秒杀系统架构分析与实战</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/12/Autoboxing and Unboxing/" rel="next">Autoboxing and Unboxing</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript"
+src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a07c3ac699e3ca"
+async = "async" > </script>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Cosmo" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cosmo</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">I code therefore I am.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hackjustu" target="_blank">Github</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://coolshell.cn" target="_blank">CoolShell</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://journal.stuffwithstuff.com/" target="_blank">Bob Nystrom</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread-Basics"><span class="nav-number">1.</span> <span class="nav-text">Thread Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-and-Starting-Threads"><span class="nav-number">1.1.</span> <span class="nav-text">Creating and Starting Threads</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Subclassing-Thread"><span class="nav-number">1.1.1.</span> <span class="nav-text">Subclassing Thread</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Implementing-Runnable"><span class="nav-number">1.1.2.</span> <span class="nav-text">Implementing Runnable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Get-the-Current-Thread"><span class="nav-number">1.1.3.</span> <span class="nav-text">Get the Current Thread</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Name-of-a-Thread"><span class="nav-number">1.1.4.</span> <span class="nav-text">Name of a Thread</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pausing-Execution-with-Sleep"><span class="nav-number">1.1.5.</span> <span class="nav-text">Pausing Execution with Sleep</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Joining-a-Thread"><span class="nav-number">1.2.</span> <span class="nav-text">Joining a Thread</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Yielding-a-Thread"><span class="nav-number">1.3.</span> <span class="nav-text">Yielding a Thread</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-Volatile-Keyword"><span class="nav-number">1.4.</span> <span class="nav-text">Java Volatile Keyword</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread-pools-with-the-Executor-Framework"><span class="nav-number">2.</span> <span class="nav-text">Thread pools with the Executor Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Runnable"><span class="nav-number">2.1.</span> <span class="nav-text">Runnable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Futures-and-Callables"><span class="nav-number">2.2.</span> <span class="nav-text">Futures and Callables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-8’s-CompletableFuture"><span class="nav-number">2.3.</span> <span class="nav-text">Java 8’s CompletableFuture</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Synchornized-Keyword"><span class="nav-number">3.</span> <span class="nav-text">Synchornized Keyword</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronized-Instance-Methods"><span class="nav-number">3.1.</span> <span class="nav-text">Synchronized Instance Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronized-Static-Methods"><span class="nav-number">3.2.</span> <span class="nav-text">Synchronized Static Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronized-Blocks-in-Instance-Methods"><span class="nav-number">3.3.</span> <span class="nav-text">Synchronized Blocks in Instance Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronized-Blocks-in-Static-Methods"><span class="nav-number">3.4.</span> <span class="nav-text">Synchronized Blocks in Static Methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread-Signaling"><span class="nav-number">4.</span> <span class="nav-text">Thread Signaling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Busy-Waiting"><span class="nav-number">4.1.</span> <span class="nav-text">Busy Waiting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-notify-and-notifyAll"><span class="nav-number">4.2.</span> <span class="nav-text">wait(), notify() and notifyAll()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Re-entrant-Locks-and-Condition-Variables"><span class="nav-number">5.</span> <span class="nav-text">Re-entrant Locks and Condition Variables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Re-entrant-Locks-and-synchroinzed"><span class="nav-number">5.1.</span> <span class="nav-text">Re-entrant Locks and synchroinzed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Re-entrant-Locks-Example"><span class="nav-number">5.2.</span> <span class="nav-text">Re-entrant Locks Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditional-Variable"><span class="nav-number">5.3.</span> <span class="nav-text">Conditional Variable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Semaphores"><span class="nav-number">6.</span> <span class="nav-text">Semaphores</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Semaphore-Usage"><span class="nav-number">6.1.</span> <span class="nav-text">Semaphore Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Guarding-Critical-Sections"><span class="nav-number">6.1.1.</span> <span class="nav-text">Guarding Critical Sections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sending-Signals-Between-Threads"><span class="nav-number">6.1.2.</span> <span class="nav-text">Sending Signals Between Threads</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fairness"><span class="nav-number">6.2.</span> <span class="nav-text">Fairness</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Blocking-Queue"><span class="nav-number">7.</span> <span class="nav-text">Blocking Queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">8.</span> <span class="nav-text">ConcurrentHashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Atomic-Class"><span class="nav-number">9.</span> <span class="nav-text">Atomic Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">10.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'hackjustu';
+      var disqus_identifier = '2016/01/20/Java Concurrency/';
+      var disqus_title = 'Java Concurrency';
+      var disqus_url = 'http://hackjutsu.com/2016/01/20/Java Concurrency/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,759 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="I code therefore I am." />
+
+
+
+  <meta name="keywords" content="Network," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hackjutsu Dojo" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="This is a repost from here for my reference. Please go to the original post for the most up-to-date information.
+
+What makes a cool URI?A cool URI is one which does not change.What sorts of URI change">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cool URIs don't change">
+<meta property="og:url" content="http://hackjutsu.com/2016/10/14/Cool URIs don’t change/index.html">
+<meta property="og:site_name" content="Hackjutsu Dojo">
+<meta property="og:description" content="This is a repost from here for my reference. Please go to the original post for the most up-to-date information.
+
+What makes a cool URI?A cool URI is one which does not change.What sorts of URI change">
+<meta property="og:updated_time" content="2016-10-14T22:46:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cool URIs don't change">
+<meta name="twitter:description" content="This is a repost from here for my reference. Please go to the original post for the most up-to-date information.
+
+What makes a cool URI?A cool URI is one which does not change.What sorts of URI change">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Cool URIs don't change | Hackjutsu Dojo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72207664-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hackjutsu Dojo</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'L5TH3kKzWS14GbMzpixP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Cool URIs don't change
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2016-10-14T18:00:01-07:00" content="2016-10-14">
+            2016-10-14
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2016/10/14/Cool URIs don’t change/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/14/Cool URIs don’t change/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>This is a repost from <a href="https://www.w3.org/Provider/Style/URI" target="_blank" rel="external">here</a> for my reference. Please go to the original post for the most up-to-date information.</p>
+<blockquote>
+<p>What makes a cool URI?<br>A cool URI is one which does not change.<br>What sorts of URI change?<br>URIs don’t change: people change them.</p>
+</blockquote>
+<p>There are no reasons at all in theory for people to change URIs (or stop maintaining documents), but millions of reasons in practice.</p>
+<a id="more"></a>
+<p><strong>In theory, the domain name space owner owns the domain name space and therefore all URIs in it. Except insolvency, nothing prevents the domain name owner from keeping the name. And in theory the URI space under your domain name is totally under your control, so you can make it as stable as you like.</strong> Pretty much the only good reason for a document to disappear from the Web is that the company which owned the domain name went out of business or can no longer afford to keep the server running. Then why are there so many dangling links in the world? Part of it is just lack of forethought. Here are some reasons you hear out there:</p>
+<h4 id="We-just-reorganized-our-website-to-make-it-better"><a href="#We-just-reorganized-our-website-to-make-it-better" class="headerlink" title="We just reorganized our website to make it better."></a>We just reorganized our website to make it better.</h4><p>Do you really feel that the old URIs cannot be kept running? If so, you chose them very badly. Think of your new ones so that you will be able to keep then running after the next redesign.</p>
+<h4 id="We-have-so-much-material-that-we-can’t-keep-track-of-what-is-out-of-date-and-what-is-confidential-and-what-is-valid-and-so-we-thought-we’d-better-just-turn-the-whole-lot-off"><a href="#We-have-so-much-material-that-we-can’t-keep-track-of-what-is-out-of-date-and-what-is-confidential-and-what-is-valid-and-so-we-thought-we’d-better-just-turn-the-whole-lot-off" class="headerlink" title="We have so much material that we can’t keep track of what is out of date and what is confidential and what is valid and so we thought we’d better just turn the whole lot off."></a>We have so much material that we can’t keep track of what is out of date and what is confidential and what is valid and so we thought we’d better just turn the whole lot off.</h4><p>That I can sympathize with - the W3C went through a period like that, when we had to carefully sift archival material for confidentiality before making the archives public. The solution is forethought - make sure you capture with every document its acceptable distribution, its creation date and ideally its expiry date. Keep this metadata.</p>
+<h4 id="Well-we-found-we-had-to-move-the-files…"><a href="#Well-we-found-we-had-to-move-the-files…" class="headerlink" title="Well, we found we had to move the files…"></a>Well, we found we had to move the files…</h4><p>This is one of the lamest excuses. A lot of people don’t know that servers such as Apache give you a lot of control over a flexible relationship between the URI of an object and where a file which represents it actually is in a file system. Think of the URI space as an abstract space, perfectly organized. Then, make a mapping onto whatever reality you actually use to implement it. Then, tell your server. You can even write bits of your server to make it just right.</p>
+<p>John doesn’t maintain that file any more, Jane does.</p>
+<p>Whatever was that URI doing with John’s name in it? It was in his directory? I see.</p>
+<h4 id="We-used-to-use-a-cgi-script-for-this-and-now-we-use-a-binary-program"><a href="#We-used-to-use-a-cgi-script-for-this-and-now-we-use-a-binary-program" class="headerlink" title="We used to use a cgi script for this and now we use a binary program."></a>We used to use a cgi script for this and now we use a binary program.</h4><p>There is a crazy notion that pages produced by scripts have to be located in a “cgibin” or “cgi” area. This is exposing the mechanism of how you run your server. You change the mechanism (even keeping the content the same ) and whoops - all your URIs change.</p>
+<p>For example, take the National Science Foundation:</p>
+<p>NSF Online Documents<br><a href="http://www.nsf.gov/cgi-bin/pubsys/browser/odbrowse.pl" target="_blank" rel="external">http://www.nsf.gov/cgi-bin/pubsys/browser/odbrowse.pl</a></p>
+<p>the main page for starting to look for documents, is clearly not going to be something to trust to being there in a few years. “cgi-bin” and “oldbrowse” and “.pl” all point to bits of how-we-do-it-now. By contrast, if you use the page to find a document, you get first an equally bad</p>
+<p>Report of Working Group on Cryptology and Coding Theory<br><a href="http://www.nsf.gov/cgi-bin/getpub?nsf9814" target="_blank" rel="external">http://www.nsf.gov/cgi-bin/getpub?nsf9814</a></p>
+<p>for the document’s index page, but the html document itself by contrast is very much better:</p>
+<p><a href="http://www.nsf.gov/pubs/1998/nsf9814/nsf9814.htm" target="_blank" rel="external">http://www.nsf.gov/pubs/1998/nsf9814/nsf9814.htm</a></p>
+<p>Looking at this one, the “pubs/1998” header is going to give any future archive service a good clue that the old 1998 document classification scheme is in progress. Though in 2098 the document numbers might look different, I can imagine this URI still being valid, and the NSF or whatever carries on the archive not being at all embarrassed about it.</p>
+<h4 id="I-didn’t-think-URLs-have-to-be-persistent-that-was-URNs"><a href="#I-didn’t-think-URLs-have-to-be-persistent-that-was-URNs" class="headerlink" title="I didn’t think URLs have to be persistent - that was URNs."></a>I didn’t think URLs have to be persistent - that was URNs.</h4><p>This is the probably one of the worst side-effects of the URN discussions. Some seem to think that because there is research about namespaces which will be more persistent, that they can be as lax about dangling links as they like as “URNs will fix all that”. If you are one of these folks, then allow me to disillusion you.</p>
+<p>Most URN schemes I have seen look something like an authority ID followed by either a date and a string you choose, or just a string you choose. This looks very like an HTTP URI. In other words, if you think your organization will be capable of creating URNs which will last, then prove it by doing it now and using them for your HTTP URIs. There is nothing about HTTP which makes your URIs unstable. It is your organization. Make a database which maps document URN to current filename, and let the web server use that to actually retrieve files.</p>
+<p>If you have gotten to this point, then unless you have the time and money and contacts to get some software design done, then you might claim the next excuse:</p>
+<h4 id="We-would-like-to-but-we-just-don’t-have-the-right-tools"><a href="#We-would-like-to-but-we-just-don’t-have-the-right-tools" class="headerlink" title="We would like to, but we just don’t have the right tools."></a>We would like to, but we just don’t have the right tools.</h4><p>Now here is one I can sympathize with. I agree entirely. What you need to do is to have the web server look up a persistent URI in an instant and return the file, wherever your current crazy file system has it stored away at the moment. You would like to be able to store the URI in the file as a check, and constantly keep the database in tune with actuality. You’d like to store the relationships between different versions and translations of the same document, and you’d like to keep an independent record of the checksum to provide a guard against file corruption by accidental error. And web servers just don’t come out of the box with these features. When you want to create a new document, your editor asks you for a URI instead of telling you.</p>
+<p>You need to be able to change things like ownership, access, archive level security level, and so on, of a document in the URI space without changing the URI.</p>
+<p>Too bad. But we’ll get there. At W3C we use Jigedit functionality (Jigsaw server used for editing) which does track versions, and we are experimenting with document creation scripts. If you make tools, servers and clients, take note!</p>
+<p>This is an outstanding reason, which applies for example to many W3C pages including this one: so do what I say, not what I do.</p>
+<h2 id="Why-should-I-care"><a href="#Why-should-I-care" class="headerlink" title="Why should I care?"></a>Why should I care?</h2><p>When you change a URI on your server, you can never completely tell who will have links to the old URI. They might have made links from regular web pages. They might have bookmarked your page. They might have scrawled the URI in the margin of a letter to a friend.</p>
+<p>When someone follows a link and it breaks, they generally lose confidence in the owner of the server. They also are frustrated - emotionally and practically from accomplishing their goal.</p>
+<p>Enough people complain all the time about dangling links that I hope the damage is obvious. I hope it also obvious that the reputation damage is to the maintainer of the server whose document vanished.</p>
+<h2 id="So-what-should-I-do-Designing-URIs"><a href="#So-what-should-I-do-Designing-URIs" class="headerlink" title="So what should I do? Designing URIs"></a>So what should I do? Designing URIs</h2><p>It is the the duty of a Webmaster to allocate URIs which you will be able to stand by in 2 years, in 20 years, in 200 years. This needs thought, and organization, and commitment.</p>
+<p>URIs change when there is some information in them which changes. It is critical how you design them. (What, design a URI? I have to design URIs? Yes, you have to think about it.). Designing mostly means leaving information out.</p>
+<p>The creation date of the document - the date the URI is issued - is one thing which will not change. It is very useful for separating requests which use a new system from those which use an old system. That is one thing with which it is good to start a URI. If a document is in any way dated, even though it will be of interest for generations, then the date is a good starter.</p>
+<p>The only exception is a page which is deliberately a “latest” page for, for example, the whole organization or a large part of it.</p>
+<p><a href="http://www.pathfinder.com/money/moneydaily/latest/" target="_blank" rel="external">http://www.pathfinder.com/money/moneydaily/latest/</a></p>
+<p>is the latest “Money daily” column in “Money” magazine. The main reason for not needing the date in this URI is that there is no reason for the persistence of the URI to outlast the magazine. The concept of “today’s Money” vanishes if Money goes out of production. If you want to link to the content, you would link to it where it appears separately in the archives as</p>
+<p><a href="http://www.pathfinder.com/money/moneydaily/1998/981212.moneyonline.html" target="_blank" rel="external">http://www.pathfinder.com/money/moneydaily/1998/981212.moneyonline.html</a></p>
+<p>(Looks good. Assumes that “money” will mean the same thing throughout the life of pathfinder.com. There is a duplication of “98” and an “.html” you don’t need but otherwise this looks like a strong URI).</p>
+<h3 id="What-to-leave-out"><a href="#What-to-leave-out" class="headerlink" title="What to leave out"></a>What to leave out</h3><p>Everything! After the creation date, putting any information in the name is asking for trouble one way or another.</p>
+<ul>
+<li><strong>Authors name</strong>- authorship can change with new versions. People quit organizations and hand things on.</li>
+<li><strong>Subject</strong>. This is tricky. It always looks good at the time but changes surprisingly fast. I discuss this more below.</li>
+<li><strong>Status</strong>- directories like “old” and “draft” and so on, not to mention “latest” and “cool” appear all over file systems. Documents change status - or there would be no point in producing drafts. The latest version of a document needs a persistent identifier whatever its status is. Keep the status out of the name.</li>
+<li><strong>Access</strong>. At W3C we divide the site into “Team access”, “Member access” and “Public access”. It sounds good, but of course documents start off as team ideas, are discussed with members, and then go public. A shame indeed if every time some document is opened to wider discussion all the old links to it fail! We are switching to a simple date code now.</li>
+<li><strong>File name extension</strong>. This is a very common one. “cgi”, even “.html” is something which will change. You may not be using HTML for that page in 20 years time, but you might want today’s links to it to still be valid. The canonical way of making links to the W3C site doesn’t use the extension.(how?)</li>
+<li><strong>Software mechanisms</strong>. Look for “cgi”, “exec” and other give-away “look what software we are using” bits in URIs. Anyone want to commit to using perl cgi scripts all their lives? Nope? Cut out the .pl. Read the server manual on how to do it.</li>
+<li><strong>Disk name</strong> - gimme a break! But I’ve seen it.</li>
+</ul>
+<p>So a better example from our site is simply</p>
+<p><a href="http://www.w3.org/1998/12/01/chairs" target="_blank" rel="external">http://www.w3.org/1998/12/01/chairs</a></p>
+<p>a report of the minutes of a meeting of W3C chair people.</p>
+<h4 id="Topics-and-Classification-by-subject"><a href="#Topics-and-Classification-by-subject" class="headerlink" title="Topics and Classification by subject"></a>Topics and Classification by subject</h4><p>I’ll go into this danger in more detail as it is one of the more difficult things to avoid. Typically, topics end up in URIs when you classify your documents according to a breakdown of the work you are doing. That breakdown will change. Names for areas will change. At W3C we wanted to change “MarkUp” to “Markup” and then to “HTML” to reflect the actual content of the section. Also, beware that this is often a flat name space. In 100 years are you sure you won’t want to reuse anything? We wanted to reuse “History” and “Stylesheets” for example in our short life.</p>
+<p>This is a tempting way of organizing a web site - and indeed a tempting way of organizing anything, including the whole web. It is a great medium term solution but has serious drawbacks in the long term</p>
+<p>Part of the reasons for this lie in the philosophy of meaning. every term in the language it a potential clustering subject, and each person can have a different idea of what it means. Because the relationships between subjects are web-like rather than tree-like, even for people who agree on a web may pick a different tree representation. These are my (oft repeated) general comments on the dangers of hierarchical classification as a general solution.</p>
+<p>Effectively, when you use a topic name in a URI you are binding yourself to some classification. You may in the future prefer a different one. Then, the URI will be liable to break.</p>
+<p>A reason for using a topic area as part of the URI is that responsibility for sub-parts of a URI space is typically delegated, and then you need a name for the organizational body - the subdivision or group or whatever - which has responsibility for that sub-space. This is binding your URIs to the organizational structure. It is typically safe only when protected by a date further up the URI (to the left of it): 1998/pics can be taken to mean for your server “what we meant in 1998 by pics”, rather than “what in 1998 we did with what we now refer to as pics.”</p>
+<h3 id="Don’t-forget-the-domain-name"><a href="#Don’t-forget-the-domain-name" class="headerlink" title="Don’t forget the domain name."></a>Don’t forget the domain name.</h3><p>Remember that this applies not only to the “path” part of a URI but to the server name. If you have separate servers for some of your stuff, remember that that division will be impossible to change without destroying many many links. Some classic “look what software we are using today” domain names are “cgi.pathfinder.com”, “secure”, “lists.w3.org”. They are made to make administration of the servers easier. Whether it represents divisions in your company, or document status, or access level, or security level, be very, very careful before using more than one domain name for more than one type of document. remember that you can hide many web servers inside one apparent web server using redirection and proxying.</p>
+<p>Oh, and do think about your domain name. If your name is not soap, will you want to be referred to as “soap.com” even when you have switched your product line to something else. (With apologies to whoever owns soap.com at the moment).</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Keeping URIs so that they will still be around in 2, 20 or 200 or even 2000 years is clearly not as simple as it sounds. However, all over the Web, webmasters are making decisions which will make it really difficult for themselves in the future. Often, this is because they are using tools whose task is seen as to present the best site in the moment, and no one has evaluated what will happen to the links when things change. The message here is, however, that many, many things can change and your URIs can and should stay the same. They only can if you think about how you design them.</p>
+<p>See also:</p>
+<p><a href="https://www.nngroup.com/articles/url-as-ui/" target="_blank" rel="external">Jacob Nielsen’s “Alertbox” rant on the same topic</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Network/" rel="tag">#Network</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/15/Javascript Array Essentials/" rel="prev">Javascript Array Essentials</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/29/Process 与 Thread/" rel="next">Process 与 Thread</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript"
+src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a07c3ac699e3ca"
+async = "async" > </script>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Cosmo" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cosmo</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">I code therefore I am.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hackjustu" target="_blank">Github</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://coolshell.cn" target="_blank">CoolShell</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://journal.stuffwithstuff.com/" target="_blank">Bob Nystrom</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#We-just-reorganized-our-website-to-make-it-better"><span class="nav-number">1.</span> <span class="nav-text">We just reorganized our website to make it better.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#We-have-so-much-material-that-we-can’t-keep-track-of-what-is-out-of-date-and-what-is-confidential-and-what-is-valid-and-so-we-thought-we’d-better-just-turn-the-whole-lot-off"><span class="nav-number">2.</span> <span class="nav-text">We have so much material that we can’t keep track of what is out of date and what is confidential and what is valid and so we thought we’d better just turn the whole lot off.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Well-we-found-we-had-to-move-the-files…"><span class="nav-number">3.</span> <span class="nav-text">Well, we found we had to move the files…</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#We-used-to-use-a-cgi-script-for-this-and-now-we-use-a-binary-program"><span class="nav-number">4.</span> <span class="nav-text">We used to use a cgi script for this and now we use a binary program.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#I-didn’t-think-URLs-have-to-be-persistent-that-was-URNs"><span class="nav-number">5.</span> <span class="nav-text">I didn’t think URLs have to be persistent - that was URNs.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#We-would-like-to-but-we-just-don’t-have-the-right-tools"><span class="nav-number">6.</span> <span class="nav-text">We would like to, but we just don’t have the right tools.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-should-I-care"><span class="nav-number"></span> <span class="nav-text">Why should I care?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#So-what-should-I-do-Designing-URIs"><span class="nav-number"></span> <span class="nav-text">So what should I do? Designing URIs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-to-leave-out"><span class="nav-number"></span> <span class="nav-text">What to leave out</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Topics-and-Classification-by-subject"><span class="nav-number">1.</span> <span class="nav-text">Topics and Classification by subject</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Don’t-forget-the-domain-name"><span class="nav-number"></span> <span class="nav-text">Don’t forget the domain name.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number"></span> <span class="nav-text">Conclusion</span></a></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'hackjustu';
+      var disqus_identifier = '2016/10/14/Cool URIs don’t change/';
+      var disqus_title = 'Cool URIs don't change';
+      var disqus_url = 'http://hackjutsu.com/2016/10/14/Cool URIs don’t change/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+</body>
+</html>

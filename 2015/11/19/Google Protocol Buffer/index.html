@@ -1,0 +1,742 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="I code therefore I am." />
+
+
+
+  <meta name="keywords" content="Java,C++,Serialization," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hackjutsu Dojo" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Protocol buffers are Google’s language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Protocol Buffer">
+<meta property="og:url" content="http://hackjutsu.com/2015/11/19/Google Protocol Buffer/index.html">
+<meta property="og:site_name" content="Hackjutsu Dojo">
+<meta property="og:description" content="Protocol buffers are Google’s language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler.">
+<meta property="og:updated_time" content="2015-11-20T06:49:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google Protocol Buffer">
+<meta name="twitter:description" content="Protocol buffers are Google’s language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler.">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Google Protocol Buffer | Hackjutsu Dojo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72207664-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hackjutsu Dojo</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'L5TH3kKzWS14GbMzpixP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Google Protocol Buffer
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-11-19T22:31:00-08:00" content="2015-11-19">
+            2015-11-19
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/11/19/Google Protocol Buffer/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/19/Google Protocol Buffer/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>Protocol buffers are Google’s language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler.<br><a id="more"></a></p>
+<h2 id="How-does-protocol-buffer-work"><a href="#How-does-protocol-buffer-work" class="headerlink" title="How does protocol buffer work?"></a>How does protocol buffer work?</h2><p>By defining the protocol buffer message types in <code>.proto</code> files, we can specify how our information to be serialized and how they are structured. <a href="https://developers.google.com/protocol-buffers/docs/overview" target="_blank" rel="external">Here</a> is a basic example of a <code>.proto</code> file that defines a message containing information about a person:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">message Person &#123;</div><div class="line">  required string name = <span class="number">1</span>;</div><div class="line">  required int32 id = <span class="number">2</span>;</div><div class="line">  optional string email = <span class="number">3</span>;</div><div class="line"></div><div class="line">  enum PhoneType &#123;</div><div class="line">    MOBILE = <span class="number">0</span>;</div><div class="line">    HOME = <span class="number">1</span>;</div><div class="line">    WORK = <span class="number">2</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  message PhoneNumber &#123;</div><div class="line">    required string number = <span class="number">1</span>;</div><div class="line">    optional PhoneType type = <span class="number">2</span> [<span class="keyword">default</span> = HOME];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  repeated PhoneNumber phone = <span class="number">4</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Each message type has one or more uniquely numbered fields, and each field has a name and a value type, where values types can be numbers (integer or floating point), booleans, strings, raw bytes, or even other protocol buffer message types, allowing us to structure our data hierarchically. The field can be <code>optional</code> or <code>required</code>.</p>
+<p>Once we have the message defined, we can run the protocal buffer compiler for our chosen language on the <code>.proto</code> file to generate data access classes <code>Person</code>.  We can then use this class in our application to populate, serialize, and retrieve <code>Person</code> protocol buffer messages.</p>
+<p>In Java we can write codes to utilize the <code>Person</code> class like this.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Person john = Person.newBuilder()</div><div class="line">    .setId(<span class="number">1234</span>)</div><div class="line">    .setName(<span class="string">"John Doe"</span>)</div><div class="line">    .setEmail(<span class="string">"jdoe@example.com"</span>)</div><div class="line">    .build();</div><div class="line">output = <span class="keyword">new</span> FileOutputStream(args[<span class="number">0</span>]);</div><div class="line">john.writeTo(output);</div></pre></td></tr></table></figure></p>
+<p>And similar codes in C++.<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Person john;</div><div class="line"><span class="function">fstream <span class="title">input</span><span class="params">(argv[<span class="number">1</span>],</span></span></div><div class="line">    ios::in | ios::binary);</div><div class="line">john.ParseFromIstream(&amp;input);</div><div class="line">id = john.id();</div><div class="line">name = john.name();</div><div class="line">email = john.email();</div></pre></td></tr></table></figure></p>
+<p>With Protocol Buffer, we can add new fields to our message formats without breaking backwards-compatibility; old binaries simply ignore the new field when parsing.  Therefore, we can extend our protocol without worrying about breaking existing code.</p>
+<h2 id="Basic-Steps"><a href="#Basic-Steps" class="headerlink" title="Basic Steps"></a>Basic Steps</h2><ol>
+<li>Define message formats in a <code>.proto</code> file.</li>
+<li>Use the protocol buffer compiler.</li>
+<li>Use the Java/C++/Python protocol buffer API to write and read messages.</li>
+</ol>
+<h2 id="Define-message-formats-in-a-proto-file"><a href="#Define-message-formats-in-a-proto-file" class="headerlink" title="Define message formats in a .proto file"></a>Define message formats in a .proto file</h2><p>The definitions in a <code>.proto</code> file are simple: we add a message for each data structure we want to serialize, then specify a name and a type for each field in the message. Let’s use the an address book application as an example. To define our messages, we start with the <code>addressbook.proto</code>.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> tutorial;</div><div class="line"></div><div class="line">option java_package = <span class="string">"com.example.tutorial"</span>;</div><div class="line">option java_outer_classname = <span class="string">"AddressBookProtos"</span>;</div><div class="line"></div><div class="line">message Person &#123;</div><div class="line">  required string name = <span class="number">1</span>;</div><div class="line">  required int32 id = <span class="number">2</span>;</div><div class="line">  optional string email = <span class="number">3</span>;</div><div class="line"></div><div class="line">  <span class="keyword">enum</span> PhoneType &#123;</div><div class="line">    MOBILE = <span class="number">0</span>;</div><div class="line">    HOME = <span class="number">1</span>;</div><div class="line">    WORK = <span class="number">2</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  message PhoneNumber &#123;</div><div class="line">    required string number = <span class="number">1</span>;</div><div class="line">    optional PhoneType type = <span class="number">2</span> [<span class="keyword">default</span> = HOME];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  repeated PhoneNumber phone = <span class="number">4</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">message AddressBook &#123;</div><div class="line">  repeated Person person = <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="package-amp-java-package"><a href="#package-amp-java-package" class="headerlink" title="package &amp; java_package"></a>package &amp; java_package</h3><p>The <code>.proto</code> file starts with a package declaration <code>package tutorial</code>, which helps to prevent name conflicting. It will by default used as the Java package unless we explicitly specify the  <code>java_package</code> as shown above. It is recommended to always specify a package to avoid name collisions in Protocol Buffer name spaces even in non-Java languages.</p>
+<h3 id="java-outer-classname"><a href="#java-outer-classname" class="headerlink" title="java_outer_classname"></a>java_outer_classname</h3><p>The <code>java_outer_classname</code> option defines the class name which should contain all of the classes in this file. If we don’t give a <code>java_outer_classname</code> explicitly, it will be generated by converting the <strong>file name</strong> to camel case. For example, “my_proto.proto” would, by default, use “MyProto” as the outer class name.</p>
+<h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><p>Next, we have the <code>message</code> definitions.  A message is just an aggregate containing a set of typed fields.  Several basic types are available: <code>bool</code>, <code>int32</code>, <code>float</code>, <code>double</code> and <code>string</code>.</p>
+<h3 id="Complex-message-type"><a href="#Complex-message-type" class="headerlink" title="Complex message type"></a>Complex message type</h3><p>A more complicated structure is supported. As shown above, <code>Person</code> message contains <code>PhoneNumber</code> messages, while the <code>AddressBook</code> message contains <code>Person</code> messages.  We can even define message types nested inside other messages – as we can see, the <code>PhoneNumber</code> type is defined inside <code>Person</code>. Enum is also supported– here we have a phone number that can be one of MOBILE, HOME, or WORK.</p>
+<h3 id="Number-tag"><a href="#Number-tag" class="headerlink" title="Number tag"></a>Number tag</h3><p>The <code>&quot; = 1&quot;</code>, <code>&quot; = 2&quot;</code> markers on each element identify the unique “tag” that field uses in the binary encoding. Tag numbers 1-15 require one less byte to encode than higher numbers, so as an optimization we can decide to use those tags for the commonly used or repeated elements, leaving tags 16 and higher for less-commonly used optional elements. Each element in a repeated field requires re-encoding the tag number, so repeated fields are particularly good candidates for this optimization.</p>
+<h3 id="Required-Optional-Repreated"><a href="#Required-Optional-Repreated" class="headerlink" title="Required Optional Repreated"></a>Required Optional Repreated</h3><p>Each field must be annotated with one of the following modifiers:</p>
+<ul>
+<li><strong>required</strong>:  a value for the field must be provided, otherwise the message will be considered “uninitialized”. Trying to build an uninitialized message will throw a <code>RuntimeException</code>. Parsing an uninitialized message will throw an <code>IOException</code>.</li>
+<li><strong>optional</strong>: the field may or may not be set. If an optional field value isn’t set, a default value is used. For simple types, we can specify our own default value, as we’ve done for the phone number type in the example. Otherwise, a system default is used: zero for numeric types, the empty string for strings, false for bools.</li>
+<li><strong>repeated</strong>: the field may be repeated any number of times (including zero). The order of the repeated values will be preserved in the protocol buffer. </li>
+</ul>
+<h3 id="More"><a href="#More" class="headerlink" title="More"></a>More</h3><p>We’ll find a complete guide to writing <code>.proto</code> files – including all the possible field types – in the <a href="https://developers.google.com/protocol-buffers/docs/proto" target="_blank" rel="external">Protocol Buffer Language Guide</a>.</p>
+<h2 id="Compiling-Protocol-Buffers"><a href="#Compiling-Protocol-Buffers" class="headerlink" title="Compiling Protocol Buffers"></a>Compiling Protocol Buffers</h2><p>Now that we have a <code>.proto</code>, the next thing we need to do is generate the classes we’ll need to read and write <code>AddressBook</code> messages. To do this, we need to run the protocol buffer compiler <strong>protoc</strong> on our <code>.proto</code>:</p>
+<ul>
+<li>If we haven’t installed the compiler, <a href="https://developers.google.com/protocol-buffers/docs/downloads" target="_blank" rel="external">download the package</a>.</li>
+<li>Now run the compiler, specifying the source directory (where our application’s source code lives with the current directory as default), the destination directory (where we want the generated code to go; often the same as  the source directory), and the path to our <code>.proto</code>. <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">protoc -I=<span class="variable">$SRC_DIR</span> --java_out=<span class="variable">$DST_DIR</span> <span class="variable">$SRC_DIR</span>/addressbook.proto</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Assuming we want Java classes, we use the <code>--java_out</code> option here. Similar options are provided for other supported languages.</p>
+<p>This generates <strong><em>com/example/tutorial/AddressBookProtos.java</em></strong> in our specified destination directory.</p>
+<h2 id="The-Protocol-Buffer-API-Java"><a href="#The-Protocol-Buffer-API-Java" class="headerlink" title="The Protocol Buffer API - Java"></a>The Protocol Buffer API - Java</h2><p> If we look in <code>AddressBookProtos.java</code>, we can see that it defines a class called <code>AddressBookProtos</code>, nested within which is a class for each message we specified in <code>addressbook.proto</code>. Each class has its own <strong>Builder</strong> class that we use to create instances of that class. </p>
+<p>Here are some of the accessors for the <code>Person</code> class.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// required string name = 1;</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasName</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// required int32 id = 2;</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasId</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// optional string email = 3;</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasEmail</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getEmail</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// repeated .tutorial.Person.PhoneNumber phone = 4;</span></div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;PhoneNumber&gt; <span class="title">getPhoneList</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPhoneCount</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> PhoneNumber <span class="title">getPhone</span><span class="params">(<span class="keyword">int</span> index)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>Meanwhile, <code>Person.Builder</code> has the same getters plus setters:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// required string name = 1;</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasName</span><span class="params">()</span></span>;</div><div class="line"><span class="keyword">public</span> java.lang.<span class="function">String <span class="title">getName</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">setName</span><span class="params">(String value)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">clearName</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// required int32 id = 2;</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasId</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">setId</span><span class="params">(<span class="keyword">int</span> value)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">clearId</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// optional string email = 3;</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasEmail</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getEmail</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">setEmail</span><span class="params">(String value)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">clearEmail</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// repeated .tutorial.Person.PhoneNumber phone = 4;</span></div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;PhoneNumber&gt; <span class="title">getPhoneList</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPhoneCount</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> PhoneNumber <span class="title">getPhone</span><span class="params">(<span class="keyword">int</span> index)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">setPhone</span><span class="params">(<span class="keyword">int</span> index, PhoneNumber value)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">addPhone</span><span class="params">(PhoneNumber value)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">addAllPhone</span><span class="params">(Iterable&lt;PhoneNumber&gt; value)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">clearPhone</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<p>As we can see, there are simple JavaBeans-style getters and setters for each field. </p>
+<h3 id="Create-instances"><a href="#Create-instances" class="headerlink" title="Create instances"></a>Create instances</h3><p>Here is an example about how to create an instance of <code>Person</code>.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Person john = Person.newBuilder()</div><div class="line">    .setId(<span class="number">1234</span>)</div><div class="line">    .setName(<span class="string">"John Doe"</span>)</div><div class="line">    .setEmail(<span class="string">"jdoe@example.com"</span>)</div><div class="line">    .addPhone(</div><div class="line">      Person.PhoneNumber.newBuilder()</div><div class="line">        .setNumber(<span class="string">"555-4321"</span>)</div><div class="line">        .setType(Person.PhoneType.HOME))</div><div class="line">    .build();</div></pre></td></tr></table></figure></p>
+<h3 id="Serialization-and-Deserialization"><a href="#Serialization-and-Deserialization" class="headerlink" title="Serialization and Deserialization"></a>Serialization and Deserialization</h3><p>To persist the data, we can simply run the following codes.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Person john = Person.newBuilder()</div><div class="line">    .setId(<span class="number">1234</span>)</div><div class="line">    .setName(<span class="string">"John Doe"</span>)</div><div class="line">    .setEmail(<span class="string">"jdoe@example.com"</span>)</div><div class="line">    .addPhone(</div><div class="line">      Person.PhoneNumber.newBuilder()</div><div class="line">        .setNumber(<span class="string">"555-4321"</span>)</div><div class="line">        .setType(Person.PhoneType.HOME))</div><div class="line">    .build();</div><div class="line"></div><div class="line"><span class="comment">// Write to file</span></div><div class="line">FileOutputStream output = <span class="keyword">new</span> FileOutputStream(<span class="string">"target/person.ser"</span>);  </div><div class="line">john.writeTo(output);          </div><div class="line">output.close();</div></pre></td></tr></table></figure></p>
+<p>Once persisted, we can read the data as such.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Read from file</span></div><div class="line">Person person = Person.parseFrom(<span class="keyword">new</span> FileInputStream(<span class="string">"target/person.ser"</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="The-Protocol-Buffer-API-C"><a href="#The-Protocol-Buffer-API-C" class="headerlink" title="The Protocol Buffer API - C++"></a>The Protocol Buffer API - C++</h2><p>For example in C++, we can write codes like:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Person person;</div><div class="line">person.set_name(<span class="string">"John Doe"</span>);</div><div class="line">person.set_id(<span class="number">1234</span>);</div><div class="line">person.set_email(<span class="string">"jdoe@example.com"</span>);</div><div class="line"><span class="function">fstream <span class="title">output</span><span class="params">(<span class="string">"myfile"</span>, ios::out | ios::binary)</span></span>;</div><div class="line">person.SerializeToOstream(&amp;output);</div></pre></td></tr></table></figure></p>
+<p>Then later on we can read the message back like:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function">fstream <span class="title">input</span><span class="params">(<span class="string">"myfile"</span>, ios::in | ios::binary)</span></span>;</div><div class="line">Person person;</div><div class="line">person.ParseFromIstream(&amp;input);</div><div class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"Name: "</span> &lt;&lt; person.name() &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"E-mail: "</span> &lt;&lt; person.email() &lt;&lt; <span class="built_in">endl</span>;</div></pre></td></tr></table></figure></p>
+<p>Check out this <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial" target="_blank" rel="external">post</a> for more information:)</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://developers.google.com/protocol-buffers/" target="_blank" rel="external">Google Developer Protocol Buffer</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/C/" rel="tag">#C++</a>
+          
+            <a href="/tags/Serialization/" rel="tag">#Serialization</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/25/Diagnose Network Issues - netstat/" rel="prev">Diagnose Network Issues - netstat</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/17/How many ways to read a file in Java-/" rel="next">How many ways to read a file in Java?</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript"
+src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a07c3ac699e3ca"
+async = "async" > </script>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Cosmo" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cosmo</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">I code therefore I am.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hackjustu" target="_blank">Github</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://coolshell.cn" target="_blank">CoolShell</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://journal.stuffwithstuff.com/" target="_blank">Bob Nystrom</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-does-protocol-buffer-work"><span class="nav-number">1.</span> <span class="nav-text">How does protocol buffer work?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Steps"><span class="nav-number">2.</span> <span class="nav-text">Basic Steps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Define-message-formats-in-a-proto-file"><span class="nav-number">3.</span> <span class="nav-text">Define message formats in a .proto file</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#package-amp-java-package"><span class="nav-number">3.1.</span> <span class="nav-text">package & java_package</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-outer-classname"><span class="nav-number">3.2.</span> <span class="nav-text">java_outer_classname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Message"><span class="nav-number">3.3.</span> <span class="nav-text">Message</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Complex-message-type"><span class="nav-number">3.4.</span> <span class="nav-text">Complex message type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Number-tag"><span class="nav-number">3.5.</span> <span class="nav-text">Number tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Required-Optional-Repreated"><span class="nav-number">3.6.</span> <span class="nav-text">Required Optional Repreated</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#More"><span class="nav-number">3.7.</span> <span class="nav-text">More</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compiling-Protocol-Buffers"><span class="nav-number">4.</span> <span class="nav-text">Compiling Protocol Buffers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Protocol-Buffer-API-Java"><span class="nav-number">5.</span> <span class="nav-text">The Protocol Buffer API - Java</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-instances"><span class="nav-number">5.1.</span> <span class="nav-text">Create instances</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serialization-and-Deserialization"><span class="nav-number">5.2.</span> <span class="nav-text">Serialization and Deserialization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Protocol-Buffer-API-C"><span class="nav-number">6.</span> <span class="nav-text">The Protocol Buffer API - C++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'hackjustu';
+      var disqus_identifier = '2015/11/19/Google Protocol Buffer/';
+      var disqus_title = 'Google Protocol Buffer';
+      var disqus_url = 'http://hackjutsu.com/2015/11/19/Google Protocol Buffer/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+</body>
+</html>

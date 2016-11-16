@@ -1,0 +1,801 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="I code therefore I am." />
+
+
+
+  <meta name="keywords" content="Javascript,Node.js,Express,Connect," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hackjutsu Dojo" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="This is a stackoverflow question about the difference among Node.js, Connect and Express.
+
+Despite knowing JavaScript quite well, I’m confused what exactly these three projects in Node.js ecosystem do">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What is Node.js' Connect, Express and “middleware”?">
+<meta property="og:url" content="http://hackjutsu.com/2015/10/01/What is Node.js’ Connect, Express and “middleware”-/index.html">
+<meta property="og:site_name" content="Hackjutsu Dojo">
+<meta property="og:description" content="This is a stackoverflow question about the difference among Node.js, Connect and Express.
+
+Despite knowing JavaScript quite well, I’m confused what exactly these three projects in Node.js ecosystem do">
+<meta property="og:updated_time" content="2015-11-10T08:05:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="What is Node.js' Connect, Express and “middleware”?">
+<meta name="twitter:description" content="This is a stackoverflow question about the difference among Node.js, Connect and Express.
+
+Despite knowing JavaScript quite well, I’m confused what exactly these three projects in Node.js ecosystem do">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> What is Node.js' Connect, Express and “middleware”? | Hackjutsu Dojo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72207664-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hackjutsu Dojo</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'L5TH3kKzWS14GbMzpixP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              What is Node.js' Connect, Express and “middleware”?
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2015-10-01T11:00:45-07:00" content="2015-10-01">
+            2015-10-01
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; In
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/MEAN/" itemprop="url" rel="index">
+                  <span itemprop="name">MEAN</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/01/What is Node.js’ Connect, Express and “middleware”-/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/01/What is Node.js’ Connect, Express and “middleware”-/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>This is a <a href="http://stackoverflow.com/questions/5284340/what-is-node-js-connect-express-and-middleware" target="_blank" rel="external">stackoverflow question</a> about the difference among Node.js, Connect and Express.</p>
+<blockquote>
+<p>Despite knowing JavaScript quite well, I’m confused what exactly these three projects in Node.js ecosystem do. Is it something like Rails’ Rack? Can someone please explain?</p>
+</blockquote>
+<p>The following section is adopted from <a href="http://stackoverflow.com/a/23957864/3697757" target="_blank" rel="external">the most comprehensive answer</a> from <a href="http://stackoverflow.com/users/390330/basarat" target="_blank" rel="external">basarat</a>, even though it is not the accepted answer.<br><a id="more"></a></p>
+<hr>
+<h2 id="What-Node-js-comes-with"><a href="#What-Node-js-comes-with" class="headerlink" title="What Node.js comes with"></a>What Node.js comes with</h2><p><a href="http://nodejs.org/api/http.html" target="_blank" rel="external">http</a> / <a href="http://nodejs.org/api/https.html" target="_blank" rel="external">https</a> <code>createServer</code> which simply takes a callback(req,res) e.g.</p>
+<pre><code>var server = http.createServer(function (request, response) {
+
+    // respond
+    response.write(&apos;hello client!&apos;);
+    response.end();
+
+});
+
+server.listen(3000);
+</code></pre><h2 id="What-connect-adds"><a href="#What-connect-adds" class="headerlink" title="What connect adds"></a>What connect adds</h2><p><strong>Middleware</strong> is basically any software that sits between your application code and some low level API. Connect extends the built-in HTTP server functionality and adds a plugin framework. The plugins act as middleware and hence connect is a <em>middleware framework</em></p>
+<p>The way it does that is pretty simple (<a href="https://github.com/senchalabs/connect/blob/a9d71168013454635cf069ff2954977df355979f/lib/proto.js" target="_blank" rel="external">and in fact the code is really short!</a>). As soon as you call <code>var connect = require(&#39;connect&#39;); var app = connect();</code> you get a function <code>app</code> that can:</p>
+<ol>
+<li>Can handle a request and return a response. This is because you basically get <a href="https://github.com/senchalabs/connect/blob/a9d71168013454635cf069ff2954977df355979f/lib/connect.js#L28" target="_blank" rel="external">this function</a></li>
+<li>Has a member function <code>.use</code> (<a href="https://github.com/senchalabs/connect/blob/a9d71168013454635cf069ff2954977df355979f/lib/proto.js#L62" target="_blank" rel="external">source</a>) to manage <em>plugins</em> (<a href="https://github.com/senchalabs/connect/blob/a9d71168013454635cf069ff2954977df355979f/lib/proto.js" target="_blank" rel="external">that comes from here</a> because of <a href="https://github.com/senchalabs/connect/blob/a9d71168013454635cf069ff2954977df355979f/lib/connect.js#L29" target="_blank" rel="external">this simple line of code</a>).</li>
+</ol>
+<p>Because of 1.) you can do the following :</p>
+<pre><code>var app = connect();
+
+// Register with http
+http.createServer(app)
+    .listen(3000);
+</code></pre><p>Combine with 2.) and you get:</p>
+<pre><code>var connect = require(&apos;connect&apos;);
+
+// Create a connect dispatcher
+var app = connect()
+      // register a middleware
+      .use(function (req, res, next) { next(); });
+
+// Register with http
+http.createServer(app)
+    .listen(3000);
+</code></pre><p>Connect provides a utility function to register itself with <code>http</code> so that you don’t need to make the call to <code>http.createServer(app)</code>. Its called <code>listen</code> and the code simply creates a new http server, register’s connect as the callback and forwards the arguments to <code>http.listen</code>. <a href="https://github.com/senchalabs/connect/blob/a9d71168013454635cf069ff2954977df355979f/lib/proto.js#L231-L234" target="_blank" rel="external">From source</a></p>
+<pre><code>app.listen = function(){
+  var server = http.createServer(this);
+  return server.listen.apply(server, arguments);
+};
+</code></pre><p>So, you can do:</p>
+<pre><code>var connect = require(&apos;connect&apos;);
+
+// Create a connect dispatcher and register with http
+var app = connect()
+          .listen(3000);
+console.log(&apos;server running on port 3000&apos;);
+</code></pre><p>It’s still your good old <code>http.createServer</code> with a plugin framework on top.</p>
+<h2 id="What-ExpressJS-adds"><a href="#What-ExpressJS-adds" class="headerlink" title="What ExpressJS adds"></a>What ExpressJS adds</h2><p>ExpressJS and connect are parallel projects. Connect is <em>just</em> a middleware framework, with a nice <code>use</code> function. <em>Express does not depend on Connect</em> (<a href="https://github.com/visionmedia/express/blob/311e83e591a149a7549bab543dfd126d3223f7fd/package.json#L49-L68" target="_blank" rel="external">see package.json</a>). However it does the everything that connect does i.e:</p>
+<ol>
+<li>Can be registered with <code>createServer</code> like connect since it too just just a function that can take a <code>req</code>/<code>res</code> pair (<a href="https://github.com/visionmedia/express/blob/311e83e591a149a7549bab543dfd126d3223f7fd/lib/express.js#L27" target="_blank" rel="external">source</a>).</li>
+<li>A <a href="https://github.com/visionmedia/express/blob/311e83e591a149a7549bab543dfd126d3223f7fd/lib/application.js#L174" target="_blank" rel="external">use function to register middleware</a>.</li>
+<li>A utility <code>listen</code> function to <a href="https://github.com/visionmedia/express/blob/311e83e591a149a7549bab543dfd126d3223f7fd/lib/application.js#L538-L541" target="_blank" rel="external">register itself with http</a></li>
+</ol>
+<p>In addition to what connect provides (which express duplicates), it has a bunch of more features. e.g.</p>
+<ol>
+<li>Has <a href="https://github.com/visionmedia/express/blob/311e83e591a149a7549bab543dfd126d3223f7fd/lib/application.js#L463" target="_blank" rel="external">view engine support</a>.</li>
+<li>Has top level <a href="https://github.com/visionmedia/express/blob/311e83e591a149a7549bab543dfd126d3223f7fd/lib/application.js#L408-L409" target="_blank" rel="external">verbs (get/post etc.) for its router</a>.</li>
+<li>Has <a href="https://github.com/visionmedia/express/blob/311e83e591a149a7549bab543dfd126d3223f7fd/lib/application.js#L307" target="_blank" rel="external">application settings</a> support.</li>
+</ol>
+<h2 id="The-middleware-is-shared"><a href="#The-middleware-is-shared" class="headerlink" title="The middleware is shared"></a>The middleware is <em>shared</em></h2><p>The <code>use</code> function of ExpressJS <em>and</em> connect is compatible and therefore the <em>middleware is shared</em>. Both are middleware frameworks, express just has more than <em>a simple middleware framework</em>.</p>
+<hr>
+<h2 id="Which-one-should-you-use"><a href="#Which-one-should-you-use" class="headerlink" title="Which one should you use?"></a>Which one should you use?</h2><p>My opinion. You are informed enough ^based on above^ to make your own choice.</p>
+<ul>
+<li>Use <code>http.createServer</code> if you are creating something like connect / expressjs from scratch.</li>
+<li>Use connect if you are authoring middleware, testing protocols etc. since it is a nice abstraction on top of <code>http.createServer</code></li>
+<li>Use ExpressJS if you are authoring websites.</li>
+</ul>
+<p>Most people should just use ExpressJS.</p>
+<h2 id="What’s-wrong-about-the-accepted-answer"><a href="#What’s-wrong-about-the-accepted-answer" class="headerlink" title="What’s wrong about the accepted answer"></a>What’s wrong about the <a href="http://stackoverflow.com/questions/5284340/what-is-node-js-connect-express-and-middleware/5290324#5290324" target="_blank" rel="external">accepted answer</a></h2><p>These might have been true as some point in time, but wrong now:</p>
+<blockquote>
+<p>that inherits an extended version of http.Server</p>
+</blockquote>
+<p>Wrong. It doesn’t extend it and as you have seen … <em>uses it</em></p>
+<blockquote>
+<p>Express does to Connect what Connect does to the http module</p>
+</blockquote>
+<p>Express 4.0 doesn’t even depend on connect. <a href="https://github.com/visionmedia/express/blob/311e83e591a149a7549bab543dfd126d3223f7fd/package.json#L49-L68" target="_blank" rel="external">see the current package.json dependencies section</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag">#Javascript</a>
+          
+            <a href="/tags/Node-js/" rel="tag">#Node.js</a>
+          
+            <a href="/tags/Express/" rel="tag">#Express</a>
+          
+            <a href="/tags/Connect/" rel="tag">#Connect</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/02/Just in Time (JIT) Compilation/" rel="prev">Just in Time (JIT) Compilation</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/30/Streamming_from_Browser/" rel="next">Streamming from Browser</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript"
+src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a07c3ac699e3ca"
+async = "async" > </script>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Cosmo" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cosmo</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">I code therefore I am.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hackjustu" target="_blank">Github</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://coolshell.cn" target="_blank">CoolShell</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://journal.stuffwithstuff.com/" target="_blank">Bob Nystrom</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-Node-js-comes-with"><span class="nav-number">1.</span> <span class="nav-text">What Node.js comes with</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-connect-adds"><span class="nav-number">2.</span> <span class="nav-text">What connect adds</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-ExpressJS-adds"><span class="nav-number">3.</span> <span class="nav-text">What ExpressJS adds</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-middleware-is-shared"><span class="nav-number">4.</span> <span class="nav-text">The middleware is shared</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Which-one-should-you-use"><span class="nav-number">5.</span> <span class="nav-text">Which one should you use?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-wrong-about-the-accepted-answer"><span class="nav-number">6.</span> <span class="nav-text">What’s wrong about the accepted answer</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'hackjustu';
+      var disqus_identifier = '2015/10/01/What is Node.js’ Connect, Express and “middleware”-/';
+      var disqus_title = 'What is Node.js' Connect, Express and “middleware”?';
+      var disqus_url = 'http://hackjutsu.com/2015/10/01/What is Node.js’ Connect, Express and “middleware”-/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+</body>
+</html>
