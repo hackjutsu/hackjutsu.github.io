@@ -186,7 +186,7 @@ th {
 body {
   position: relative;
   font-family: Lato, "Microsoft Jhenghei", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.7;
   color: #2c3e50;
   background: #fff;
@@ -265,7 +265,7 @@ p {
   margin: 0 0 25px 0;
 }
 a {
-  color: #555;
+  color: #42b983;
   text-decoration: none;
   border-bottom: 1px solid #999;
 }
@@ -314,8 +314,8 @@ blockquote {
   padding-right: 20px;
   color: #666;
   border-left: 5px solid #ddd;
-  border-radius: 0.2em;
-  margin: 10px 30px 10px 30px;
+  border-radius: 0.1em;
+  margin: 5px 20px 5px 20px;
   line-height: 160%;
 }
 blockquote cite::before {
@@ -590,7 +590,7 @@ td {
   font-size: 13px;
   color: #4d4d4c;
   line-height: 1.6;
-  border-radius: 0.4em;
+  border-radius: 0.2em;
 }
 .post .highlight .gutter pre,
 .post .gist .gist-file .gist-data .line-numbers {
@@ -602,11 +602,11 @@ td {
 }
 .post code {
   background: #f5f5f5;
-  color: #4d4d4c;
+  color: #e96900;
   font-family: "PT Mono", Consolas, Monaco, Menlo, monospace;
   font-size: 0.85em;
   padding: 0.3em 0.3em;
-  border-radius: 0.4em;
+  border-radius: 0.1em;
   margin: 0;
 }
 .post pre code {
@@ -767,7 +767,7 @@ body {
   width: 960px;
 }
 .one-column .header-inner {
-  width: 700px;
+  width: 650px;
 }
 .main {
   padding-bottom: 150px;
@@ -777,10 +777,10 @@ body {
   width: 960px;
 }
 .one-column .main-inner {
-  width: 700px;
+  width: 650px;
 }
 .main-inner .content {
-  width: 700px;
+  width: 650px;
 }
 .footer {
   position: absolute;
@@ -794,7 +794,7 @@ body {
   width: 960px;
 }
 .one-column .footer-inner {
-  width: 700px;
+  width: 650px;
 }
 .headband {
   height: 3px;
@@ -1089,7 +1089,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4d3616;
+  background: #3c5854;
 }
 .sidebar-nav {
   margin: 0;
@@ -2251,4 +2251,19 @@ ul li {
 }
 .posts-expand .post-body .fancybox img {
   margin: 0 auto;
+}
+.menu .menu-item a {
+  color: #2c3e50;
+}
+.post-comments-count,
+.post-category span {
+  color: #999;
+}
+.pagination .prev,
+.pagination .next,
+.pagination .page-number {
+  color: #2c3e50;
+}
+.posts-expand .post-tags a {
+  color: #999;
 }
