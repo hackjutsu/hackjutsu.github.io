@@ -1089,7 +1089,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #3c5854;
+  background: #06ff8f;
 }
 .sidebar-nav {
   margin: 0;
@@ -2266,4 +2266,16 @@ ul li {
 }
 .posts-expand .post-tags a {
   color: #999;
+}
+@font-face {
+  font-family: 'sourcesanspro';
+  src: url("/fonts/sourcesanspro/sourcesanspro.woff2") format("woff2"), url("/fonts/sourcesanspro/sourcesanspro.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: 'sourcesanspro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 550;
 }
