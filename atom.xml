@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hackjutsu.com/"/>
-  <updated>2016-11-18T08:35:27.000Z</updated>
+  <updated>2016-11-18T08:42:05.000Z</updated>
   <id>http://hackjutsu.com/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="http://hackjutsu.com/2016/11/17/JS%E5%AD%A6%E4%B9%A0%20Primitive%20vs%20Object/"/>
     <id>http://hackjutsu.com/2016/11/17/JS学习 Primitive vs Object/</id>
     <published>2016-11-18T02:00:02.000Z</published>
-    <updated>2016-11-18T08:35:27.000Z</updated>
+    <updated>2016-11-18T08:42:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>Javascript有五种Primitive: <code>string</code>、<code>number</code>、<code>boolean</code>、<code>null</code>、<code>undefined</code>。除了<code>null</code>和<code>undefined</code>，其余Primitive都有对应的Object封装，如Object <code>String</code>对应<code>string</code>。</p>
 <p>Objects 是properties的聚合，其property 可以是Object也可以是Primitive。Primitive有value, 但没有properties。</p>
-<a id="more"></a>
 <h2 id="Stack-vs-Heap"><a href="#Stack-vs-Heap" class="headerlink" title="Stack vs Heap"></a>Stack vs Heap</h2><p>Javascript是一门动态语言，同一个变量在不同时候可能被赋予不同数据类型，比如前面是number而后面变成Object。因此Javascript变量的值所占用的内存空间是动态变化的。实际上，不管是Primitive还是Object，这些Javascript变量的值都存储在可以动态分配空间的heap上。而它在stack上保存的则是一个固定size的包含heap位置信息的引用（类似pointer）。JS engine通过对引用指向的修改来实现同一个变量指向不同的数据类型。</p>
+<a id="more"></a>
 <blockquote>
 <p>It’s wrong to state that primitives are allocated from the stack and only objects are allocated from the heap. This is the biggest difference between C and JavaScript.</p>
 </blockquote>
@@ -46,6 +46,7 @@
     
       &lt;p&gt;Javascript有五种Primitive: &lt;code&gt;string&lt;/code&gt;、&lt;code&gt;number&lt;/code&gt;、&lt;code&gt;boolean&lt;/code&gt;、&lt;code&gt;null&lt;/code&gt;、&lt;code&gt;undefined&lt;/code&gt;。除了&lt;code&gt;null&lt;/code&gt;和&lt;code&gt;undefined&lt;/code&gt;，其余Primitive都有对应的Object封装，如Object &lt;code&gt;String&lt;/code&gt;对应&lt;code&gt;string&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;Objects 是properties的聚合，其property 可以是Object也可以是Primitive。Primitive有value, 但没有properties。&lt;/p&gt;
+&lt;h2 id=&quot;Stack-vs-Heap&quot;&gt;&lt;a href=&quot;#Stack-vs-Heap&quot; class=&quot;headerlink&quot; title=&quot;Stack vs Heap&quot;&gt;&lt;/a&gt;Stack vs Heap&lt;/h2&gt;&lt;p&gt;Javascript是一门动态语言，同一个变量在不同时候可能被赋予不同数据类型，比如前面是number而后面变成Object。因此Javascript变量的值所占用的内存空间是动态变化的。实际上，不管是Primitive还是Object，这些Javascript变量的值都存储在可以动态分配空间的heap上。而它在stack上保存的则是一个固定size的包含heap位置信息的引用（类似pointer）。JS engine通过对引用指向的修改来实现同一个变量指向不同的数据类型。&lt;/p&gt;
     
     </summary>
     
