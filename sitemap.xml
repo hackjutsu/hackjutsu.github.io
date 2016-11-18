@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://hackjutsu.com/2016/11/17/JS%E5%AD%A6%E4%B9%A0%20Primitive%20vs%20Object/</loc>
+    
+    <lastmod>2016-11-18T07:53:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://hackjutsu.com/2016/10/15/JS%E5%AD%A6%E4%B9%A0%20Array%20Essentials/</loc>
     
-    <lastmod>2016-11-18T00:54:19.000Z</lastmod>
+    <lastmod>2016-11-18T01:09:54.000Z</lastmod>
     
   </url>
   

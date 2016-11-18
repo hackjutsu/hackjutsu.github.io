@@ -43,30 +43,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="一门语言的执行，大致经历下面这些过程：词法分析 – 语法分析 – 语义分析 – 中间代码生成 – 优化代码 – 代码生成。在Javascript中，Syntax Parser的作用是进行词法分析和语法分析。
-
-A program that reads your code and determines what it does and if its grammar is valid.
-
-词法分析挨个">
+<meta name="description" content="Javascript有五种Primitive: string、number、boolean、null、undefined。除了null和undefined，其余Primitive都有对应的Object封装，如Object String对应string。
+Objects 是properties的聚合，其property 可以是Object也可以是Primitive。Primitive有value,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS学习 Syntax Parser">
-<meta property="og:url" content="http://hackjutsu.com/2016/11/17/JS学习 Syntax Parser/index.html">
+<meta property="og:title" content="JS学习 Primitive vs Object">
+<meta property="og:url" content="http://hackjutsu.com/2016/11/17/JS学习 Primitive vs Object/index.html">
 <meta property="og:site_name" content="Hackjutsu Dojo">
-<meta property="og:description" content="一门语言的执行，大致经历下面这些过程：词法分析 – 语法分析 – 语义分析 – 中间代码生成 – 优化代码 – 代码生成。在Javascript中，Syntax Parser的作用是进行词法分析和语法分析。
-
-A program that reads your code and determines what it does and if its grammar is valid.
-
-词法分析挨个">
-<meta property="og:image" content="http://hackjutsu.com/images/20161117_js_parser_ast.PNG">
-<meta property="og:updated_time" content="2016-11-18T00:51:29.000Z">
+<meta property="og:description" content="Javascript有五种Primitive: string、number、boolean、null、undefined。除了null和undefined，其余Primitive都有对应的Object封装，如Object String对应string。
+Objects 是properties的聚合，其property 可以是Object也可以是Primitive。Primitive有value,">
+<meta property="og:updated_time" content="2016-11-18T07:53:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS学习 Syntax Parser">
-<meta name="twitter:description" content="一门语言的执行，大致经历下面这些过程：词法分析 – 语法分析 – 语义分析 – 中间代码生成 – 优化代码 – 代码生成。在Javascript中，Syntax Parser的作用是进行词法分析和语法分析。
-
-A program that reads your code and determines what it does and if its grammar is valid.
-
-词法分析挨个">
-<meta name="twitter:image" content="http://hackjutsu.com/images/20161117_js_parser_ast.PNG">
+<meta name="twitter:title" content="JS学习 Primitive vs Object">
+<meta name="twitter:description" content="Javascript有五种Primitive: string、number、boolean、null、undefined。除了null和undefined，其余Primitive都有对应的Object封装，如Object String对应string。
+Objects 是properties的聚合，其property 可以是Object也可以是Primitive。Primitive有value,">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -76,7 +65,7 @@ A program that reads your code and determines what it does and if its grammar is
   };
 </script>
 
-  <title> JS学习 Syntax Parser | Hackjutsu Dojo </title>
+  <title> JS学习 Primitive vs Object | Hackjutsu Dojo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -213,7 +202,7 @@ A program that reads your code and determines what it does and if its grammar is
           
           
             
-              JS学习 Syntax Parser
+              JS学习 Primitive vs Object
             
           
         </h1>
@@ -222,7 +211,7 @@ A program that reads your code and determines what it does and if its grammar is
       <div class="post-meta">
         <span class="post-time">
           Posted on
-          <time itemprop="dateCreated" datetime="2016-11-17T18:00:00-08:00" content="2016-11-17">
+          <time itemprop="dateCreated" datetime="2016-11-17T18:00:02-08:00" content="2016-11-17">
             2016-11-17
           </time>
         </span>
@@ -233,8 +222,8 @@ A program that reads your code and determines what it does and if its grammar is
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2016/11/17/JS学习 Syntax Parser/#comments" itemprop="discussionUrl">
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/17/JS学习 Syntax Parser/" itemprop="commentsCount"></span>
+            <a href="/2016/11/17/JS学习 Primitive vs Object/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/17/JS学习 Primitive vs Object/" itemprop="commentsCount"></span>
             </a>
           </span>
           
@@ -248,24 +237,24 @@ A program that reads your code and determines what it does and if its grammar is
       
 
       
-        <span itemprop="articleBody"><p>一门语言的执行，大致经历下面这些过程：词法分析 – 语法分析 – 语义分析 – 中间代码生成 – 优化代码 – 代码生成。在Javascript中，Syntax Parser的作用是进行<strong>词法分析</strong>和<strong>语法分析</strong>。</p>
-<blockquote>
-<p>A program that reads your code and determines what it does and if its grammar is valid.</p>
-</blockquote>
-<p>词法分析挨个字符地扫描代码，把关键token识别出来。语法分析利用词法分析的结果建立上下文关系<strong>语法树</strong> Abstract Syntax Tree (AST)。一般情况下，我们不会直接和语法树打交道，但会在进行Uglify代码压缩、IDE语法高亮、Babel重编译、关键字匹配和作用域判断时候涉及到。</p>
+        <span itemprop="articleBody"><p>Javascript有五种Primitive: <code>string</code>、<code>number</code>、<code>boolean</code>、<code>null</code>、<code>undefined</code>。除了<code>null</code>和<code>undefined</code>，其余Primitive都有对应的Object封装，如Object <code>String</code>对应<code>string</code>。</p>
+<p>Objects 是properties的聚合，其property 可以是Object也可以是Primitive。Primitive有value, 但没有properties。</p>
 <a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> AST = <span class="string">"is Tree"</span>;</div></pre></td></tr></table></figure>
-<p><img src="/images/20161117_js_parser_ast.PNG" alt=""></p>
-<p>传统的Javascript引擎直接根据语法树的的结果进行解释执行，导致效率比C/C++较为低下。一些最新的Javascript引擎（如V8），会将部分Javascript代码编译成为目标代码以提高执行效率。</p>
-<p>介绍几个Javascript的Syntax Parser</p>
-<ul>
-<li><a href="https://github.com/ariya/esprima" target="_blank" rel="external">esprima</a></li>
-<li><a href="https://github.com/ternjs/acorn" target="_blank" rel="external">acorn</a></li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a href="http://wwsun.github.io/posts/javascript-ast-tutorial.html" target="_blank" rel="external">Javascirpt AST Tutorial</a></li>
-<li><a href="http://purplebamboo.github.io/2014/09/27/javascript-syntax-tree" target="_blank" rel="external">Javascript Syntax Tree</a></li>
-</ul>
+<h2 id="Stack-vs-Heap"><a href="#Stack-vs-Heap" class="headerlink" title="Stack vs Heap"></a>Stack vs Heap</h2><p>Javascript是一门动态语言，同一个variable在不同时候可能被赋予不同值，比如前面是number而后面变成Object。因此Javascript变量（Primitive和Object）的value实质上都存储在heap上。在stack保存的是一个size固定的包含heap位置信息的引用（类似pointer）。Javascirpt variable可以通过引用指向的修改来实现同一个variable指向不同的数据类型。</p>
+<blockquote>
+<p>It’s wrong to state that primitives are allocated from the stack and only objects are allocated from the heap. This is the biggest difference between C and JavaScript.</p>
+</blockquote>
+<p>最新的JS engine做了很多优化，内存分配变得复杂，具体可参考该<a href="http://stackoverflow.com/a/10618981/3697757" target="_blank" rel="external">StackOverflow回答</a>。</p>
+<h2 id="值传递-vs-引用传递"><a href="#值传递-vs-引用传递" class="headerlink" title="值传递 vs 引用传递"></a>值传递 vs 引用传递</h2><p>Primitive是<strong>值传递（passed by value</strong>），Object是<strong>引用传递（passed by reference）</strong>。</p>
+<p>上面说到，Javascript变量在stack保存的是地址引用，为什么又说Primitive是值传递呢？在传递Primitive时，JS engine在heap上复制一个值相同的Primitive，然后把新变量的引用传递出去，这就是所谓JS中的值传递。注意，JS中所有Primitive都是immutable。对于Object，JS Engine并不会复制一个新的Object，而是直接传递它的引用，和C++/Java中的引用传递类似。</p>
+<blockquote>
+<p>该引用能识别其指向的变量是Primitive还是Object，所以它不是一个简单的pointer，而是一个”智能引用”。</p>
+</blockquote>
+<h2 id="对Prototype影响"><a href="#对Prototype影响" class="headerlink" title="对Prototype影响"></a>对Prototype影响</h2><p>在Javascript中，子类修改父类的property会影响到所有继承该父类的子类。但是这种影响会因为父类property属于Primitive还是Object而有微妙差别。</p>
+<p>我们设想有一个父类<code>father</code>，和两个继承了他的子类<code>son1</code>和<code>son2</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> father = &#123;</div><div class="line">    <span class="attr">primitive</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">object</span>: &#123;</div><div class="line">        <span class="attr">fruit</span>: <span class="string">"APPLE"</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> son1 = <span class="built_in">Object</span>.create(father);</div><div class="line"><span class="keyword">var</span> son2 = <span class="built_in">Object</span>.create(father);</div></pre></td></tr></table></figure></p>
+<h3 id="Primitive-Property"><a href="#Primitive-Property" class="headerlink" title="Primitive Property"></a>Primitive Property</h3><p>如果父类的property是Primitive，该property通过<code>pass by value</code>传递到子类。这时，子类修改该property不会影响到父类本身，更不会传递到其他子类上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"father's primitive is "</span> + father.primitive);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"son1's primitive is "</span> + son1.primitive);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"son2's primitive is "</span> + son2.primitive);</div><div class="line"><span class="comment">// father's primitive is 1</span></div><div class="line"><span class="comment">// son1's primitive is 1</span></div><div class="line"><span class="comment">// son2's primitive is 1</span></div><div class="line"></div><div class="line">son1.primitive = <span class="number">2</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"father's primitive is "</span> + father.primitive);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"son1's primitive is "</span> + son1.primitive);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"son2's primitive is "</span> + son2.primitive);</div><div class="line"><span class="comment">// father's primitive is 1</span></div><div class="line"><span class="comment">// son1's primitive is 2</span></div><div class="line"><span class="comment">// son2's primitive is 1</span></div></pre></td></tr></table></figure></p>
+<h3 id="Object-Property"><a href="#Object-Property" class="headerlink" title="Object Property"></a>Object Property</h3><p>如果父类的property是Object，该property通过<code>pass by reference</code>传递到子类上。子类对父类property的修改会通过父类传递到所有继承它的子类上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"father's fruit is "</span> + father.object.fruit);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"son1's fruit is "</span> + son1.object.fruit);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"son2's fruit is "</span> + son2.object.fruit);</div><div class="line"><span class="comment">// father's fruit is APPLE</span></div><div class="line"><span class="comment">// son1's fruit is APPLE</span></div><div class="line"><span class="comment">// son2's fruit is APPLE</span></div><div class="line"></div><div class="line">son1.object.fruit = <span class="string">"GRAPE"</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"father's fruit is "</span> + father.object.fruit);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"son1's fruit is "</span> + son1.object.fruit);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"son2's fruit is "</span> + son2.object.fruit);</div><div class="line"><span class="comment">// father's fruit is GRAPE</span></div><div class="line"><span class="comment">// son1's fruit is GRAPE</span></div><div class="line"><span class="comment">// son2's fruit is GRAPE</span></div></pre></td></tr></table></figure></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://stackoverflow.com/a/13268731/3697757" target="_blank" rel="external">Primitive value vs Reference value</a><br><a href="http://stackoverflow.com/a/10618981/3697757" target="_blank" rel="external">How variables are allocated memory in Javascript?</a></p>
 </span>
       
     </div>
@@ -283,13 +272,11 @@ A program that reads your code and determines what it does and if its grammar is
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/17/JS学习 Primitive vs Object/" rel="prev">JS学习 Primitive vs Object</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/15/JS学习 Array Essentials/" rel="next">JS学习 Array Essentials</a>
+              <a href="/2016/11/17/JS学习 Syntax Parser/" rel="next">JS学习 Syntax Parser</a>
             
           </div>
         </div>
@@ -430,7 +417,7 @@ async = "async" > </script>
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stack-vs-Heap"><span class="nav-number">1.</span> <span class="nav-text">Stack vs Heap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值传递-vs-引用传递"><span class="nav-number">2.</span> <span class="nav-text">值传递 vs 引用传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对Prototype影响"><span class="nav-number">3.</span> <span class="nav-text">对Prototype影响</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Primitive-Property"><span class="nav-number">3.1.</span> <span class="nav-text">Primitive Property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Property"><span class="nav-number">3.2.</span> <span class="nav-text">Object Property</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -484,9 +471,9 @@ async = "async" > </script>
 
     <script type="text/javascript">
       var disqus_shortname = 'hackjustu';
-      var disqus_identifier = '2016/11/17/JS学习 Syntax Parser/';
-      var disqus_title = 'JS学习 Syntax Parser';
-      var disqus_url = 'http://hackjutsu.com/2016/11/17/JS学习 Syntax Parser/';
+      var disqus_identifier = '2016/11/17/JS学习 Primitive vs Object/';
+      var disqus_title = 'JS学习 Primitive vs Object';
+      var disqus_url = 'http://hackjutsu.com/2016/11/17/JS学习 Primitive vs Object/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
