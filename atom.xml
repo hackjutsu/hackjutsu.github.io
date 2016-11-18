@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hackjutsu.com/"/>
-  <updated>2016-11-17T01:38:08.000Z</updated>
+  <updated>2016-11-18T00:11:35.000Z</updated>
   <id>http://hackjutsu.com/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS学习 Syntax Parser</title>
+    <link href="http://hackjutsu.com/2016/11/17/JS%E5%AD%A6%E4%B9%A0%20Syntax%20Parser/"/>
+    <id>http://hackjutsu.com/2016/11/17/JS学习 Syntax Parser/</id>
+    <published>2016-11-18T02:00:00.000Z</published>
+    <updated>2016-11-18T00:11:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一门语言的执行，大致经历下面这些过程：词法分析 – 语法分析 – 语义分析 – 中间代码生成 – 优化代码 – 代码生成。在Javascript中，Syntax Parser的作用是进行<strong>词法分析</strong>和<strong>语法分析</strong>。</p>
+<blockquote>
+<p>A program that reads your code and determines what it does and if its grammar is valid.</p>
+</blockquote>
+<p>词法分析挨个字符地扫描代码，把关键token识别出来。语法分析利用词法分析的结果建立上下文关系<strong>语法树</strong> Abstract Syntax Tree (AST)。一般情况下，我们不会直接和语法树打交道，但会在进行Uglify代码压缩、IDE语法高亮、Babel重编译、关键字匹配和作用域判断时间接涉及到。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> AST = <span class="string">"is Tree"</span>;</div></pre></td></tr></table></figure>
+<p><img src="/images/20161117_js_parser_ast.PNG" alt=""></p>
+<p>传统的Javascript引擎直接根据语法树的的结果进行解释执行，导致效率比C/C++较为低下。一些最新的Javascript引擎（如V8），会将部分Javascript代码编译成为目标代码以提高执行效率。</p>
+<p>介绍几个Javascript的Syntax Parser</p>
+<ul>
+<li><a href="https://github.com/ariya/esprima" target="_blank" rel="external">esprima</a></li>
+<li><a href="https://github.com/ternjs/acorn" target="_blank" rel="external">acorn</a></li>
+</ul>
+<p><strong>Reference</strong><br><a href="http://wwsun.github.io/posts/javascript-ast-tutorial.html" target="_blank" rel="external">http://wwsun.github.io/posts/javascript-ast-tutorial.html</a><br><a href="http://purplebamboo.github.io/2014/09/27/javascript-syntax-tree" target="_blank" rel="external">http://purplebamboo.github.io/2014/09/27/javascript-syntax-tree</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一门语言的执行，大致经历下面这些过程：词法分析 – 语法分析 – 语义分析 – 中间代码生成 – 优化代码 – 代码生成。在Javascript中，Syntax Parser的作用是进行&lt;strong&gt;词法分析&lt;/strong&gt;和&lt;strong&gt;语法分析&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A program that reads your code and determines what it does and if its grammar is valid.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;词法分析挨个字符地扫描代码，把关键token识别出来。语法分析利用词法分析的结果建立上下文关系&lt;strong&gt;语法树&lt;/strong&gt; Abstract Syntax Tree (AST)。一般情况下，我们不会直接和语法树打交道，但会在进行Uglify代码压缩、IDE语法高亮、Babel重编译、关键字匹配和作用域判断时间接涉及到。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Javascript" scheme="http://hackjutsu.com/tags/Javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>Javascript Array Essentials</title>
@@ -1901,56 +1940,6 @@ D---E---F---G---H master
       <category term="bash" scheme="http://hackjutsu.com/tags/bash/"/>
     
       <category term="Linux" scheme="http://hackjutsu.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Proper way to quit iOS application</title>
-    <link href="http://hackjutsu.com/2016/01/05/Proper%20way%20to%20quit%20iOS%20application/"/>
-    <id>http://hackjutsu.com/2016/01/05/Proper way to quit iOS application/</id>
-    <published>2016-01-06T02:00:00.000Z</published>
-    <updated>2016-01-06T00:56:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p><strong>Q:</strong>  How do I programmatically quit my iOS application?<br><strong>A:</strong> There is no API provided for gracefully terminating an iOS application.</p>
-</blockquote>
-<p>On the iPhone there is no concept of quitting an app. The only action that should cause an app to quit is touching the <strong>Home</strong> button on the phone, and that’s not something developers have access to.</p>
-<a id="more"></a>
-<hr>
-<h2 id="What-Apple-suggests-for-termination"><a href="#What-Apple-suggests-for-termination" class="headerlink" title="What Apple suggests for termination?"></a>What Apple suggests for termination?</h2><p>In <a href="https://developer.apple.com/library/ios/qa/qa1561/_index.html" target="_blank" rel="external">Technical Q&amp;A QA1561</a>, Apple strongly discourages the use of <code>exit</code> as it makes the app appear to have crashed. Here is a brief summary of Apple’s answer:</p>
-<ul>
-<li>The only way to quit an app is user pressing the <code>Home</code> button.</li>
-<li>Display an alert to users when the app fails to perform the intended functions.</li>
-<li>Do not call <code>exit</code> function.<ul>
-<li>The app will appear to the user to have crashed.</li>
-<li>Data may not be saved, because <code>-applicationWillTerminate:</code> and similar <code>UIApplicationDelegate</code> methods will not be invoked if we call <code>exit</code>.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="Brutal-termination"><a href="#Brutal-termination" class="headerlink" title="Brutal termination"></a>Brutal termination</h2><p>The discussion in the stackoverflow post <a href="http://stackoverflow.com/questions/355168/proper-way-to-exit-iphone-application" target="_blank" rel="external">Proper way to exit iPhone application?</a> suggests some ungraceful ways to terminate the iOS app.</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// approach 1</span></div><div class="line">exit(<span class="number">0</span>)</div><div class="line"><span class="comment">// or the equivalent approach 2</span></div><div class="line">[[<span class="built_in">NSThread</span> mainThread] exit]</div></pre></td></tr></table></figure>
-<p>Remember, calling <code>exit</code> is actually strongly discouraged by Apple.</p>
-<hr>
-<h2 id="System-initialized-termination"><a href="#System-initialized-termination" class="headerlink" title="System-initialized termination"></a>System-initialized termination</h2><p>According to the <a href="https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/TheAppLifeCycle/TheAppLifeCycle.html#//apple_ref/doc/uid/TP40007072-CH2-SW9" target="_blank" rel="external">App Programming Guide for iOS</a>:</p>
-<blockquote>
-<p>Apps must be prepared for termination to happen at any time and should not wait to save user data or perform other critical tasks. System-initiated termination is a normal part of an app’s life cycle. The system usually terminates apps so that it can reclaim memory and make room for other apps being launched by the user, but the system may also terminate apps that are misbehaving or not responding to events in a timely manner.</p>
-<p>Suspended apps receive no notification when they are terminated; the system kills the process and reclaims the corresponding memory. If an app is currently running in the background and not suspended, the system calls the <code>applicationWillTerminate:</code> of its app delegate prior to termination. The system does not call this method when the device reboots.</p>
-<p>In addition to the system terminating your app, the user can terminate your app explicitly using the multitasking UI. <em>User-initiated termination has the same effect as terminating a suspended app.</em> The app’s process is killed and no notification is sent to the app.</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt;  How do I programmatically quit my iOS application?&lt;br&gt;&lt;strong&gt;A:&lt;/strong&gt; There is no API provided for gracefully terminating an iOS application.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;On the iPhone there is no concept of quitting an app. The only action that should cause an app to quit is touching the &lt;strong&gt;Home&lt;/strong&gt; button on the phone, and that’s not something developers have access to.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="iOS" scheme="http://hackjutsu.com/tags/iOS/"/>
     
   </entry>
   
