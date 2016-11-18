@@ -1090,7 +1090,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b33659;
+  background: #41bfff;
 }
 .sidebar-nav {
   margin: 0;
@@ -2291,4 +2291,14 @@ blockquote {
   border-radius: 0.2em;
   margin: 0px 0px 25px 0px;
   line-height: 150%;
+}
+.posts-expand .post-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+@media (max-width: 767px) {
+  .posts-expand .post-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
