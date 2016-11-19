@@ -1,0 +1,738 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="I code therefore I am." />
+
+
+
+  <meta name="keywords" content="Javascript," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hackjutsu Dojo" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="在Javascript中，array是一个类数组的object。顾名思义，它能够在一个变量上存储多个值。
+
+数组是值的有序集合。每个值叫做一个元素，而每个元素在数组中有一个位置，以数字表示，称为索引。JavaScript数组是无类型：数组元素可以是任意类型，并且同一个数组中的不同元素也可能有不同的类型。 –《JavaScript权威指南(第六版)》
+
+array在一般Javascript obje">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS学习 Array进阶">
+<meta property="og:url" content="http://hackjutsu.com/2016/11/18/JS学习 Array进阶/index.html">
+<meta property="og:site_name" content="Hackjutsu Dojo">
+<meta property="og:description" content="在Javascript中，array是一个类数组的object。顾名思义，它能够在一个变量上存储多个值。
+
+数组是值的有序集合。每个值叫做一个元素，而每个元素在数组中有一个位置，以数字表示，称为索引。JavaScript数组是无类型：数组元素可以是任意类型，并且同一个数组中的不同元素也可能有不同的类型。 –《JavaScript权威指南(第六版)》
+
+array在一般Javascript obje">
+<meta property="og:updated_time" content="2016-11-19T04:28:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS学习 Array进阶">
+<meta name="twitter:description" content="在Javascript中，array是一个类数组的object。顾名思义，它能够在一个变量上存储多个值。
+
+数组是值的有序集合。每个值叫做一个元素，而每个元素在数组中有一个位置，以数字表示，称为索引。JavaScript数组是无类型：数组元素可以是任意类型，并且同一个数组中的不同元素也可能有不同的类型。 –《JavaScript权威指南(第六版)》
+
+array在一般Javascript obje">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide'
+  };
+</script>
+
+  <title> JS学习 Array进阶 | Hackjutsu Dojo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72207664-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hackjutsu Dojo</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            Tags
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'L5TH3kKzWS14GbMzpixP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              JS学习 Array进阶
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2016-11-18T18:00:02-08:00" content="2016-11-18">
+            2016-11-18
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2016/11/18/JS学习 Array进阶/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/18/JS学习 Array进阶/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>在Javascript中，array是一个类数组的object。顾名思义，它能够在一个变量上存储多个值。</p>
+<blockquote>
+<p>数组是值的有序集合。每个值叫做一个元素，而每个元素在数组中有一个位置，以数字表示，称为索引。JavaScript数组是无类型：数组元素可以是任意类型，并且同一个数组中的不同元素也可能有不同的类型。 –《JavaScript权威指南(第六版)》</p>
+</blockquote>
+<p>array在一般Javascript object基础上，有自己额外的属性。它采用numbered index作为的key，有一个<code>length</code> property跟踪数组长度，还有如<code>push/pop</code>、<code>shift/unshift</code>等数组特有操作。</p>
+<a id="more"></a>
+<h2 id="本质是object"><a href="#本质是object" class="headerlink" title="本质是object"></a>本质是object</h2><p>作为一个object，我们可以在array上面进行所有object的合法操作，比如设置一个named key。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> test = [];</div><div class="line">test.fruit = <span class="string">"APPLE"</span>;</div><div class="line"><span class="built_in">console</span>.log(test.fruit); <span class="comment">// APPLE</span></div></pre></td></tr></table></figure></p>
+<p>上面仅仅把array作为一个普通的Javascript object使用，等价于<code>var test = {}</code>。在这种场合，我们应该选择普通的Javascirpt object，而非array。</p>
+<h2 id="Numbered-index"><a href="#Numbered-index" class="headerlink" title="Numbered index"></a>Numbered index</h2><p>Javascript中的 array object 采用了一个很朴素的思想来实现数组 —— 用数字来充当object的keys。这样在表面上延续了我们在C++/Java上使用数组的编程体验。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="number">0</span> : item0,</div><div class="line">  <span class="number">1</span> : item1,</div><div class="line">  <span class="number">2</span> : item2</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>array的这种实现方式导致了一些尴尬问题，比如删除元素、元素遍历。我们会在后面谈到这些问题。</p>
+<h2 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h2><h3 id="delete-operator（不推荐）"><a href="#delete-operator（不推荐）" class="headerlink" title="delete operator（不推荐）"></a><code>delete</code> operator（不推荐）</h3><p>和一般Javascript object一样，我们可以使用<code>delete</code>来删除object中的property。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>];</div><div class="line"><span class="keyword">delete</span> arr[<span class="number">1</span>];</div><div class="line"><span class="built_in">console</span>.log(arr);</div><div class="line"><span class="built_in">console</span>.log(arr[<span class="number">1</span>]);</div><div class="line"><span class="comment">// [ 'a', , 'c', 'd' ]</span></div><div class="line"><span class="comment">// undefined</span></div></pre></td></tr></table></figure></p>
+<p>当我们使用<code>delete</code>来删除某一个元素<code>arr[1]</code>时，arr中key <code>1</code> 和value <code>b</code>之间的连接被切断，key <code>1</code>对应的值被重置为<code>undefined</code>。注意，这时候，array中其他元素并没有改变自身的index来填补这key <code>1</code>这个空洞，而是保持原值。这样，key <code>1</code>就变成了arr中的一个洞了！</p>
+<p>除非有特殊需求，比如需要用到<a href="http://www.2ality.com/2012/06/dense-arrays.html" target="_blank" rel="external">sparse array</a>，一般情况下并不推荐使用<code>delete</code> operator来删除array中的元素。</p>
+<h3 id="splice-（推荐）"><a href="#splice-（推荐）" class="headerlink" title="splice() （推荐）"></a><code>splice()</code> （推荐）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</div><div class="line">fruits.splice(<span class="number">0</span>, <span class="number">1</span>); <span class="comment">// Removes the first element of fruits</span></div></pre></td></tr></table></figure>
+<p>第一个参数 (0) 定义新元素要从哪个位置插入。<br>第二个参数 (1) 定义新元素插入位置开始有多少元素要被删除。<br>后面的参数被忽略掉了，表示并没有要插入的元素。</p>
+<h3 id="filter-（推荐）"><a href="#filter-（推荐）" class="headerlink" title="filter()（推荐）"></a><code>filter()</code>（推荐）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</div><div class="line"><span class="keyword">var</span> toDelete = <span class="string">"Apple"</span>;</div><div class="line">fruits = fruits.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> value != toDelete;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// [ 'Banana', 'Orange', 'Mango' ]</span></div></pre></td></tr></table></figure>
+<h2 id="理解length"><a href="#理解length" class="headerlink" title="理解length"></a>理解length</h2><p><code>length</code>是array object的一个property， 根据名字来看，似乎是记录array的长度。其实，<code>length</code>得本质是跟踪array中的最大index，并始终保持值是<strong>max_index + 1</strong>。</p>
+<p>这和记录长度有什么区别呢？</p>
+<p>还记得使用<code>delete</code>来删除元素的情形吧？中间元素被删了，但是其他元素没有改变自身的index来填补空间。这时候即使delete了多个元素，数组的length可能并没有发生变化。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array_object = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line"><span class="built_in">console</span>.log(array_object.length); <span class="comment">// 3</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> array_object[<span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(array_object.length); <span class="comment">// 3!</span></div></pre></td></tr></table></figure></p>
+<h2 id="Array-遍历"><a href="#Array-遍历" class="headerlink" title="Array 遍历"></a>Array 遍历</h2><p>如果array中没有“洞”， for loop和forEach两种遍历方式区别不大。在array有洞的情况下，两者略有不同，其中forEach会跳过这些洞，而传统的for loop并不会。遍历array的方法还有其他，更多方法可以参考这篇<a href="http://stackoverflow.com/q/3010840/3697757" target="_blank" rel="external">StackOverflow问答</a>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array_object = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line"><span class="keyword">delete</span> array_object[<span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="comment">// 不跳过洞</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;array_object.length; i++) &#123;</div><div class="line">    <span class="built_in">console</span>.log(array_object[i])</div><div class="line">&#125;;</div><div class="line"><span class="comment">//1 undefined 3</span></div><div class="line"></div><div class="line"><span class="comment">//跳过洞</span></div><div class="line">array_object.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(s);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 1 3</span></div></pre></td></tr></table></figure></p>
+<h2 id="vs-new-Array"><a href="#vs-new-Array" class="headerlink" title="[ ] vs. new Array( )"></a>[ ] vs. new Array( )</h2><p>当新建一个array时候，我们有下面两种方式:  array literal <code>[ ]</code> 或 array constructor <code>new Array(arg)</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arrayA = [];</div><div class="line"><span class="keyword">var</span> arrayB = <span class="keyword">new</span> <span class="built_in">Array</span>();</div></pre></td></tr></table></figure></p>
+<p>当使用<code>[ ]</code>时候， JS engine会直接调用global Array的constructor新建一个array变量并返回。</p>
+<p>当使用<code>new Array()</code>时候， JS engine会沿着Execution Context往上追溯名为Array的constructor function，并据此生成一个Array object。这时候，虽然不大可能，Array可能会在中间某个Execution Context中被用户重新定义。下面是coderjoe在<a href="http://stackoverflow.com/a/1273936/3697757" target="_blank" rel="external">StackOverflow</a>中提出的例子。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Array</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.is = <span class="string">'SPARTA'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line"><span class="keyword">var</span> b = [];</div><div class="line"></div><div class="line">alert(a.is);  <span class="comment">// =&gt; 'SPARTA'</span></div><div class="line">alert(b.is);  <span class="comment">// =&gt; undefined</span></div><div class="line">a.push(<span class="string">'Woa'</span>); <span class="comment">// =&gt; TypeError: a.push is not a function</span></div><div class="line">b.push(<span class="string">'Woa'</span>); <span class="comment">// =&gt; 1 (OK)</span></div></pre></td></tr></table></figure></p>
+<p>大部分Javascirpt社区推荐使用<code>[]</code>来新建array。</p>
+<blockquote>
+<p>You never need to use new Object() in JavaScript. Use the object literal {} instead. Similarly, don’t use new Array(), use the array literal [] instead. Arrays in JavaScript work nothing like the arrays in Java, and use of the Java-like syntax will confuse you. <a href="http://yuiblog.com/blog/2006/11/13/javascript-we-hardly-new-ya/" target="_blank" rel="external">LINK</a></p>
+</blockquote>
+<h2 id="Array-复制"><a href="#Array-复制" class="headerlink" title="Array 复制"></a>Array 复制</h2><h3 id="浅度复制"><a href="#浅度复制" class="headerlink" title="浅度复制"></a>浅度复制</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>];</div><div class="line"><span class="keyword">var</span> arr2 = arr1; </div><div class="line">arr2[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// 对数组arr2的元素进行修改</span></div><div class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// [1, 'b', 'c']</span></div></pre></td></tr></table></figure>
+<h3 id="深度复制"><a href="#深度复制" class="headerlink" title="深度复制"></a>深度复制</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>];</div><div class="line"><span class="keyword">var</span> arr2 = arr1.concat(); <span class="comment">// 使用concat()方法，返回新的数组</span></div><div class="line">arr2[<span class="number">0</span>] = <span class="number">1</span>; </div><div class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// =&gt; ['a', 'b', 'c', 'd', 'e']：数组arr1的元素没变更</span></div><div class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// =&gt; [  1, 'b', 'c', 'd', 'e']：数组arr2的元素发生了变更</span></div></pre></td></tr></table></figure>
+<h2 id="Associate-Array"><a href="#Associate-Array" class="headerlink" title="Associate Array"></a>Associate Array</h2><p>在计算机科学中，采用named index而非numbered index的数组数据结构被称为<a href="https://en.wikipedia.org/wiki/Associative_array" target="_blank" rel="external">Associative Array</a>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> associative_array = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">associative_array[<span class="string">"one"</span>] = <span class="string">"Lorem"</span>;</div><div class="line">associative_array[<span class="string">"two"</span>] = <span class="string">"Ipsum"</span>;</div><div class="line">associative_array[<span class="string">"three"</span>] = <span class="string">"dolor"</span>;</div><div class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> associative_array) &#123; <span class="built_in">console</span>.log(i) &#125;;</div><div class="line"><span class="comment">// one two three</span></div></pre></td></tr></table></figure></p>
+<p>上面操作可以应用在任何Javascript object上，array object也不例外。但是在Javascript array上进行这种操作是很糟糕的。当需要使用named string作为key时候，我们应该使用一般的object，而非array。</p>
+<blockquote>
+<p>If you use a named index, JavaScript will redefine the array to a standard object.<br>After that, all array methods and properties will produce incorrect results. <a href="http://www.w3schools.com/js/js_arrays.asp" target="_blank" rel="external">LINK</a></p>
+</blockquote>
+<p><strong>Javascript里面并不支持named index的array。</strong></p>
+<blockquote>
+<p>In JavaScript, arrays always use numbered indexes.  <a href="http://www.w3schools.com/js/js_arrays.asp" target="_blank" rel="external">LINK</a></p>
+</blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="http://stackoverflow.com/a/13847793/3697757" target="_blank" rel="external">Iterating over an array with “holes” in JavaScript</a></li>
+<li><a href="http://stackoverflow.com/a/5665204/3697757" target="_blank" rel="external">Create an empty object in JavaScript with {} or new Object()?</a></li>
+<li><a href="http://stackoverflow.com/q/931872/3697757" target="_blank" rel="external">What’s the difference between “Array and “[]” while declaring a JavaScript array?</a></li>
+<li><a href="http://www.cnblogs.com/polk6/p/3542523.html" target="_blank" rel="external">JavaScript Array对象</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag">#Javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/17/JS学习 Primitive vs Object/" rel="next">JS学习 Primitive vs Object</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript"
+src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a07c3ac699e3ca"
+async = "async" > </script>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Cosmo" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cosmo</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">I code therefore I am.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">77</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hackjutsu" target="_blank">Github</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://coolshell.cn" target="_blank">CoolShell</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://journal.stuffwithstuff.com/" target="_blank">Bob Nystrom</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本质是object"><span class="nav-number">1.</span> <span class="nav-text">本质是object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numbered-index"><span class="nav-number">2.</span> <span class="nav-text">Numbered index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除元素"><span class="nav-number">3.</span> <span class="nav-text">删除元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#delete-operator（不推荐）"><span class="nav-number">3.1.</span> <span class="nav-text">delete operator（不推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#splice-（推荐）"><span class="nav-number">3.2.</span> <span class="nav-text">splice() （推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter-（推荐）"><span class="nav-number">3.3.</span> <span class="nav-text">filter()（推荐）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解length"><span class="nav-number">4.</span> <span class="nav-text">理解length</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-遍历"><span class="nav-number">5.</span> <span class="nav-text">Array 遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vs-new-Array"><span class="nav-number">6.</span> <span class="nav-text">[ ] vs. new Array( )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-复制"><span class="nav-number">7.</span> <span class="nav-text">Array 复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浅度复制"><span class="nav-number">7.1.</span> <span class="nav-text">浅度复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度复制"><span class="nav-number">7.2.</span> <span class="nav-text">深度复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Associate-Array"><span class="nav-number">8.</span> <span class="nav-text">Associate Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'hackjustu';
+      var disqus_identifier = '2016/11/18/JS学习 Array进阶/';
+      var disqus_title = 'JS学习 Array进阶';
+      var disqus_url = 'http://hackjutsu.com/2016/11/18/JS学习 Array进阶/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+</body>
+</html>

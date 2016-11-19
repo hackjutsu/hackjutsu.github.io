@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hackjutsu.com/"/>
-  <updated>2016-11-18T21:43:32.000Z</updated>
+  <updated>2016-11-19T04:28:55.000Z</updated>
   <id>http://hackjutsu.com/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS学习 Array进阶</title>
+    <link href="http://hackjutsu.com/2016/11/18/JS%E5%AD%A6%E4%B9%A0%20Array%E8%BF%9B%E9%98%B6/"/>
+    <id>http://hackjutsu.com/2016/11/18/JS学习 Array进阶/</id>
+    <published>2016-11-19T02:00:02.000Z</published>
+    <updated>2016-11-19T04:28:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Javascript中，array是一个类数组的object。顾名思义，它能够在一个变量上存储多个值。</p>
+<blockquote>
+<p>数组是值的有序集合。每个值叫做一个元素，而每个元素在数组中有一个位置，以数字表示，称为索引。JavaScript数组是无类型：数组元素可以是任意类型，并且同一个数组中的不同元素也可能有不同的类型。 –《JavaScript权威指南(第六版)》</p>
+</blockquote>
+<p>array在一般Javascript object基础上，有自己额外的属性。它采用numbered index作为的key，有一个<code>length</code> property跟踪数组长度，还有如<code>push/pop</code>、<code>shift/unshift</code>等数组特有操作。</p>
+<a id="more"></a>
+<h2 id="本质是object"><a href="#本质是object" class="headerlink" title="本质是object"></a>本质是object</h2><p>作为一个object，我们可以在array上面进行所有object的合法操作，比如设置一个named key。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> test = [];</div><div class="line">test.fruit = <span class="string">"APPLE"</span>;</div><div class="line"><span class="built_in">console</span>.log(test.fruit); <span class="comment">// APPLE</span></div></pre></td></tr></table></figure></p>
+<p>上面仅仅把array作为一个普通的Javascript object使用，等价于<code>var test = {}</code>。在这种场合，我们应该选择普通的Javascirpt object，而非array。</p>
+<h2 id="Numbered-index"><a href="#Numbered-index" class="headerlink" title="Numbered index"></a>Numbered index</h2><p>Javascript中的 array object 采用了一个很朴素的思想来实现数组 —— 用数字来充当object的keys。这样在表面上延续了我们在C++/Java上使用数组的编程体验。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="number">0</span> : item0,</div><div class="line">  <span class="number">1</span> : item1,</div><div class="line">  <span class="number">2</span> : item2</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>array的这种实现方式导致了一些尴尬问题，比如删除元素、元素遍历。我们会在后面谈到这些问题。</p>
+<h2 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h2><h3 id="delete-operator（不推荐）"><a href="#delete-operator（不推荐）" class="headerlink" title="delete operator（不推荐）"></a><code>delete</code> operator（不推荐）</h3><p>和一般Javascript object一样，我们可以使用<code>delete</code>来删除object中的property。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>];</div><div class="line"><span class="keyword">delete</span> arr[<span class="number">1</span>];</div><div class="line"><span class="built_in">console</span>.log(arr);</div><div class="line"><span class="built_in">console</span>.log(arr[<span class="number">1</span>]);</div><div class="line"><span class="comment">// [ 'a', , 'c', 'd' ]</span></div><div class="line"><span class="comment">// undefined</span></div></pre></td></tr></table></figure></p>
+<p>当我们使用<code>delete</code>来删除某一个元素<code>arr[1]</code>时，arr中key <code>1</code> 和value <code>b</code>之间的连接被切断，key <code>1</code>对应的值被重置为<code>undefined</code>。注意，这时候，array中其他元素并没有改变自身的index来填补这key <code>1</code>这个空洞，而是保持原值。这样，key <code>1</code>就变成了arr中的一个洞了！</p>
+<p>除非有特殊需求，比如需要用到<a href="http://www.2ality.com/2012/06/dense-arrays.html" target="_blank" rel="external">sparse array</a>，一般情况下并不推荐使用<code>delete</code> operator来删除array中的元素。</p>
+<h3 id="splice-（推荐）"><a href="#splice-（推荐）" class="headerlink" title="splice() （推荐）"></a><code>splice()</code> （推荐）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</div><div class="line">fruits.splice(<span class="number">0</span>, <span class="number">1</span>); <span class="comment">// Removes the first element of fruits</span></div></pre></td></tr></table></figure>
+<p>第一个参数 (0) 定义新元素要从哪个位置插入。<br>第二个参数 (1) 定义新元素插入位置开始有多少元素要被删除。<br>后面的参数被忽略掉了，表示并没有要插入的元素。</p>
+<h3 id="filter-（推荐）"><a href="#filter-（推荐）" class="headerlink" title="filter()（推荐）"></a><code>filter()</code>（推荐）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</div><div class="line"><span class="keyword">var</span> toDelete = <span class="string">"Apple"</span>;</div><div class="line">fruits = fruits.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> value != toDelete;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// [ 'Banana', 'Orange', 'Mango' ]</span></div></pre></td></tr></table></figure>
+<h2 id="理解length"><a href="#理解length" class="headerlink" title="理解length"></a>理解length</h2><p><code>length</code>是array object的一个property， 根据名字来看，似乎是记录array的长度。其实，<code>length</code>得本质是跟踪array中的最大index，并始终保持值是<strong>max_index + 1</strong>。</p>
+<p>这和记录长度有什么区别呢？</p>
+<p>还记得使用<code>delete</code>来删除元素的情形吧？中间元素被删了，但是其他元素没有改变自身的index来填补空间。这时候即使delete了多个元素，数组的length可能并没有发生变化。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array_object = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line"><span class="built_in">console</span>.log(array_object.length); <span class="comment">// 3</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> array_object[<span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(array_object.length); <span class="comment">// 3!</span></div></pre></td></tr></table></figure></p>
+<h2 id="Array-遍历"><a href="#Array-遍历" class="headerlink" title="Array 遍历"></a>Array 遍历</h2><p>如果array中没有“洞”， for loop和forEach两种遍历方式区别不大。在array有洞的情况下，两者略有不同，其中forEach会跳过这些洞，而传统的for loop并不会。遍历array的方法还有其他，更多方法可以参考这篇<a href="http://stackoverflow.com/q/3010840/3697757" target="_blank" rel="external">StackOverflow问答</a>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array_object = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line"><span class="keyword">delete</span> array_object[<span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="comment">// 不跳过洞</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;array_object.length; i++) &#123;</div><div class="line">    <span class="built_in">console</span>.log(array_object[i])</div><div class="line">&#125;;</div><div class="line"><span class="comment">//1 undefined 3</span></div><div class="line"></div><div class="line"><span class="comment">//跳过洞</span></div><div class="line">array_object.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(s);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 1 3</span></div></pre></td></tr></table></figure></p>
+<h2 id="vs-new-Array"><a href="#vs-new-Array" class="headerlink" title="[ ] vs. new Array( )"></a>[ ] vs. new Array( )</h2><p>当新建一个array时候，我们有下面两种方式:  array literal <code>[ ]</code> 或 array constructor <code>new Array(arg)</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arrayA = [];</div><div class="line"><span class="keyword">var</span> arrayB = <span class="keyword">new</span> <span class="built_in">Array</span>();</div></pre></td></tr></table></figure></p>
+<p>当使用<code>[ ]</code>时候， JS engine会直接调用global Array的constructor新建一个array变量并返回。</p>
+<p>当使用<code>new Array()</code>时候， JS engine会沿着Execution Context往上追溯名为Array的constructor function，并据此生成一个Array object。这时候，虽然不大可能，Array可能会在中间某个Execution Context中被用户重新定义。下面是coderjoe在<a href="http://stackoverflow.com/a/1273936/3697757" target="_blank" rel="external">StackOverflow</a>中提出的例子。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Array</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.is = <span class="string">'SPARTA'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line"><span class="keyword">var</span> b = [];</div><div class="line"></div><div class="line">alert(a.is);  <span class="comment">// =&gt; 'SPARTA'</span></div><div class="line">alert(b.is);  <span class="comment">// =&gt; undefined</span></div><div class="line">a.push(<span class="string">'Woa'</span>); <span class="comment">// =&gt; TypeError: a.push is not a function</span></div><div class="line">b.push(<span class="string">'Woa'</span>); <span class="comment">// =&gt; 1 (OK)</span></div></pre></td></tr></table></figure></p>
+<p>大部分Javascirpt社区推荐使用<code>[]</code>来新建array。</p>
+<blockquote>
+<p>You never need to use new Object() in JavaScript. Use the object literal {} instead. Similarly, don’t use new Array(), use the array literal [] instead. Arrays in JavaScript work nothing like the arrays in Java, and use of the Java-like syntax will confuse you. <a href="http://yuiblog.com/blog/2006/11/13/javascript-we-hardly-new-ya/" target="_blank" rel="external">LINK</a></p>
+</blockquote>
+<h2 id="Array-复制"><a href="#Array-复制" class="headerlink" title="Array 复制"></a>Array 复制</h2><h3 id="浅度复制"><a href="#浅度复制" class="headerlink" title="浅度复制"></a>浅度复制</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>];</div><div class="line"><span class="keyword">var</span> arr2 = arr1; </div><div class="line">arr2[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// 对数组arr2的元素进行修改</span></div><div class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// [1, 'b', 'c']</span></div></pre></td></tr></table></figure>
+<h3 id="深度复制"><a href="#深度复制" class="headerlink" title="深度复制"></a>深度复制</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>];</div><div class="line"><span class="keyword">var</span> arr2 = arr1.concat(); <span class="comment">// 使用concat()方法，返回新的数组</span></div><div class="line">arr2[<span class="number">0</span>] = <span class="number">1</span>; </div><div class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// =&gt; ['a', 'b', 'c', 'd', 'e']：数组arr1的元素没变更</span></div><div class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// =&gt; [  1, 'b', 'c', 'd', 'e']：数组arr2的元素发生了变更</span></div></pre></td></tr></table></figure>
+<h2 id="Associate-Array"><a href="#Associate-Array" class="headerlink" title="Associate Array"></a>Associate Array</h2><p>在计算机科学中，采用named index而非numbered index的数组数据结构被称为<a href="https://en.wikipedia.org/wiki/Associative_array" target="_blank" rel="external">Associative Array</a>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> associative_array = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">associative_array[<span class="string">"one"</span>] = <span class="string">"Lorem"</span>;</div><div class="line">associative_array[<span class="string">"two"</span>] = <span class="string">"Ipsum"</span>;</div><div class="line">associative_array[<span class="string">"three"</span>] = <span class="string">"dolor"</span>;</div><div class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> associative_array) &#123; <span class="built_in">console</span>.log(i) &#125;;</div><div class="line"><span class="comment">// one two three</span></div></pre></td></tr></table></figure></p>
+<p>上面操作可以应用在任何Javascript object上，array object也不例外。但是在Javascript array上进行这种操作是很糟糕的。当需要使用named string作为key时候，我们应该使用一般的object，而非array。</p>
+<blockquote>
+<p>If you use a named index, JavaScript will redefine the array to a standard object.<br>After that, all array methods and properties will produce incorrect results. <a href="http://www.w3schools.com/js/js_arrays.asp" target="_blank" rel="external">LINK</a></p>
+</blockquote>
+<p><strong>Javascript里面并不支持named index的array。</strong></p>
+<blockquote>
+<p>In JavaScript, arrays always use numbered indexes.  <a href="http://www.w3schools.com/js/js_arrays.asp" target="_blank" rel="external">LINK</a></p>
+</blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="http://stackoverflow.com/a/13847793/3697757" target="_blank" rel="external">Iterating over an array with “holes” in JavaScript</a></li>
+<li><a href="http://stackoverflow.com/a/5665204/3697757" target="_blank" rel="external">Create an empty object in JavaScript with {} or new Object()?</a></li>
+<li><a href="http://stackoverflow.com/q/931872/3697757" target="_blank" rel="external">What’s the difference between “Array and “[]” while declaring a JavaScript array?</a></li>
+<li><a href="http://www.cnblogs.com/polk6/p/3542523.html" target="_blank" rel="external">JavaScript Array对象</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Javascript中，array是一个类数组的object。顾名思义，它能够在一个变量上存储多个值。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;数组是值的有序集合。每个值叫做一个元素，而每个元素在数组中有一个位置，以数字表示，称为索引。JavaScript数组是无类型：数组元素可以是任意类型，并且同一个数组中的不同元素也可能有不同的类型。 –《JavaScript权威指南(第六版)》&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;array在一般Javascript object基础上，有自己额外的属性。它采用numbered index作为的key，有一个&lt;code&gt;length&lt;/code&gt; property跟踪数组长度，还有如&lt;code&gt;push/pop&lt;/code&gt;、&lt;code&gt;shift/unshift&lt;/code&gt;等数组特有操作。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Javascript" scheme="http://hackjutsu.com/tags/Javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>JS学习 Primitive vs Object</title>
@@ -114,11 +182,11 @@
   </entry>
   
   <entry>
-    <title>JS学习 Array Essentials</title>
-    <link href="http://hackjutsu.com/2016/10/15/JS%E5%AD%A6%E4%B9%A0%20Array%20Essentials/"/>
-    <id>http://hackjutsu.com/2016/10/15/JS学习 Array Essentials/</id>
+    <title>JS学习 Array入门</title>
+    <link href="http://hackjutsu.com/2016/10/15/JS%E5%AD%A6%E4%B9%A0%20Array%20%E5%85%A5%E9%97%A8/"/>
+    <id>http://hackjutsu.com/2016/10/15/JS学习 Array 入门/</id>
     <published>2016-10-16T01:00:45.000Z</published>
-    <updated>2016-11-18T08:35:51.000Z</updated>
+    <updated>2016-11-19T01:31:52.000Z</updated>
     
     <content type="html"><![CDATA[<p>JavaScript arrays are used to store multiple values in a single variable. The topics covered are summerized below.</p>
 <ul>
@@ -1927,36 +1995,6 @@ D---E---F---G---H master
     
     
       <category term="Java" scheme="http://hackjutsu.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Internet Control Message Protocol (ICMP)</title>
-    <link href="http://hackjutsu.com/2016/01/12/Internet%20Control%20Message%20Protocol%20(ICMP)/"/>
-    <id>http://hackjutsu.com/2016/01/12/Internet Control Message Protocol (ICMP)/</id>
-    <published>2016-01-13T02:00:00.000Z</published>
-    <updated>2016-01-14T18:41:31.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>Q: In which layer do <code>ping</code> and <code>traceroute</code> work?<br>A: Internet Control Message Protocol or <strong>ICMP</strong>.</p>
-</blockquote>
-<a id="more"></a>
-<p>The <strong>ICMP</strong> is one of the main protocols of the <a href="https://en.wikipedia.org/wiki/Internet_protocol_suite" target="_blank" rel="external">Internet Protocol Suite</a>.  Unlike the transport protocols such as TCP and UDP, it is not typically used to exchange data between systems, nor is it regularly employed by end-user network applications.</p>
-<p><strong>ICMP</strong> is used by network devices, like routers, to send messages to indicate whether a host or a service is available or not.  It is also utilized by some diagnostic tools like <code>ping</code> and <code>traceroute</code>.</p>
-<hr>
-<p><strong>Resource</strong><br><a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#cite_note-2" target="_blank" rel="external">Wikipedia: Internet Control Message Protocal</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;Q: In which layer do &lt;code&gt;ping&lt;/code&gt; and &lt;code&gt;traceroute&lt;/code&gt; work?&lt;br&gt;A: Internet Control Message Protocol or &lt;strong&gt;ICMP&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="Network" scheme="http://hackjutsu.com/tags/Network/"/>
     
   </entry>
   
