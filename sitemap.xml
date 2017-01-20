@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://hackjutsu.com/2016/03/12/A%20Cup%20of%20Git%20Latte/</loc>
+    
+    <lastmod>2017-01-20T20:18:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://hackjutsu.com/2016/11/18/JS%E5%AD%A6%E4%B9%A0%20Array%E8%BF%9B%E9%98%B6/</loc>
     
     <lastmod>2016-11-19T04:41:17.000Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://hackjutsu.com/2016/09/29/Process%20%E4%B8%8E%20Thread/</loc>
     
     <lastmod>2016-09-29T22:41:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://hackjutsu.com/2016/03/12/A%20Cup%20of%20Git%20Latte/</loc>
-    
-    <lastmod>2016-09-26T17:56:19.000Z</lastmod>
     
   </url>
   
